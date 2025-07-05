@@ -184,30 +184,6 @@
             padding: 1rem;
         }
 
-        /* 联系方式 */
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .contact-links a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        .contact-links a:hover {
-            background-color: #ffe4f1;
-            transform: translateX(5px);
-            text-decoration: none;
-        }
-        .contact-links a i {
-            width: 20px;
-            text-align: center;
-        }
-
         /* 网格容器布局 */
         .grid-container {
             display: grid;
@@ -287,6 +263,36 @@
             transform: translateY(-2px);
         }
 
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #ffb6c1;
+            color: white;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffe4f1;
+            transform: translateY(-2px);
+        }
+
         /* 响应式设计 */
         .mobile-menu-btn {
             display: none;
@@ -332,6 +338,11 @@
             header nav.active {
                 display: block;
             }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -345,11 +356,9 @@
         <nav id="mainNav">
             <a href="#about" style="margin: 0 10px; color: white;">关于我</a>
             <a href="#achievements" style="margin: 0 10px; color: white;">个人成就</a>
-            <a href="#positions" style="margin: 0 10px; color: white;">任职经历</a>
             <a href="#courses" style="margin: 0 10px; color: white;">课程资料</a>
             <a href="#projects" style="margin: 0 10px; color: white;">我的项目</a>
             <a href="#notes" style="margin: 0 10px; color: white;">笔记分享</a>
-            <a href="#contact" style="margin: 0 10px; color: white;">联系我</a>
         </nav>
     </header>
 
@@ -398,14 +407,6 @@
                 </p>
                 <p>🔠 <strong>英语四级592，六级535</strong></p>
                 <p>🖥 <strong>计算机二级良好</strong></p>
-            </section>
-
-            <!-- 任职经历 -->
-            <section id="positions">
-                <h2>任职经历</h2>
-                <p>📷 <strong>2025.06至今</strong> 西安交通大学招生公益社宣传部副部长</p>
-                <p>📄 <strong>2024.10至今</strong> 西安交通大学钱学森书院学生第一党支部钱学组负责人</p>
-                <p>🤖 <strong>2024.09至今</strong> 西安交通大学钱学森书院智造钱2401班科技委员</p>
             </section>
             
             <!-- 课程资料 -->
@@ -497,28 +498,25 @@
                     </div>
                 </div>
             </section>
-
-            <!-- 联系方式 -->
-            <section id="contact">
-                <h2>联系我</h2>
-                <div class="contact-links">
-                    <a href="mailto:2223510297@stu.xjtu.edu.cn">
-                        <i class="fas fa-envelope"></i> 邮箱：2223510297@stu.xjtu.edu.cn
-                    </a>
-                    <a href="https://github.com/HenryTJS" target="_blank">
-                        <i class="fab fa-github"></i> GitHub: HenryTJS
-                    </a>
-                    <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank">
-                        <i class="fab fa-qq"></i> QQ：1743495223
-                    </a>
-                </div>
-            </section>
         </div>
     </div>
 
     <!-- 页脚 -->
-    <footer style="text-align: center; padding: 1rem; background-color: #ffb6c1; color: white;">
-        <p>© 2025 seal的个人主页. 保留所有权利.</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:2223510297@stu.xjtu.edu.cn" class="footer-link">
+                    <i class="fas fa-envelope"></i> 邮箱：2223510297@stu.xjtu.edu.cn
+                </a>
+                <a href="https://github.com/HenryTJS" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub: HenryTJS
+                </a>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank" class="footer-link">
+                    <i class="fab fa-qq"></i> QQ：1743495223
+                </a>
+            </div>
+            <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
+        </div>
     </footer>
 
     <script>
