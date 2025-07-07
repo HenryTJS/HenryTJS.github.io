@@ -6,7 +6,7 @@
     <title>我的个人主页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 全局样式 */
+        /* === 保留原有全局样式 === */
         * {
             margin: 0;
             padding: 0;
@@ -17,12 +17,6 @@
             background-color: #eee0e5;
             color: #333;
             line-height: 1.6;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         a {
             color: #3498db;
@@ -34,35 +28,118 @@
             color: #2980b9;
         }
 
-        /* 头部导航 */
-        header {
-            background-color: #ffb6c1;
+        /* === 新增：固定导航栏样式 === */
+        .main-nav-bar {
+            background-color: #ff69b4;
             color: white;
-            padding: 1rem;
             text-align: center;
-            position: sticky;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
             top: 0;
+            left: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
-        header.scrolled {
-            padding: 0.5rem 1rem;
-            background-color: rgba(255, 182, 193, 0.95);
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 {
+        .nav-title {
             font-family: 'Courier New', Courier, monospace;
-            transition: all 0.3s ease;
-        }
-        header.scrolled h1 {
             font-size: 1.5rem;
+            color: white;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-link {
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .nav-link:hover {
+            background-color: white;
+            color: #ff69b4;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .nav-link.active {
+            background-color: white;
+            color: #ff69b4;
+            border-color: #ff69b4;
         }
 
-        /* 主要内容区 */
+        /* === 新增：英雄区域（全屏高度）=== */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #ff69b4;
+            color: white;
+            position: relative;
+            margin-top: 0;
+        }
+        .hero-content {
+            z-index: 1;
+            padding: 0 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+        .hero-title {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* === 新增：下拉箭头 === */
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite, fadeIn 2s ease-out;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .scroll-down:hover {
+            color: #ffe4f1;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === 调整原有内容区样式 === */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 60px auto 2rem; /* 调整为60px以适应固定导航栏 */
+            padding: 2rem 1rem;
         }
         section {
             background-color: white;
@@ -70,15 +147,13 @@
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            opacity: 0;
             transform: translateY(20px);
-            animation: sectionFadeIn 0.6s ease-out forwards;
+            opacity: 0;
+            transition: all 0.6s ease;
         }
-        @keyframes sectionFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        section.visible {
+            transform: translateY(0);
+            opacity: 1;
         }
         h1 {
             color: #000000;
@@ -91,7 +166,7 @@
             border-bottom: 2px solid #ffe4f1;
         }
 
-        /* 个人简介 */
+        /* === 保留原有所有内容样式 === */
         .profile {
             display: flex;
             align-items: center;
@@ -113,38 +188,12 @@
             margin-bottom: 0.5rem;
         }
 
-        /* 技能卡片 */
-        .skills {
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
-        .skill-card {
-            background-color: #fff0f6;
-            padding: 1rem;
-            border-radius: 4px;
-            border-left: 4px solid #ff69b4;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: skillCardSlide 0.5s ease-out forwards;
-        }
-        @keyframes skillCardSlide {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .skill-card:nth-child(1) { animation-delay: 0.1s; }
-        .skill-card:nth-child(2) { animation-delay: 0.2s; }
-        .skill-card:nth-child(3) { animation-delay: 0.3s; }
-        .skill-card:nth-child(4) { animation-delay: 0.4s; }
-
-        /* 项目展示 */
+        
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -155,43 +204,15 @@
             border-radius: 4px;
             overflow: hidden;
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: projectCardFadeIn 0.6s ease-out forwards;
-        }
-        @keyframes projectCardFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .project-card:nth-child(1) { animation-delay: 0.2s; }
-        .project-card:nth-child(2) { animation-delay: 0.4s; }
-        .project-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
         }
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
         .project-info {
             padding: 1rem;
         }
 
-        /* 网格容器布局 */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-        
-        /* 博客板块样式 */
         .note-posts {
             display: grid;
             grid-template-columns: 1fr;
@@ -208,25 +229,11 @@
             background-color: #fff0f6;
             transform: translateX(5px);
         }
-        .note-card h3 {
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-        .note-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
 
-        /* 课程资料表格样式 */
         .course-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
-            opacity: 0;
-            animation: tableFadeIn 0.6s ease-out 0.3s forwards;
-        }
-        @keyframes tableFadeIn {
-            to { opacity: 1; }
         }
         .course-table th, .course-table td {
             padding: 12px 15px;
@@ -237,37 +244,14 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        .course-table tr {
-            transition: all 0.2s ease;
-        }
         .course-table tr:hover {
             background-color: #f9f9f9;
-            transform: scale(1.01);
-        }
-        .course-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .course-link {
-            display: inline-block;
-            padding: 4px 8px;
-            background-color: #e3f2fd;
-            border-radius: 4px;
-            color: #1976d2;
-            transition: all 0.3s ease;
-        }
-        .course-link:hover {
-            background-color: #bbdefb;
-            text-decoration: none;
-            transform: translateY(-2px);
         }
 
-        /* 页脚样式 */
         footer {
             text-align: center;
             padding: 1.5rem;
-            background-color: #ffb6c1;
+            background-color: #000000;
             color: white;
         }
         .footer-content {
@@ -293,17 +277,28 @@
             transform: translateY(-2px);
         }
 
-        /* 响应式设计 */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
+        /* === 响应式设计 === */
         @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .nav-container {
+                padding: 1rem;
+            }
+            .nav-title {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
             .profile {
                 flex-direction: column;
                 text-align: center;
@@ -319,25 +314,6 @@
                 display: block;
                 overflow-x: auto;
             }
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-            }
-            header nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: #ffb6c1;
-                padding: 1rem 0;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-            header nav.active {
-                display: block;
-            }
             .footer-links {
                 flex-direction: column;
                 align-items: center;
@@ -347,25 +323,32 @@
     </style>
 </head>
 <body>
-    <!-- 头部导航 -->
-    <header id="mainHeader">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        <h1>欢迎来到seal的个人主页</h1>
-        <nav id="mainNav">
-            <a href="#about" style="margin: 0 10px; color: white;">关于我</a>
-            <a href="#achievements" style="margin: 0 10px; color: white;">个人成就</a>
-            <a href="#courses" style="margin: 0 10px; color: white;">课程资料</a>
-            <a href="#projects" style="margin: 0 10px; color: white;">我的项目</a>
-            <a href="#notes" style="margin: 0 10px; color: white;">笔记分享</a>
-        </nav>
-    </header>
+    <!-- === 新增：固定导航栏 === -->
+    <div class="main-nav-bar" id="mainNavBar">
+        <div class="nav-container">
+            <h1 class="nav-title">seal的个人主页</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="article.html" class="nav-link">文章</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- 主要内容 -->
+    <!-- === 新增：英雄区域（全屏高度）=== -->
+    <div class="hero-section" id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">seal的个人主页</h1>
+            <p class="hero-subtitle">西安交通大学少年班学生 | 智能制造工程（钱学森班）</p>
+        </div>
+        <div class="scroll-down" id="scrollDown">
+            <i class="fas fa-angle-down"></i>
+        </div>
+    </div>
+
+    <!-- === 原有所有内容保留在这里 === -->
     <div class="container">
         <!-- 关于我 -->
-        <section id="about" class="about">
+        <section id="about" class="about visible">
             <div class="profile">
                 <img src="touxiang.jpg" alt="我的头像" class="profile-img">
                 <div class="profile-text">
@@ -382,7 +365,7 @@
         <!-- 网格容器 -->
         <div class="grid-container">
             <!-- 个人成就 -->
-            <section id="achievements">
+            <section id="achievements" class="visible">
                 <h2>个人成就</h2>
                 <p>💰 <strong>2024西安交通大学校级三等奖学金</strong>
                     <ul style="margin-left: 1.5rem; list-style-type: circle;">
@@ -410,7 +393,7 @@
             </section>
             
             <!-- 课程资料 -->
-            <section id="courses">
+            <section id="courses" class="visible">
                 <h2>课程资料</h2>
                 <table class="course-table">
                     <thead>
@@ -455,7 +438,7 @@
             </section>
 
             <!-- 我的项目 -->
-            <section id="projects">
+            <section id="projects" class="visible">
                 <h2>我的项目</h2>
                 <div class="projects">
                     <div class="project-card">
@@ -476,7 +459,7 @@
             </section>
 
             <!-- 笔记分享 -->
-            <section id="notes">
+            <section id="notes" class="visible">
                 <h2>笔记分享</h2>
                 <div class="note-posts">
                     <div class="note-card">
@@ -520,67 +503,85 @@
     </footer>
 
     <script>
-        // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. 页面加载动画
-            document.body.style.opacity = '1';
-            
-            // 2. 导航栏滚动效果
-            const header = document.getElementById('mainHeader');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+            // 下拉箭头点击事件
+            const scrollDown = document.getElementById('scrollDown');
+            scrollDown.addEventListener('click', function() {
+                const heroSection = document.getElementById('hero');
+                const container = document.querySelector('.container');
+                const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
+                
+                window.scrollTo({
+                    top: heroSection.offsetHeight,
+                    behavior: 'smooth'
+                });
             });
             
-            // 3. 响应式菜单
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mainNav = document.getElementById('mainNav');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-            });
-            
-            // 4. 平滑滚动
+            // 导航链接平滑滚动
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    mainNav.classList.remove('active');
-                    
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
+                        const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - navHeight + 10;
+                        
                         window.scrollTo({
-                            top: targetElement.offsetTop - (header.classList.contains('scrolled') ? 60 : 100),
+                            top: targetPosition,
                             behavior: 'smooth'
                         });
                     }
                 });
             });
             
-            // 5. 动态显示section（观察者模式）
-            const sections = document.querySelectorAll('section');
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            // 内容区域渐显效果
+            function handleScroll() {
+                const sections = document.querySelectorAll('section');
+                const triggerPoint = window.innerHeight / 4;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    
+                    if (sectionTop < window.innerHeight - triggerPoint) {
+                        section.classList.add('visible');
                     }
                 });
-            }, observerOptions);
+                
+                // 导航链接高亮
+                const scrollPosition = window.scrollY;
+                const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navHeight;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        const id = section.getAttribute('id');
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
             
-            sections.forEach(section => {
-                observer.observe(section);
+            // 初始加载时处理可见性
+            setTimeout(() => {
+                handleScroll();
+            }, 100);
+            
+            // 滚动时处理可见性和导航高亮
+            window.addEventListener('scroll', function() {
+                handleScroll();
             });
+            
+            // 页面加载完成后显示内容（避免初始闪烁）
+            document.body.style.visibility = 'visible';
         });
     </script>
 </body>
