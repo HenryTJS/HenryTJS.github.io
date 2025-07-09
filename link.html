@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章</title>
+    <title>常用链接</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* === 基础样式（与主站保持一致）=== */
@@ -17,8 +17,8 @@
             background-color: #eee0e5;
             color: #333;
             line-height: 1.6;
-            visibility: hidden; /* 防止页面加载时闪烁 */
-            animation: fadeIn 1s ease-in-out forwards; /* 添加淡入动画 */
+            visibility: hidden;
+            animation: fadeIn 1s ease-in-out forwards;
         }
         @keyframes fadeIn {
             from {
@@ -51,8 +51,8 @@
             left: 0;
             z-index: 100;
             transition: all 0.4s ease;
-            transform: translateY(-100%); /* 初始隐藏导航栏 */
-            animation: slideDown 0.5s ease-in-out 0.5s forwards; /* 下滑动画 */
+            transform: translateY(-100%);
+            animation: slideDown 0.5s ease-in-out 0.5s forwards;
         }
         @keyframes slideDown {
             from {
@@ -104,20 +104,23 @@
         /* === 内容区域基础样式 === */
         .page-container {
             max-width: 1200px;
-            margin: 80px auto 2rem; /* 留出导航栏空间 */
+            margin: 80px auto 2rem;
             padding: 2rem 1rem;
             min-height: calc(100vh - 200px);
         }
-        .page-header {
+
+        /* === 合并后的链接卡片 === */
+        .links-card {
             background-color: white;
             border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 2rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInUp 0.5s ease-in-out 1s forwards; /* 淡入上滑动画 */
+            display: flex;
+            gap: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-in-out 0.5s forwards;
         }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -128,47 +131,43 @@
                 transform: translateY(0);
             }
         }
-        .page-title {
+        
+        .links-column {
+            flex: 1;
+        }
+        
+        .column-title {
             color: #d63384;
-            font-family: 'Courier New', Courier, monospace;
-            margin-bottom: 0.5rem;
-        }
-        .page-subtitle {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        /* === 卡片式内容区块 === */
-        .content-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInUp 0.5s ease-in-out forwards; /* 淡入上滑动画 */
-            transition: transform 0.3s ease;
-        }
-        .content-card:nth-child(1) {
-            animation-delay: 0.6s;
-        }
-        .content-card:nth-child(2) {
-            animation-delay: 0.8s;
-        }
-        .content-card:nth-child(3) {
-            animation-delay: 1.0s;
-        }
-        .content-card:nth-child(4) {
-            animation-delay: 1.2s;
-        }
-        .content-card:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        .card-title {
-            color: #d63384;
-            margin-bottom: 1rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #ffe4f1;
+            font-size: 1.3rem;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .link-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        .link-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* === 页脚样式（完全复用）=== */
@@ -177,8 +176,8 @@
             padding: 1.5rem;
             background-color: #000000;
             color: white;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.6s forwards; /* 淡入动画 */
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out 1.6s forwards;
         }
         .footer-content {
             max-width: 1200px;
@@ -223,8 +222,15 @@
                 margin-top: 70px;
                 padding: 1rem;
             }
-            .page-header {
-                padding: 1rem;
+            
+            .links-card {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
             .footer-links {
@@ -242,43 +248,98 @@
             <h1 class="nav-title">seal的个人主页</h1>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="article.html" class="nav-link active">文章</a>
-                <a href="link.html" class="nav-link">链接</a>
+                <a href="article.html" class="nav-link">文章</a>
+                <a href="link.html" class="nav-link active">链接</a>
             </div>
         </div>
     </div>
 
     <!-- === 页面内容区域 === -->
     <div class="page-container">
-        <main>
-            <section class="content-card">
-                <h2 class="card-title">我承诺未来五十年远离恶性肿瘤：从理念到行动</h2>
-                <p class="article-meta">发布时间：2025-04-22 | 分类：健康生活</p>
-                <p>恶性肿瘤，这个令人谈之色变的健康杀手，多年来一直严重威胁着人类的生命健康和生活质量。世界卫生组织相关数据显示，全球每年新增癌症病例高达 1800 多万，因癌症死亡人数约 960 万。</p>
-                <a href="article4.html" class="read-more">阅读全文</a>
-            </section>
-
-            <section class="content-card">
-                <h2 class="card-title">“光伏-氢能”协同技术助力实现能源系统碳中和目标</h2>
-                <p class="article-meta">发布时间：2024-11-09 | 分类：能源系统</p>
-                <p>近些年来，在全球气候变化的大背景下，实现“碳达峰、碳中和”已经成为国际社会普遍关注的重大课题。能源系统作为碳排放的主要来源，其转型和升级是实现碳中和目标的关键。光伏系统作为一种清洁、可再生的能源技术，得到了快速发展。</p>
-                <a href="article3.html" class="read-more">阅读全文</a>
-            </section>
-
-            <section class="content-card">
-                <h2 class="card-title">探访独行骑士——《荒原狼》书评</h2>
-                <p class="article-meta">发布时间：2023-01-16 | 分类：好书推荐</p>
-                <p>狼是一种野生动物，以其强烈的兽性著称。在社会上也有一种人，具有人性和狼性。他们对自己、生活都不满意，他们觉得自己根本不是人，他们想要反抗，却没有实质力量。</p>
-                <a href="article2.html" class="read-more">阅读全文</a>
-            </section>
+        <!-- 合并后的链接卡片 -->
+        <div class="links-card">
+            <!-- 常用链接左栏 -->
+            <div class="links-column">
+                <h2 class="column-title">常用链接</h2>
+                <div class="links-grid">
+                    <a href="https://github.com" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-github"></i></div>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://stackoverflow.com" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-stack-overflow"></i></div>
+                        <span>Stack Overflow</span>
+                    </a>
+                    <a href="https://codepen.io" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-codepen"></i></div>
+                        <span>CodePen</span>
+                    </a>
+                    <a href="https://developer.mozilla.org" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-book"></i></div>
+                        <span>MDN Web Docs</span>
+                    </a>
+                    <a href="https://vscode.dev" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-code"></i></div>
+                        <span>VS Code Web</span>
+                    </a>
+                    <a href="https://npmjs.com" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-npm"></i></div>
+                        <span>npm</span>
+                    </a>
+                    <a href="https://dribbble.com" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-dribbble"></i></div>
+                        <span>Dribbble</span>
+                    </a>
+                    <a href="https://behance.net" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fab fa-behance"></i></div>
+                        <span>Behance</span>
+                    </a>
+                    <a href="https://unsplash.com" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-image"></i></div>
+                        <span>Unsplash</span>
+                    </a>
+                </div>
+            </div>
             
-            <section class="content-card">
-                <h2 class="card-title">生活的滋味——《岛》好书推荐</h2>
-                <p class="article-meta">发布时间：2022-11-29 | 分类：好书推荐</p>
-                <p>在希腊爱琴海的克里特岛海岸以北，布拉卡对面隔海相望的是斯皮纳龙格，斯皮纳龙格岛的风物和一水之隔的布拉卡没什么不同，也有湛蓝的海水和温暖的海风，有成片成片开满野花的山坡，但1903年之后，却因为麻风病这个可怕的存在而成为禁忌的代名词。</p>
-                <a href="article1.html" class="read-more">阅读全文</a>
-            </section>
-        </main>
+            <!-- 校园链接右栏 -->
+            <div class="links-column">
+                <h2 class="column-title">校园链接</h2>
+                <div class="links-grid">
+                    <a href="http://www.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-university"></i></div>
+                        <span>西安交通大学</span>
+                    </a>
+                    <a href="http://dean.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span>教务处</span>
+                    </a>
+                    <a href="http://lib.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-book-open"></i></div>
+                        <span>图书馆</span>
+                    </a>
+                    <a href="http://mail.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-envelope"></i></div>
+                        <span>交大邮箱</span>
+                    </a>
+                    <a href="http://ids.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-user-circle"></i></div>
+                        <span>信息门户</span>
+                    </a>
+                    <a href="http://ehall.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-desktop"></i></div>
+                        <span>网上办事大厅</span>
+                    </a>
+                    <a href="http://sports.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-running"></i></div>
+                        <span>体育中心</span>
+                    </a>
+                    <a href="http://career.xjtu.edu.cn" target="_blank" class="link-item">
+                        <div class="link-icon"><i class="fas fa-briefcase"></i></div>
+                        <span>就业中心</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- === 页脚（完全复用）=== -->
