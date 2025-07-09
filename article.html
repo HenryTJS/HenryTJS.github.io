@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === 基础样式（与主站保持一致）=== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #eee0e5;
+            color: #333;
+            line-height: 1.6;
+            visibility: hidden; /* 防止页面加载时闪烁 */
+            animation: fadeIn 1s ease-in-out forwards; /* 添加淡入动画 */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+
+        /* === 固定导航栏样式（完全复用）=== */
+        .main-nav-bar {
+            background-color: #ff69b4;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: all 0.4s ease;
+            transform: translateY(-100%); /* 初始隐藏导航栏 */
+            animation: slideDown 0.5s ease-in-out 0.5s forwards; /* 下滑动画 */
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-link {
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .nav-link:hover {
+            background-color: white;
+            color: #ff69b4;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .nav-link.active {
+            background-color: white;
+            color: #ff69b4;
+            border-color: #ff69b4;
+        }
+
+        /* === 内容区域基础样式 === */
+        .page-container {
+            max-width: 1200px;
+            margin: 80px auto 2rem; /* 留出导航栏空间 */
+            padding: 2rem 1rem;
+            min-height: calc(100vh - 200px);
+        }
+        .page-header {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0; /* 初始隐藏 */
+            animation: fadeInUp 0.5s ease-in-out 1s forwards; /* 淡入上滑动画 */
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .page-title {
+            color: #d63384;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 0.5rem;
+        }
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* === 卡片式内容区块 === */
+        .content-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0; /* 初始隐藏 */
+            animation: fadeInUp 0.5s ease-in-out forwards; /* 淡入上滑动画 */
+            transition: transform 0.3s ease;
+        }
+        .content-card:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+        .content-card:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        .content-card:nth-child(3) {
+            animation-delay: 1.0s;
+        }
+        .content-card:nth-child(4) {
+            animation-delay: 1.2s;
+        }
+        .content-card:hover {
+            transform: scale(1.02); /* 鼠标悬停放大效果 */
+        }
+        .card-title {
+            color: #d63384;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ffe4f1;
+        }
+
+        /* === 页脚样式（完全复用）=== */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #000000;
+            color: white;
+            opacity: 0; /* 初始隐藏 */
+            animation: fadeIn 0.5s ease-in-out 1.6s forwards; /* 淡入动画 */
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffe4f1;
+            transform: translateY(-2px);
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+            .nav-title {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .page-container {
+                margin-top: 70px;
+                padding: 1rem;
+            }
+            .page-header {
+                padding: 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === 固定导航栏（完全复用）=== -->
+    <div class="main-nav-bar" id="mainNavBar">
+        <div class="nav-container">
+            <h1 class="nav-title">seal的个人主页</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="article.html" class="nav-link active">文章</a>
+                <a href="link.html" class="nav-link">链接</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- === 页面内容区域 === -->
+    <div class="page-container">
+        <main>
+            <section class="content-card">
+                <h2 class="card-title">我承诺未来五十年远离恶性肿瘤：从理念到行动</h2>
+                <p class="article-meta">发布时间：2025-04-22 | 分类：健康生活</p>
+                <p>恶性肿瘤，这个令人谈之色变的健康杀手，多年来一直严重威胁着人类的生命健康和生活质量。世界卫生组织相关数据显示，全球每年新增癌症病例高达 1800 多万，因癌症死亡人数约 960 万。</p>
+                <a href="article4.html" class="read-more">阅读全文</a>
+            </section>
+
+            <section class="content-card">
+                <h2 class="card-title">“光伏-氢能”协同技术助力实现能源系统碳中和目标</h2>
+                <p class="article-meta">发布时间：2024-11-09 | 分类：能源系统</p>
+                <p>近些年来，在全球气候变化的大背景下，实现“碳达峰、碳中和”已经成为国际社会普遍关注的重大课题。能源系统作为碳排放的主要来源，其转型和升级是实现碳中和目标的关键。光伏系统作为一种清洁、可再生的能源技术，得到了快速发展。</p>
+                <a href="article3.html" class="read-more">阅读全文</a>
+            </section>
+
+            <section class="content-card">
+                <h2 class="card-title">探访独行骑士——《荒原狼》书评</h2>
+                <p class="article-meta">发布时间：2023-01-16 | 分类：好书推荐</p>
+                <p>狼是一种野生动物，以其强烈的兽性著称。在社会上也有一种人，具有人性和狼性。他们对自己、生活都不满意，他们觉得自己根本不是人，他们想要反抗，却没有实质力量。</p>
+                <a href="article2.html" class="read-more">阅读全文</a>
+            </section>
+            
+            <section class="content-card">
+                <h2 class="card-title">生活的滋味——《岛》好书推荐</h2>
+                <p class="article-meta">发布时间：2022-11-29 | 分类：好书推荐</p>
+                <p>在希腊爱琴海的克里特岛海岸以北，布拉卡对面隔海相望的是斯皮纳龙格，斯皮纳龙格岛的风物和一水之隔的布拉卡没什么不同，也有湛蓝的海水和温暖的海风，有成片成片开满野花的山坡，但1903年之后，却因为麻风病这个可怕的存在而成为禁忌的代名词。</p>
+                <a href="article1.html" class="read-more">阅读全文</a>
+            </section>
+        </main>
+    </div>
+
+    <!-- === 页脚（完全复用）=== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto:2223510297@stu.xjtu.edu.cn" class="footer-link">
+                    <i class="fas fa-envelope"></i> 邮箱：2223510297@stu.xjtu.edu.cn
+                </a>
+                <a href="https://github.com/HenryTJS" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub: HenryTJS
+                </a>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank" class="footer-link">
+                    <i class="fab fa-qq"></i> QQ：1743495223
+                </a>
+            </div>
+            <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 导航链接高亮逻辑
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || 
+                    (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // 页面加载完成后显示内容
+            document.body.style.visibility = 'visible';
+        });
+    </script>
+</body>
+</html>
