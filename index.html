@@ -6,7 +6,6 @@
     <title>我的个人主页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* === 保留原有全局样式 === */
         * {
             margin: 0;
             padding: 0;
@@ -27,8 +26,6 @@
             text-decoration: underline;
             color: #2980b9;
         }
-
-        /* === 新增：固定导航栏样式 === */
         .main-nav-bar {
             background-color: #ff69b4;
             color: white;
@@ -79,8 +76,6 @@
             color: #ff69b4;
             border-color: #ff69b4;
         }
-
-        /* === 新增：英雄区域（全屏高度）=== */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -108,8 +103,6 @@
             max-width: 800px;
             margin: 0 auto 2rem;
         }
-        
-        /* === 新增：下拉箭头 === */
         .scroll-down {
             position: absolute;
             bottom: 2rem;
@@ -134,11 +127,9 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* === 调整原有内容区样式 === */
         .container {
             max-width: 1200px;
-            margin: 60px auto 2rem; /* 调整为60px以适应固定导航栏 */
+            margin: 60px auto 2rem;
             padding: 2rem 1rem;
         }
         section {
@@ -165,8 +156,6 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #ffe4f1;
         }
-
-        /* === 保留原有所有内容样式 === */
         .profile {
             display: flex;
             align-items: center;
@@ -193,7 +182,6 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
-        
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -212,7 +200,6 @@
         .project-info {
             padding: 1rem;
         }
-
         .note-posts {
             display: grid;
             grid-template-columns: 1fr;
@@ -229,7 +216,6 @@
             background-color: #fff0f6;
             transform: translateX(5px);
         }
-
         .course-table {
             width: 100%;
             border-collapse: collapse;
@@ -247,7 +233,6 @@
         .course-table tr:hover {
             background-color: #f9f9f9;
         }
-
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -276,8 +261,6 @@
             color: #ffe4f1;
             transform: translateY(-2px);
         }
-
-        /* === 响应式设计 === */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2rem;
@@ -298,7 +281,6 @@
                 padding: 0.4rem 0.8rem;
                 font-size: 0.8rem;
             }
-            
             .profile {
                 flex-direction: column;
                 text-align: center;
@@ -323,19 +305,15 @@
     </style>
 </head>
 <body>
-    <!-- === 新增：固定导航栏 === -->
     <div class="main-nav-bar" id="mainNavBar">
         <div class="nav-container">
             <h1 class="nav-title">seal的个人主页</h1>
             <div class="nav-links">
                 <a href="index.html" class="nav-link active">首页</a>
                 <a href="article.html" class="nav-link">文章</a>
-                <a href="link.html" class="nav-link">链接</a>
             </div>
         </div>
     </div>
-
-    <!-- === 新增：英雄区域（全屏高度）=== -->
     <div class="hero-section" id="hero">
         <div class="hero-content">
             <h1 class="hero-title">seal的个人主页</h1>
@@ -345,10 +323,7 @@
             <i class="fas fa-angle-down"></i>
         </div>
     </div>
-
-    <!-- === 原有所有内容保留在这里 === -->
     <div class="container">
-        <!-- 关于我 -->
         <section id="about" class="about visible">
             <div class="profile">
                 <img src="touxiang.jpg" alt="我的头像" class="profile-img">
@@ -362,10 +337,7 @@
                 你好！我是杨承轩，你也可以叫我seal。我是2022级西安交通大学少年班学生，现智能制造工程（钱学森班）大二在读。我喜欢音乐和体育，学习过双排键和萨克斯，在少年班成人礼、钱班音乐会等均曾上台演出，同时是2024年西安交通大学男子30秒单摇个人第9名，也带领智造钱2401班获得2025年西安交通大学广播操比赛第4名。生活上我还喜欢旅游、摄影和骑行，有志同道合的小伙伴欢迎一起来玩！
             </p>
         </section>
-
-        <!-- 网格容器 -->
         <div class="grid-container">
-            <!-- 个人成就 -->
             <section id="achievements" class="visible">
                 <h2>个人成就</h2>
                 <p>💰 <strong>2024西安交通大学校级三等奖学金</strong>
@@ -391,8 +363,6 @@
                 <p>🔠 <strong>英语四级592，六级535</strong></p>
                 <p>🖥 <strong>计算机二级良好</strong></p>
             </section>
-            
-            <!-- 课程资料 -->
             <section id="courses" class="visible">
                 <h2>课程资料</h2>
                 <table class="course-table">
@@ -436,8 +406,6 @@
                     </tbody>
                 </table>
             </section>
-
-            <!-- 我的项目 -->
             <section id="projects" class="visible">
                 <h2>我的项目</h2>
                 <div class="projects">
@@ -457,8 +425,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- 笔记分享 -->
             <section id="notes" class="visible">
                 <h2>笔记分享</h2>
                 <div class="note-posts">
@@ -483,8 +449,6 @@
             </section>
         </div>
     </div>
-
-    <!-- 页脚 -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -501,34 +465,27 @@
             <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 下拉箭头点击事件
             const scrollDown = document.getElementById('scrollDown');
             scrollDown.addEventListener('click', function() {
                 const heroSection = document.getElementById('hero');
                 const container = document.querySelector('.container');
                 const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
-                
                 window.scrollTo({
                     top: heroSection.offsetHeight,
                     behavior: 'smooth'
                 });
             });
-            
-            // 导航链接平滑滚动
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
                         const targetPosition = targetElement.offsetTop - navHeight + 10;
-                        
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
@@ -536,28 +493,20 @@
                     }
                 });
             });
-            
-            // 内容区域渐显效果
             function handleScroll() {
                 const sections = document.querySelectorAll('section');
                 const triggerPoint = window.innerHeight / 4;
-                
                 sections.forEach(section => {
                     const sectionTop = section.getBoundingClientRect().top;
-                    
                     if (sectionTop < window.innerHeight - triggerPoint) {
                         section.classList.add('visible');
                     }
                 });
-                
-                // 导航链接高亮
                 const scrollPosition = window.scrollY;
                 const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
-                
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop - navHeight;
                     const sectionHeight = section.offsetHeight;
-                    
                     if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                         const id = section.getAttribute('id');
                         document.querySelectorAll('.nav-link').forEach(link => {
@@ -569,18 +518,12 @@
                     }
                 });
             }
-            
-            // 初始加载时处理可见性
             setTimeout(() => {
                 handleScroll();
             }, 100);
-            
-            // 滚动时处理可见性和导航高亮
             window.addEventListener('scroll', function() {
                 handleScroll();
             });
-            
-            // 页面加载完成后显示内容（避免初始闪烁）
             document.body.style.visibility = 'visible';
         });
     </script>
