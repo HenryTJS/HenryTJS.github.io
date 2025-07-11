@@ -5,305 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>“光伏-氢能”协同技术助力实现能源系统碳中和目标</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* === 基础样式（与主站保持一致）=== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #eee0e5;
-            color: #333;
-            line-height: 1.6;
-            visibility: hidden; /* 防止页面加载时闪烁 */
-            animation: fadeIn 1s ease-in-out forwards; /* 添加淡入动画 */
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #2980b9;
-        }
-
-        /* === 固定导航栏样式（完全复用）=== */
-        .main-nav-bar {
-            background-color: #ff69b4;
-            color: white;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            transition: all 0.4s ease;
-            transform: translateY(-100%); /* 初始隐藏导航栏 */
-            animation: slideDown 0.5s ease-in-out 0.5s forwards; /* 下滑动画 */
-        }
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-title {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: white;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .nav-link {
-            color: white;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .nav-link:hover {
-            background-color: white;
-            color: #ff69b4;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-        }
-        .nav-link.active {
-            background-color: white;
-            color: #ff69b4;
-            border-color: #ff69b4;
-        }
-
-        /* === 文章容器 === */
-        .article-container {
-            max-width: 800px;
-            margin: 80px auto 2rem; /* 留出导航栏空间 */
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInUp 0.5s ease-in-out 1s forwards; /* 淡入上滑动画 */
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* === 文章头部 === */
-        .article-header {
-            background: linear-gradient(135deg, #3498db, #2ecc71);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        .article-header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-        }
-        .article-meta {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        .article-meta a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* === 文章内容 === */
-        .article-content {
-            padding: 30px;
-        }
-        .article-content h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .article-content h3 {
-            color: #3498db;
-            margin-top: 30px;
-        }
-        .article-content p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-        }
-        .text-end {
-            text-align: justify; /* 两端对齐 */
-            text-align-last: right; /* 最后一行右对齐 */
-        }
-
-        /* === 引用块 === */
-        blockquote {
-            background-color: #ecf0f1;
-            border-left: 5px solid #3498db;
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            transition: transform 0.3s ease;
-        }
-        blockquote:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        blockquote footer {
-            text-align: right;
-            font-style: normal;
-        }
-
-        /* === 列表样式 === */
-        ul, ol {
-            margin: 20px 0 30px 30px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-
-        /* === 图片和图注 === */
-        figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #777;
-        }
-
-        /* === 代码块 === */
-        code {
-            background-color: #f0f0f0;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* === 文章底部 === */
-        .article-footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.2s forwards; /* 淡入动画 */
-        }
-        .article-footer a {
-            color: #2ecc71;
-            text-decoration: none;
-        }
-
-        /* === 页脚样式（完全复用）=== */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #000000;
-            color: white;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.4s forwards; /* 淡入动画 */
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .footer-link:hover {
-            color: #ffe4f1;
-            transform: translateY(-2px);
-        }
-
-        /* === 响应式设计 === */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-            }
-            .nav-title {
-                font-size: 1.2rem;
-            }
-            .nav-links {
-                gap: 0.5rem;
-            }
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .article-container {
-                margin: 70px 20px 2rem;
-            }
-
-            .article-header {
-                padding: 30px 20px;
-            }
-
-            .article-header h1 {
-                font-size: 2em;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles-for-all.css">
+    <link rel="stylesheet" href="styles-for-article.css">
 </head>
 <body>
-    <!-- === 固定导航栏（完全复用）=== -->
     <div class="main-nav-bar" id="mainNavBar">
         <div class="nav-container">
             <h1 class="nav-title">seal的个人主页</h1>
@@ -313,56 +18,44 @@
             </div>
         </div>
     </div>
-
     <div class="article-container">
-        <!-- 文章头部 -->
         <header class="article-header">
             <h1>“光伏-氢能”协同技术助力实现能源系统碳中和目标</h1>
             <div class="article-meta">
                 作者: <span>seal</span> | 
                 发布日期: <time datetime="2024-11-09">2024年11月9日</time> | 
-                分类: <a href="#">能源系统</a>
+                分类: <a>能源系统</a>
             </div>
         </header>
-
-        <!-- 文章内容 -->
         <main class="article-content">
             <section>
                 <p><strong>摘要：</strong>本文探讨了在全球气候变化背景下，“光伏-氢能”协同技术作为实现能源系统碳中和目标的重要途径。光伏系统虽具有清洁、可再生等优势，但面临随机性、波动性等问题。氢能作为一种高效的能源载体，具有能量密度高、清洁无污染等优点，为解决光伏发电局限性提供了新思路。文章分析了光伏系统的作用与挑战、氢能的优势与应用，并介绍了“光伏- 氢能”协同技术的实现路径，包括光伏制氢技术和氢能储存方式。最后，文章展望了“光伏-氢能”协同技术的未来发展，认为其将为实现全球碳中和目标作出重要贡献。</p>
                 <p><strong>关键词：</strong>光伏系统；氢能；光伏制氢；碳中和</p>
-
                 <h2>引言</h2>
                 <p>近些年来，在全球气候变化的大背景下，实现“碳达峰、碳中和”已经成为国际社会普遍关注的重大课题。能源系统作为碳排放的主要来源，其转型和升级是实现碳中和目标的关键。光伏系统作为一种清洁、可再生的能源技术，得到了快速发展。然而，光伏发电的随机性、波动性等问题限制了其大规模应用。氢能作为一种高效的能源载体，具有能量密度高、清洁无污染、易于储存和运输等优点，为解决光伏发电的局限性提供了新思路。因此，“光伏-氢能”协同技术是实现能源系统碳中和目标的重要途径。</p>
-                
                 <h2>光伏系统的作用与挑战</h2>
                 <h3>光伏系统的作用</h3>
                 <p>光伏系统一般建立在城市的远郊区或农村地区，即使这些地区基础设施并不完善。从可行性来看，这些地区空间较为广阔，便于安装大型光伏板，同时系统并不依赖远程电网，可以独立运行；从经济效益来看，光伏系统可以依据地形、人口等因素进行实时调整，实现能源的最优分配，并且促进当地相关产业发展，提高居民的生活水平；从环境效益来看，光伏发电作为绿色能源，势必会减少对化石燃料的依赖，不产生温室气体排放，减少碳排放足迹。</p>
                 <h3>光伏系统的挑战</h3>
                 <p>尽管光伏系统拥有诸多优势，其面对的挑战也日益显现。在环境上，温度、光照强度等对光伏系统都有显著影响，同时，还存在阴影、灰尘等不可预料因素，也可能减少光伏板的发电量；在技术上，普通硅基光伏板的平均转换效率仅为 15%～20%，锂离子电池被广泛使用之时，其成本和使用寿命限制了更广泛的应用。目前，科研人员正在制作更利于转换的材料，发展更高效的发电技术。而其中，氢能作为一种重要的能源逐渐被发掘并使用。<sup>[1]</sup></p>
-
                 <h2>氢能的优势与应用</h2>
                 <h3>氢能的优势</h3>
                 <p>随着化石燃料耗量的日益增加，储量也随之减少，寻找储量丰富的清洁新能源迫在眉睫。氢能正是这样的，它分布广泛，主要以水的形式存在地球上。若把其中的氢都提炼出来，将会产生大约地球上矿物燃料 9000 倍的热量，可见其能量密度之高。其次，氢气的燃烧产物仅为水，且可以循环往复，这就形成了一个无穷的闭环，不但符合大自然的循环规律，而且也不会破坏生态平衡。同时，各种氢能的储运技术也已得到发展，不同情况下皆有对应的方式进行储存与运输，灵活性强。<sup>[2]</sup></p>
                 <h3>氢能的应用</h3>
                 <p>氢能的应用领域广泛，包括交通运输、工业生产、航空航天等。在交通运输领域，氢能燃料电池汽车具有续航里程长、加氢速度快、排放无污染等优点，可以替代传统燃油汽车，显著减少对化石燃料的依赖和空气污染；在工业生产领域，氢能可以作还原剂、保护气体等，可以储存在地下储气库中，保证能源供应的稳定性；在航空航天领域，氢能则被用作火箭燃料和动力系统，提供强大的推力，使得飞行解决的方案更加高效；此外，一些其它的能源系统利用可再生能源生成电能，也可以生产并储存氢气，以满足后续能源需求。</p>
-                
                 <h2>“光伏-氢能”协同技术的实现路径</h2>
                 <h3>光伏制氢</h3>
                 <p>光伏制氢，也称为光电解水制氢，是将太阳能转化为氢能的过程。其基本原理是利用光伏电池将太阳能转换为直流电，然后通过电解将水分解为氧气和氢气。电解水的过程中，需要在适当的时间加入合适的催化剂，以降低反应的活化能。产生的氢气可以作为能量储存，也可用于合成其他化学物质。近年来，光伏制氢技术得到长足发展，科研人员正在探索提高光电转换效率和电解水效率的方法。在光伏电池方面，硅基太阳能电池是目前的主流技术路线，而钙钛矿太阳能电池等新型太阳能电池也在不断发展。在电解水方面，研究人员正在研究更高效的催化剂和电解液，以提高电解产生氢气的效率和纯度。此外，光伏制氢技术的商业应用也逐步推进。一些国家已经建立了商业规模的光伏制氢项目，通过大规模光伏发电和电解水制氢，为工业生产和储能提供清洁能源。</p>
                 <h3>氢能储存</h3>
                 <p>氢能储存是实现氢能广泛应用的关键环节。目前，氢能储存方式主要以高压气态储存、低温液态储存和固态储存为主。其中，高压气态储存是将氢气压缩后储存在高压容器中，其技术成熟、成本低廉，中国的氢气压缩机技术已经达到国际先进水平；低温液态储存是将氢气冷却至极低温度后液化储存，具有储存密度高、能量损失小等优点，常用于军事、航天等对氢气纯度要求较高的领域；固态储存则是将氢气吸附或储存在固态材料中，以高安全性、长储存时间著称，具有非常大的发展潜力。随着氢能储存技术的不断进步和创新，更多高效、安全、经济的储存方式将会涌现，为氢能的大规模应用提供有力保障。<sup>[3]</sup></p>
-                
                 <h2>结论与展望</h2>
                 <p>“光伏-氢能”协同技术是实现能源系统碳中和目标的重要途径。光伏制氢、氢能储存及应用等方面的技术创新和进步，可以有效解决光伏发电的局限性，实现其大规模、稳定、可靠的应用。同时，氢能作为一种高效的能源载体，具有显著的环境效益和经济效益，为能源系统的转型和升级提供了有力支撑。随着“光伏-氢能”协同技术的不断发展和完善，更多能源解决方案将被提出，且为实现全球碳中和目标作出重要贡献。</p>
-
                 <h2>参考文献</h2>
                 <p>[1] 王帅. 光伏系统在农村能源供应中的应用[J]. 光源与照明, 2024, 9: 116-118</p>
                 <p>[2] 韦仕庆, 刘丰. 氢能源技术的应用与发展研究探析[J]. 能源技术与管理, 2024, 49(3): 176-179</p>
                 <p>[3] 付强, 杨洸, 金辉, 程子豪. 中国氢能产业链技术现状及发展趋势[J]. 油气与新能源, 2024, 36(4): 19-30</p>
             </section>
         </main>
-
-        <!-- 文章底部 -->
         <footer class="article-footer">
             <nav>
                 <a href="article2.html">上一篇</a> | 
@@ -370,8 +63,6 @@
             </nav>
         </footer>
     </div>
-
-    <!-- === 页脚（完全复用）=== -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -388,10 +79,8 @@
             <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 导航链接高亮逻辑
             const currentPage = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
@@ -400,8 +89,6 @@
                     link.classList.add('active');
                 }
             });
-            
-            // 页面加载完成后显示内容
             document.body.style.visibility = 'visible';
         });
     </script>

@@ -5,305 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>探访独行骑士——《荒原狼》书评</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* === 基础样式（与主站保持一致）=== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #eee0e5;
-            color: #333;
-            line-height: 1.6;
-            visibility: hidden; /* 防止页面加载时闪烁 */
-            animation: fadeIn 1s ease-in-out forwards; /* 添加淡入动画 */
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #2980b9;
-        }
-
-        /* === 固定导航栏样式（完全复用）=== */
-        .main-nav-bar {
-            background-color: #ff69b4;
-            color: white;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            transition: all 0.4s ease;
-            transform: translateY(-100%); /* 初始隐藏导航栏 */
-            animation: slideDown 0.5s ease-in-out 0.5s forwards; /* 下滑动画 */
-        }
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-title {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: white;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .nav-link {
-            color: white;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .nav-link:hover {
-            background-color: white;
-            color: #ff69b4;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-        }
-        .nav-link.active {
-            background-color: white;
-            color: #ff69b4;
-            border-color: #ff69b4;
-        }
-
-        /* === 文章容器 === */
-        .article-container {
-            max-width: 800px;
-            margin: 80px auto 2rem; /* 留出导航栏空间 */
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInUp 0.5s ease-in-out 1s forwards; /* 淡入上滑动画 */
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* === 文章头部 === */
-        .article-header {
-            background: linear-gradient(135deg, #3498db, #2ecc71);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        .article-header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-        }
-        .article-meta {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        .article-meta a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* === 文章内容 === */
-        .article-content {
-            padding: 30px;
-        }
-        .article-content h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .article-content h3 {
-            color: #3498db;
-            margin-top: 30px;
-        }
-        .article-content p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-        }
-        .text-end {
-            text-align: justify; /* 两端对齐 */
-            text-align-last: right; /* 最后一行右对齐 */
-        }
-
-        /* === 引用块 === */
-        blockquote {
-            background-color: #ecf0f1;
-            border-left: 5px solid #3498db;
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            transition: transform 0.3s ease;
-        }
-        blockquote:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        blockquote footer {
-            text-align: right;
-            font-style: normal;
-        }
-
-        /* === 列表样式 === */
-        ul, ol {
-            margin: 20px 0 30px 30px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-
-        /* === 图片和图注 === */
-        figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #777;
-        }
-
-        /* === 代码块 === */
-        code {
-            background-color: #f0f0f0;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* === 文章底部 === */
-        .article-footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.2s forwards; /* 淡入动画 */
-        }
-        .article-footer a {
-            color: #2ecc71;
-            text-decoration: none;
-        }
-
-        /* === 页脚样式（完全复用）=== */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #000000;
-            color: white;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.4s forwards; /* 淡入动画 */
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .footer-link:hover {
-            color: #ffe4f1;
-            transform: translateY(-2px);
-        }
-
-        /* === 响应式设计 === */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-            }
-            .nav-title {
-                font-size: 1.2rem;
-            }
-            .nav-links {
-                gap: 0.5rem;
-            }
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .article-container {
-                margin: 70px 20px 2rem;
-            }
-
-            .article-header {
-                padding: 30px 20px;
-            }
-
-            .article-header h1 {
-                font-size: 2em;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles-for-all.css">
+    <link rel="stylesheet" href="styles-for-article.css">
 </head>
 <body>
-    <!-- === 固定导航栏（完全复用）=== -->
     <div class="main-nav-bar" id="mainNavBar">
         <div class="nav-container">
             <h1 class="nav-title">seal的个人主页</h1>
@@ -313,19 +18,15 @@
             </div>
         </div>
     </div>
-
     <div class="article-container">
-        <!-- 文章头部 -->
         <header class="article-header">
             <h1>探访独行骑士——《荒原狼》书评</h1>
             <div class="article-meta">
                 作者: <span>seal</span> | 
                 发布日期: <time datetime="2023-01-16">2023年1月16日</time> | 
-                分类: <a href="#">好书推荐</a>
+                分类: <a>好书推荐</a>
             </div>
         </header>
-
-        <!-- 文章内容 -->
         <main class="article-content">
             <section>
                 <p>狼是一种野生动物，以其强烈的兽性著称。在社会上也有一种人，具有人性和狼性。他们对自己、生活都不满意，他们觉得自己根本不是人，他们想要反抗，却没有实质力量。这就是黑塞笔下的荒原狼。让我们走进这位独行骑士的世界，去探访荒原狼的内心。</p>
@@ -341,13 +42,10 @@
                 <p>这同时是一本发出“卡桑德拉警告”的小说。那时民族沙文主义十分强大，人们并没有从第一次世界大战中吸取教训，每天都有成千上万的人在热心地准备下一场战争，许多讲演、报纸、会议在宣扬虚假爱国主义，煽动复仇情绪。这一切地目的和结局就是爆发一场战争。然而，黑塞充满恐惧的警告反而遭到了舆论的嘲笑。</p>
                 <p>《荒原狼》问世后引起德国文学界的高度赞扬和激烈争论和反响，成为西方青年最欢迎的作品。“由于他的富于灵感的作品具有遒劲的气势和洞察力，也为崇高的人道主义理想和高尚风格提供了一个范例。”尤其当社会动荡不安时，往往出现一种阅读接受的高潮。从此，黑塞及其作品便成为人们研究及讨论的热点。</p>
                 <p>这是时代秩序的崩溃和崇高理想的破灭，希望我们可以从中得到启发。</p>
-
                 <h2>推荐词</h2>
                 <p>《荒原狼》源自黑塞笔下，作品荡气回肠，天马行空，见解入木三分，形象生动地阐述了古典的人道主义思想与优美的风格。跟随哈勒尔的步伐，我们看到无比痛苦的知识阶层，感受其个性与痛苦，以及个人问题和情怀。这是时代秩序的崩溃和崇高理想的破灭，这更是一种永恒的精神信仰。</p>
             </section>
         </main>
-
-        <!-- 文章底部 -->
         <footer class="article-footer">
             <nav>
                 <a href="article1.html">上一篇</a> | 
@@ -355,8 +53,6 @@
             </nav>
         </footer>
     </div>
-
-    <!-- === 页脚（完全复用）=== -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -373,10 +69,8 @@
             <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 导航链接高亮逻辑
             const currentPage = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
@@ -385,8 +79,6 @@
                     link.classList.add('active');
                 }
             });
-            
-            // 页面加载完成后显示内容
             document.body.style.visibility = 'visible';
         });
     </script>

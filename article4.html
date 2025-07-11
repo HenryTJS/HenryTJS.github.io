@@ -5,305 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我承诺未来五十年远离恶性肿瘤：从理念到行动</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* === 基础样式（与主站保持一致）=== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        body {
-            background-color: #eee0e5;
-            color: #333;
-            line-height: 1.6;
-            visibility: hidden; /* 防止页面加载时闪烁 */
-            animation: fadeIn 1s ease-in-out forwards; /* 添加淡入动画 */
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #2980b9;
-        }
-
-        /* === 固定导航栏样式（完全复用）=== */
-        .main-nav-bar {
-            background-color: #ff69b4;
-            color: white;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            transition: all 0.4s ease;
-            transform: translateY(-100%); /* 初始隐藏导航栏 */
-            animation: slideDown 0.5s ease-in-out 0.5s forwards; /* 下滑动画 */
-        }
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-title {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: white;
-        }
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .nav-link {
-            color: white;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .nav-link:hover {
-            background-color: white;
-            color: #ff69b4;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-        }
-        .nav-link.active {
-            background-color: white;
-            color: #ff69b4;
-            border-color: #ff69b4;
-        }
-
-        /* === 文章容器 === */
-        .article-container {
-            max-width: 800px;
-            margin: 80px auto 2rem; /* 留出导航栏空间 */
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeInUp 0.5s ease-in-out 1s forwards; /* 淡入上滑动画 */
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* === 文章头部 === */
-        .article-header {
-            background: linear-gradient(135deg, #3498db, #2ecc71);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        .article-header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em;
-        }
-        .article-meta {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        .article-meta a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* === 文章内容 === */
-        .article-content {
-            padding: 30px;
-        }
-        .article-content h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .article-content h3 {
-            color: #3498db;
-            margin-top: 30px;
-        }
-        .article-content p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-        }
-        .text-end {
-            text-align: justify; /* 两端对齐 */
-            text-align-last: right; /* 最后一行右对齐 */
-        }
-
-        /* === 引用块 === */
-        blockquote {
-            background-color: #ecf0f1;
-            border-left: 5px solid #3498db;
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            transition: transform 0.3s ease;
-        }
-        blockquote:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        blockquote footer {
-            text-align: right;
-            font-style: normal;
-        }
-
-        /* === 列表样式 === */
-        ul, ol {
-            margin: 20px 0 30px 30px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-
-        /* === 图片和图注 === */
-        figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.02); /* 鼠标悬停放大效果 */
-        }
-        figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #777;
-        }
-
-        /* === 代码块 === */
-        code {
-            background-color: #f0f0f0;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        /* === 文章底部 === */
-        .article-footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.2s forwards; /* 淡入动画 */
-        }
-        .article-footer a {
-            color: #2ecc71;
-            text-decoration: none;
-        }
-
-        /* === 页脚样式（完全复用）=== */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #000000;
-            color: white;
-            opacity: 0; /* 初始隐藏 */
-            animation: fadeIn 0.5s ease-in-out 1.4s forwards; /* 淡入动画 */
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .footer-link:hover {
-            color: #ffe4f1;
-            transform: translateY(-2px);
-        }
-
-        /* === 响应式设计 === */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-            }
-            .nav-title {
-                font-size: 1.2rem;
-            }
-            .nav-links {
-                gap: 0.5rem;
-            }
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .article-container {
-                margin: 70px 20px 2rem;
-            }
-
-            .article-header {
-                padding: 30px 20px;
-            }
-
-            .article-header h1 {
-                font-size: 2em;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles-for-all.css">
+    <link rel="stylesheet" href="styles-for-article.css">
 </head>
 <body>
-    <!-- === 固定导航栏（完全复用）=== -->
     <div class="main-nav-bar" id="mainNavBar">
         <div class="nav-container">
             <h1 class="nav-title">seal的个人主页</h1>
@@ -313,29 +18,23 @@
             </div>
         </div>
     </div>
-
     <div class="article-container">
-        <!-- 文章头部 -->
         <header class="article-header">
             <h1>我承诺未来五十年远离恶性肿瘤：从理念到行动</h1>
             <div class="article-meta">
                 作者: <span>seal</span> | 
                 发布日期: <time datetime="2025-04-22">2025年4月22日</time> | 
-                分类: <a href="#">健康生活</a>
+                分类: <a>健康生活</a>
             </div>
         </header>
-
-        <!-- 文章内容 -->
         <main class="article-content">
             <section>
                 <p><strong>摘要：</strong>本文聚焦恶性肿瘤这一严重威胁人类健康的疾病展开论述。开篇通过数据阐述其严峻现状，接着剖析了恶性肿瘤的危害、当前发病趋势及可预防性。进而从健康生活（合理饮食、适量运动、良好生活习惯）、环境因素（日常环境与职业环境）、医疗检查（定期体检、接种疫苗）三方面提出预防策略。同时，针对策略实施过程中面临的不良生活习惯难改、环境污染、人们对癌症预防重视不足等困难，给出了相应解决方法与建议。旨在强调通过科学预防措施，有望在未来降低恶性肿瘤威胁，呼吁人们积极行动。</p>
                 <p><strong>关键词：</strong>恶性肿瘤；预防策略；健康生活；环境因素；医疗检查</p>
                 <p><strong>Abstract: </strong>This article focuses on malignant tumors, a disease that seriously threatens human health, and elaborates on it. At the beginning, the severe current situation of malignant tumors is illustrated through data. Then, the harm, current incidence trend and preventability of malignant tumors are analyzed. Furthermore, preventive strategies are proposed from three aspects: healthy living (reasonable diet, appropriate exercise, good living habits), environmental factors (daily environment and occupational environment), and medical examinations (regular physical examinations, vaccination). At the same time, corresponding solutions and suggestions are provided for the difficulties faced during the implementation of these strategies, such as the difficulty in changing bad living habits, environmental pollution, and the insufficient attention paid by people to cancer prevention. The purpose is to emphasize that through scientific preventive measures, there is hope to reduce the threat of malignant tumors in the future, and to call on people to take active actions.</p>
-
                 <h2>引言</h2>
                 <p>恶性肿瘤，这个令人谈之色变的健康杀手，多年来一直严重威胁着人类的生命健康和生活质量。世界卫生组织相关数据显示，全球每年新增癌症病例高达 1800 多万，因癌症死亡人数约 960 万。在中国，国家癌症中心发布的报告表明，每天约有 1 万人被确诊为癌症，平均每分钟就有 7 个人被诊断出患有癌症。</p>
-                <p>回顾历史，1971 年美国前总统尼克松签署《国家癌症法案》，正式向癌症宣战。然而，五十年过去了，虽然人类在癌症研究和治疗方面取得了一定进展，如部分癌症的早期诊断技术有所提升，一些新型抗癌药物也相继问世，但距离彻底攻克癌症仍有很长的路要走。不过，令人欣慰的是，越来越多的研究表明，大部分癌症是可以预防的。只要我们从现在开始行动起来，采取科学合理的预防措施，就有可能在未来五十年甚至更长时间里远离恶性肿瘤的威胁。</p>
-                
+                <p>回顾历史，1971 年美国前总统尼克松签署《国家癌症法案》，正式向癌症宣战。然而，五十年过去了，虽然人类在癌症研究和治疗方面取得了一定进展，如部分癌症的早期诊断技术有所提升，一些新型抗癌药物也相继问世，但距离彻底攻克癌症仍有很长的路要走。不过，令人欣慰的是，越来越多的研究表明，大部分癌症是可以预防的。只要我们从现在开始行动起来，采取科学合理的预防措施，就有可能在未来五十年甚至更长时间里远离恶性肿瘤的威胁。</p> 
                 <h2>认识恶性肿瘤</h2>
                 <h3>恶性肿瘤的危害</h3>
                 <p>恶性肿瘤，也被称为癌症，是一种由于细胞异常增殖且不受控制而引发的疾病。正常情况下，人体细胞按照一定的规律生长、分裂和死亡，维持着身体的正常功能。但当细胞发生基因突变时，这种正常的调控机制就会被打破。这些突变的细胞会疯狂地增殖，形成肿瘤。与良性肿瘤不同，恶性肿瘤具有侵袭性和转移性。它不仅会在原发部位不断生长，侵犯周围的组织和器官，还可能通过血液或淋巴系统扩散到身体的其他部位，在新的地方继续生长，从而对身体多个系统造成严重破坏。</p>
@@ -343,7 +42,6 @@
                 <h3>恶性肿瘤的现状与预防</h3>
                 <p>近年来，恶性肿瘤的发病率呈现出持续上升的趋势。《中国肿瘤登记年报》数据显示，我国癌症发病率近十几年来以年均 3.9%的速度增长，死亡率以年均 2.5%的速度增长。总体上，随着年龄的增长，患癌风险逐渐增加。40 岁以上人群的癌症发病率明显上升，60 岁以上人群更是癌症的高发群体。令人担忧的是，近年来，一些原本在老年人中较为常见的癌症，如结直肠癌、乳腺癌等，在年轻人中的发病率也有逐渐上升的趋势，这可能与年轻人不良的生活方式、环境污染等因素有关。</p>
                 <p>然而，世界卫生组织指出，40%以上的癌症是可以预防的。这是因为恶性肿瘤的发生并非一蹴而就，而是多种因素长期相互作用的结果。从生活方式来看，吸烟、酗酒、不合理饮食、缺乏运动、长期熬夜等不良习惯都与癌症的发生密切相关。例如，吸烟是导致肺癌的主要原因，约 85%的肺癌患者有吸烟史；长期酗酒会增加肝癌、食管癌、胃癌等多种癌症的发病风险。而合理的饮食以及适量的运动，能够增强身体免疫力，降低患癌风险。在环境方面，空气污染、水污染、土壤污染等环境问题会增加人们接触致癌物质的机会。工业废气中的苯、甲醛等化学物质，以及水污染中的重金属等，都是潜在的致癌因素。此外，职业环境中的一些有害物质，如石棉、煤焦油等，也会导致相关职业人群患癌风险升高。如果我们能够改善生活方式，减少接触这些致癌因素，就可以在很大程度上预防癌症的发生。<sup>[1]</sup></p>
-
                 <h2>预防恶性肿瘤的具体策略</h2>
                 <h3>健康生活</h3>
                 <p>饮食与癌症的关系十分密切，合理的饮食结构能够为身体提供充足的营养，增强免疫力，同时减少致癌物质的摄入。首先，要保证饮食中富含大量的蔬菜和水果，《中国居民膳食指南》建议，成年人每天应摄入 300-500 克蔬菜，200-350 克水果。蔬菜和水果富含维生素、矿物质和抗氧化剂，如维生素 C、维生素 E、β-胡萝卜素等，这些营养素能够帮助身体清除自由基，减少细胞损伤，从而降低患癌风险。其次，增加全谷物的摄入，全谷物含有丰富的膳食纤维，有助于促进肠道蠕动，维持肠道健康，减少肠道癌症的发生风险，像燕麦、糙米、全麦面包等全谷物食品，可以替代一部分精制谷物成为日常主食。再者，适量摄入优质蛋白质，选择瘦肉、豆类、坚果和低脂乳制品作为蛋白质来源，如果过多摄入红肉可能会增加结直肠癌等癌症的发病风险，而加工肉类（如香肠、火腿）由于含有亚硝酸盐等添加剂，在体内可能转化为致癌物质亚硝胺，更是被列为 I 类致癌物，应尽量少吃。另外，要限制高糖、高脂肪和油炸食品的摄入，它们不仅容易导致肥胖，还会引起代谢紊乱，增加癌症风险。<sup>[2]</sup></p>
@@ -355,7 +53,6 @@
                 <h3>医疗检查</h3>
                 <p>定期进行全面体检是早期发现癌症的重要手段。通过体检，可以对身体进行全面的检查，及时发现一些潜在的健康问题，包括癌症的早期迹象。体检项目应根据个人年龄、性别、家族病史、生活习惯等因素进行个性化选择。一般来说，常规体检项目包括血常规、尿常规、肝功能、肾功能、血脂、血糖、心电图、腹部超声等，对于一些特定癌症的高危人群，还需要进行针对性的筛查项目。例如 40 岁以上的女性应每年进行一次乳腺钼靶检查，以筛查乳腺癌；50 岁以上的人群应定期进行肠镜检查，筛查结直肠癌；长期吸烟的人群应定期进行低剂量螺旋 CT 检查，筛查肺癌等。定期体检能够帮助我们在癌症还处于早期阶段时就发现它，此时癌症往往更容易治疗，治愈率也更高。</p>
                 <p>接种相关疫苗可以有效预防某些病毒感染相关的癌症。例如，人乳头瘤病毒疫苗可以预防 HPV 感染，而 HPV 感染是导致宫颈癌的主要原因。建议符合接种条件的女性，尤其是 9-45 岁的女性，及时接种 HPV 疫苗，以降低患宫颈癌的风险。<sup>[4]</sup>另外，乙肝疫苗的接种对于预防肝癌也有着重要意义。乙肝病毒感染是肝癌的主要危险因素之一，通过接种乙肝疫苗，可以有效预防乙肝病毒感染，从而降低肝癌的发病风险。新生儿应在出生后 24 小时内及时接种乙肝疫苗，未接种过乙肝疫苗或乙肝表面抗体阴性的成年人也可以接种。</p>
-
                 <h2>策略实施的困难和解决</h2>
                 <h3>挑战与困难</h3>
                 <p>现代社会，快节奏的生活方式使很多人养成了不良的生活习惯，如熬夜、久坐不动、饮食不规律、过度依赖外卖等。而且，这些不良习惯一旦养成，往往很难改变。比如很多年轻人喜欢熬夜玩手机、打游戏，即使知道熬夜对身体不好，但由于缺乏自律性，很难调整作息时间。长期吸烟、酗酒的人，要想戒烟戒酒也面临着很大的困难，因为身体已经对这些物质产生了依赖。</p>
@@ -365,11 +62,9 @@
                 <p>要改变不良生活习惯，首先需要提高自我意识，充分认识到这些习惯对健康的危害。可以通过阅读相关的健康书籍、文章，和观看健康科普视频等方式，增加对健康知识的了解。同时，要培养自律性，制定合理的计划，并严格执行。如果想要改善作息时间，可以每天晚上提前半小时上床，逐渐调整生物钟；如果想要戒烟戒酒，可以寻求家人和朋友的支持，采用逐渐减量的方法，或者参加一些戒烟戒酒的互助小组。</p>
                 <p>面对环境污染问题，每个人都应该积极行动起来，倡导环保生活方式。在日常生活中，尽量减少使用一次性塑料制品，做好垃圾分类，节约用水用电，绿色出行等；积极参与环保公益活动，向身边的人宣传环保知识，提高大家的环保意识；政府和相关部门也应加强对环境污染的治理力度，加大对环保产业的投入，推动清洁能源的发展，从源头上减少污染的产生。</p>
                 <p>为了提高人们对癌症预防的重视程度，防癌宣传教育需要加强。政府、医疗机构、社区等应通过多种渠道，如举办健康讲座、发放宣传资料、开展防癌筛查活动等，向公众普及癌症预防的知识和重要性；可以利用社交媒体、电视、广播等平台，制作和播放一些生动有趣、通俗易懂的防癌科普节目，提高公众的关注度和参与度；此外，还可以通过学校教育，从小培养孩子们的健康意识和防癌观念。<sup>[5]</sup></p>
-                
                 <h2>结论</h2>
                 <p>恶性肿瘤虽然是人类健康的重大威胁，但通过采取科学合理的预防措施，我们有很大的机会在未来五十年甚至更长时间里远离它。从保持健康的生活方式，如合理饮食、适量运动、戒烟限酒、规律作息，到关注环境因素，减少接触致癌物质，再到定期进行体检和接种相关疫苗，每一个行动都有可能为我们的健康增添一份保障。</p>
                 <p>尽管在预防过程中会面临一些挑战和困难，但只要我们提高自我意识，积极行动起来，改变不良生活习惯，倡导环保行动，加强防癌宣传教育，就一定能够逐步克服这些问题。让我们从现在开始，为自己的健康负责，为远离恶性肿瘤而努力。相信通过我们每个人的努力，未来五十年远离恶性肿瘤的承诺并非遥不可及，我们能够共同创造一个更加健康、美好的生活环境。</p>
-
                 <h2>参考文献</h2>
                 <p>[1] 上海市抗癌协会, 复旦大学附属肿瘤医院. 居民常见恶性肿瘤筛查和预防推荐（2021 年版）[J]. 肿瘤, 2021, 41(04): 296-308</p>
                 <p>[2] 《营养学报》编辑部. 《中国居民膳食指南》在京发布[J]. 营养学报, 2022, 44(06): 521-522</p>
@@ -378,8 +73,6 @@
                 <p>[5] 田玲, 安嘉璐, 周艳玲等. 基于 SWOT 分析法的我国儿童恶性肿瘤防控策略研究[J]. 中国医药科学, 2015, 5(21): 40-44</p>
             </section>
         </main>
-
-        <!-- 文章底部 -->
         <footer class="article-footer">
             <nav>
                 <a href="article3.html">上一篇</a> | 
@@ -387,8 +80,6 @@
             </nav>
         </footer>
     </div>
-
-    <!-- === 页脚（完全复用）=== -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
@@ -405,10 +96,8 @@
             <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 导航链接高亮逻辑
             const currentPage = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-link').forEach(link => {
                 const href = link.getAttribute('href');
@@ -417,8 +106,6 @@
                     link.classList.add('active');
                 }
             });
-            
-            // 页面加载完成后显示内容
             document.body.style.visibility = 'visible';
         });
     </script>
