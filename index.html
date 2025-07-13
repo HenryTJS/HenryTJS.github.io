@@ -174,8 +174,6 @@
             const scrollDown = document.getElementById('scrollDown');
             scrollDown.addEventListener('click', function() {
                 const heroSection = document.getElementById('hero');
-                const container = document.querySelector('.container');
-                const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
                 window.scrollTo({
                     top: heroSection.offsetHeight,
                     behavior: 'smooth'
@@ -197,36 +195,14 @@
                     }
                 });
             });
-            function handleScroll() {
-                const sections = document.querySelectorAll('section');
-                const triggerPoint = window.innerHeight / 4;
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    if (sectionTop < window.innerHeight - triggerPoint) {
-                        section.classList.add('visible');
-                    }
-                });
-                const scrollPosition = window.scrollY;
-                const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - navHeight;
-                    const sectionHeight = section.offsetHeight;
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        const id = section.getAttribute('id');
-                        document.querySelectorAll('.nav-link').forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }
-            setTimeout(() => {
-                handleScroll();
-            }, 100);
-            window.addEventListener('scroll', function() {
-                handleScroll();
+            const currentPage = window.location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                const cleanHref = href.split('#')[0];
+                if ((currentPage === '' && cleanHref === 'index.html') || 
+                    (currentPage !== '' && cleanHref === currentPage)) {
+                    link.classList.add('active');
+                }
             });
             document.body.style.visibility = 'visible';
         });
