@@ -83,7 +83,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     opacity: 0;
-    animation: fadeInUp 0.5s ease-in-out 1s forwards;
+    animation: fadeInUp 0.5s ease-in-out 0.4s forwards;
 }
 .article-header {
     background: linear-gradient(135deg, #3498db, #2ecc71);
