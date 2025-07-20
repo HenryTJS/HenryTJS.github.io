@@ -122,22 +122,6 @@ h2 {
 .project-info {
     padding: 1rem;
 }
-.note-posts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-}
-.note-card {
-    border-left: 4px solid #d63384;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-.note-card:hover {
-    background-color: #fff0f6;
-    transform: translateX(5px);
-}
 .course-table {
     width: 100%;
     border-collapse: collapse;
