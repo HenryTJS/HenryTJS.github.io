@@ -72,6 +72,9 @@
 .content-card:nth-child(7) {
     animation-delay: 0.9s;
 }
+.content-card:nth-child(8) {
+    animation-delay: 1.0s;
+}
 .content-card:hover {
     transform: scale(1.02);
 }
