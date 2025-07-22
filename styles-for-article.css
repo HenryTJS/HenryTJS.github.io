@@ -7,10 +7,15 @@
     }
 }
 .page-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 80px auto 2rem;
     padding: 2rem 1rem;
     min-height: calc(100vh - 200px);
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
 }
 .page-header {
     background-color: white;
@@ -200,5 +205,8 @@ footer {
     }
     .article-header h1 {
         font-size: 2em;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
     }
 }
