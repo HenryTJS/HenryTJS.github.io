@@ -46,6 +46,12 @@
 .content-card:nth-child(8) {
     animation-delay: 0.8s;
 }
+.content-card:nth-child(9) {
+    animation-delay: 0.9s;
+}
+.content-card:nth-child(10) {
+    animation-delay: 1.0s;
+}
 .content-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -232,5 +238,11 @@ footer {
     }
     .content-card:nth-child(8) {
         animation-delay: 0.8s;
+    }
+    .content-card:nth-child(9) {
+        animation-delay: 0.9s;
+    }
+    .content-card:nth-child(10) {
+        animation-delay: 1.0s;
     }
 }
