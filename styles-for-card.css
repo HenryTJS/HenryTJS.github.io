@@ -1,5 +1,5 @@
 .page-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 80px auto 2rem;
     padding: 2rem 1rem;
     min-height: calc(100vh - 200px);
@@ -80,6 +80,23 @@
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(214, 51, 132, 0.3);
+}
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.course-table th, .course-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.course-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.course-table tr:hover {
+    background-color: #f9f9f9;
 }
 @keyframes fadeInUp {
     to {
