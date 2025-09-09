@@ -55,7 +55,7 @@
     padding: 2rem 1rem;
 }
 section {
-    background-color: white;
+    background-color: transparent;
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -103,24 +103,6 @@ h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-}
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-.project-card {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-.project-info {
-    padding: 1rem;
 }
 @media (max-width: 768px) {
     .hero-title {

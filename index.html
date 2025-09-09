@@ -5,18 +5,327 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles-for-all.css">
-    <link rel="stylesheet" href="styles-for-index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #eee0e5;
+            color: #333;
+            line-height: 1.6;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #2980b9;
+        }
+        .main-nav-bar {
+            background-color: #ff69b4;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5rem;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #000000;
+            color: white;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffe4f1;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+            .nav-title {
+                font-size: 1.2rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+        }
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #ff69b4;
+            color: white;
+            position: relative;
+            margin-top: 0;
+        }
+        .hero-content {
+            z-index: 1;
+            padding: 0 1rem;
+        }
+        .hero-title {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .scroll-down:hover {
+            color: #ffe4f1;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 60px auto 2rem;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+        .combined-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .profile-section {
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+        .contact-section {
+            flex-grow: 1;
+        }
+        .achievements-section {
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+        }
+        .apps-section {
+            height: 320px;
+        }
+        h1 {
+            color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h2 {
+            color: #d63384;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ffe4f1;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .profile-text h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 新增选项卡样式 */
+        .tab-container {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab.active {
+            color: #d63384;
+            border-bottom-color: #d63384;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 联系方式样式 */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .contact-item i {
+            color: #d63384;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* 应用栏样式 */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            height: 75%;
+        }
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            height: 100%;
+            justify-content: center;
+        }
+        .app-item:hover {
+            background-color: #ffe4f1;
+            transform: translateY(-3px);
+        }
+        .app-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .app-name {
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .combined-section {
+                height: auto;
+            }
+            .achievements-section {
+                height: auto;
+            }
+            .apps-section {
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="main-nav-bar" id="mainNavBar">
         <div class="nav-container">
             <h1 class="nav-title">seal的个人主页</h1>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">首页</a>
-                <a href="article.html" class="nav-link">文章</a>
-                <a href="university.html" class="nav-link">大学</a>
-            </div>
         </div>
     </div>
     <div class="hero-section" id="hero">
@@ -29,79 +338,119 @@
         </div>
     </div>
     <div class="container">
-        <section id="about" class="about visible">
-            <div class="profile">
-                <img src="touxiang.jpg" alt="我的头像" class="profile-img">
-                <div class="profile-text">
-                    <h1>杨承轩</h1>
-                    <p>智能制造工程 | ISFP | GPA3.8/4</p>
-                    <p>📍 坐标：中国·陕西·西安</p>
+        <div class="left-column">
+            <section class="profile-section" id="profile">
+                <div class="profile">
+                    <img src="touxiang.jpg" alt="我的头像" class="profile-img">
+                    <div class="profile-text">
+                        <h1>杨承轩</h1>
+                        <p>智能制造工程 | ISFP | GPA3.8/4</p>
+                        <p>📍 坐标：中国·陕西·西安</p>
+                    </div>
                 </div>
-            </div>
-            <p style="margin-top: 1rem;">
-                你好！我是杨承轩，你也可以叫我seal。我是2022级西安交通大学少年班学生，现智能制造工程（钱学森班-计算机）大二在读，专业排名8/39。我喜欢音乐和体育，学习过双排键和萨克斯，在少年班成人礼、钱班音乐会等均曾上台演出，同时是2024年西安交通大学男子30秒单摇个人第9名，也带领智造钱2401班获得2025年西安交通大学广播操比赛第4名。生活上我还喜欢旅游、摄影和骑行，有志同道合的小伙伴欢迎一起来玩！
-            </p>
-        </section>
-        <div class="grid-container">
-            <section id="achievements" class="visible">
-                <h2>个人成就</h2>
-                <p>💰 <strong>2024西安交通大学校级三等奖学金</strong>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>综合成绩专业前15%</li>
-                    </ul>
+                <p style="margin-top: 1rem;">
+                    你好！我是杨承轩，你也可以叫我seal。我是2022级西安交通大学少年班学生，现智能制造工程（钱学森班-计算机）大二在读，专业排名8/39。我喜欢音乐和体育，学习过双排键和萨克斯，在少年班成人礼、钱班音乐会等均曾上台演出，同时是2024年西安交通大学男子30秒单摇个人第9名，也带领智造钱2401班获得2025年西安交通大学广播操比赛第4名。生活上我还喜欢旅游、摄影和骑行，有志同道合的小伙伴欢迎一起来玩！
                 </p>
-                <p>💻 <strong>2025中国大学生计算机设计大赛西北赛区三等奖</strong>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>项目名称：伯努利原理及其相关应用</li>
-                    </ul>
-                </p>
-                <p>🔢 <strong>2024亚太地区大学生数学建模竞赛三等奖</strong>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>项目名称：<i>Analyzing the Development of China's Pet Industry from a Linear Regression Perspective</i></li>
-                    </ul>
-                </p>
-                <p>🌐 <strong>2025陕西省"大学生创新项目训练"立项</strong>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>项目名称：和风知遇——中日舆情解码研究</li>
-                    </ul>
-                </p>
-                <p>🔠 <strong>英语四级592，六级535</strong></p>
-                <p>🖥 <strong>计算机二级良好</strong></p>
             </section>
-            <section id="projects" class="visible">
-                <h2>我的项目</h2>
-                <div class="projects">
-                    <div class="project-card">
-                        <div class="project-info">
-                            <h3>1️⃣软科大学排名爬虫与可视化</h3>
-                            <p>包括中国大学排名等七个排名的爬虫代码（七合一），支持选择年份，以及中国大学数据的可视化数字大屏实现。</p>
-                            <a href="https://github.com/HenryTJS/ruanke_crawler">查看详情 →</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-info">
-                            <h3>2️⃣智能雷电</h3>
-                            <p>《计算机能力提升》课程小项目，一个智障小游戏，欢迎来玩~</p>
-                            <a href="https://github.com/HenryTJS/game">查看详情 →</a>
-                        </div>
-                    </div>
+            
+            <section class="contact-section">
+                <h2>联系方式</h2>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:2223510297@stu.xjtu.edu.cn" style="color: inherit; text-decoration: none;">2223510297@stu.xjtu.edu.cn</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/HenryTJS" target="_blank" style="color: inherit; text-decoration: none;">GitHub: HenryTJS</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-qq"></i>
+                    <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank" style="color: inherit; text-decoration: none;">QQ: 1743495223</a>
+                </div>
+            </section>
+        </div>
+        
+        <div class="right-column">
+            <section class="achievements-section" id="content">
+                <div class="tab-container">
+                    <button class="tab active" onclick="openTab(event, 'achievements')">个人成就</button>
+                    <button class="tab" onclick="openTab(event, 'experience')">个人履历</button>
+                </div>
+                
+                <div id="achievements" class="tab-content active">
+                    <p>💰 <strong>2024西安交通大学校级三等奖学金</strong>
+                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                            <li>综合成绩专业前15%</li>
+                        </ul>
+                    </p>
+                    <p>💻 <strong>2025中国大学生计算机设计大赛西北赛区三等奖</strong>
+                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                            <li>项目名称：伯努利原理及其相关应用</li>
+                        </ul>
+                    </p>
+                    <p>🔢 <strong>2024亚太地区大学生数学建模竞赛三等奖</strong>
+                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                            <li>项目名称：<i>Analyzing the Development of China's Pet Industry from a Linear Regression Perspective</i></li>
+                        </ul>
+                    </p>
+                    <p>🌐 <strong>2025陕西省"大学生创新项目训练"立项</strong>
+                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                            <li>项目名称：和风知遇——中日舆情解码研究</li>
+                        </ul>
+                    </p>
+                    <p>🔠 <strong>英语四级592，六级535</strong></p>
+                    <p>🖥 <strong>计算机二级良好</strong></p>
+                </div>
+                
+                <div id="experience" class="tab-content">
+                    <p><strong>教育经历</strong></p>
+                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                        <li>2024.09 - 至今：西安交通大学 智能制造工程（钱学森班）</li>
+                        <li>2023.09 - 2024.06：西安交通大学 少年班</li>
+                        <li>2022.09 - 2023.06：江苏省苏州中学园区校 少科班</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem;"><strong>任职经历</strong></p>
+                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                        <li>2025.09 - 至今：西安交通大学招生公益社宣传部副部长</li>
+                        <li>2024.09 - 至今：西安交通大学钱学森书院学生第一党支部钱学组负责人</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="apps-section">
+                <h2>我的应用</h2>
+                <div class="app-grid">
+                    <a href="article.html" class="app-item">
+                        <div class="app-icon"><i class="fas fa-book"></i></div>
+                        <div class="app-name">阅读笔记</div>
+                    </a>
+                    <a href="#" class="app-item">
+                        <div class="app-icon"><i class="fas fa-project-diagram"></i></div>
+                        <div class="app-name">项目管理</div>
+                    </a>
+                    <a href="#" class="app-item">
+                        <div class="app-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="app-name">数据分析</div>
+                    </a>
+                    <a href="#" class="app-item">
+                        <div class="app-icon"><i class="fas fa-camera"></i></div>
+                        <div class="app-name">摄影作品</div>
+                    </a>
+                    <a href="#" class="app-item">
+                        <div class="app-icon"><i class="fas fa-music"></i></div>
+                        <div class="app-name">音乐空间</div>
+                    </a>
+                    <a href="#" class="app-item">
+                        <div class="app-icon"><i class="fas fa-biking"></i></div>
+                        <div class="app-name">骑行记录</div>
+                    </a>
                 </div>
             </section>
         </div>
     </div>
     <footer>
         <div class="footer-content">
-            <div class="footer-links">
-                <a href="mailto:2223510297@stu.xjtu.edu.cn" class="footer-link">
-                    <i class="fas fa-envelope"></i> 邮箱：2223510297@stu.xjtu.edu.cn
-                </a>
-                <a href="https://github.com/HenryTJS" target="_blank" class="footer-link">
-                    <i class="fab fa-github"></i> GitHub: HenryTJS
-                </a>
-                <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank" class="footer-link">
-                    <i class="fab fa-qq"></i> QQ：1743495223
-                </a>
-            </div>
             <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
@@ -115,33 +464,27 @@
                     behavior: 'smooth'
                 });
             });
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const navHeight = document.querySelector('.main-nav-bar').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - navHeight + 10;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            const currentPage = window.location.pathname.split('/').pop();
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href');
-                const cleanHref = href.split('#')[0];
-                if ((currentPage === '' && cleanHref === 'index.html') || 
-                    (currentPage !== '' && cleanHref === currentPage)) {
-                    link.classList.add('active');
-                }
-            });
-            document.body.style.visibility = 'visible';
+            
+            // 初始化第一个标签页为活动状态（已在HTML中设置）
         });
+        
+        function openTab(evt, tabName) {
+            // 隐藏所有标签内容
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // 移除所有标签的active类
+            const tabs = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // 显示当前标签内容并添加active类
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
     </script>
 </body>
 </html>
