@@ -138,7 +138,7 @@
                             <p class="article-meta">发布时间：${article.date}</p>
                             <p>${article.summary}</p>
                             <!-- 改为指向模板页面并传递文章ID参数 -->
-                            <a href="article-template.html?id=${article.link.replace('.html', '')}" class="read-more">阅读全文</a>
+                            <a href="template/index.html?id=${article.link.replace('.html', '')}" class="read-more">阅读全文</a>
                         `;
                         
                         cardGrid.appendChild(card);
