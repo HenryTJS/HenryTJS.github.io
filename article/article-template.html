@@ -6,7 +6,6 @@
     <title id="article-title">加载中...</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles-for-article.css">
-    <!-- 引入Markdown解析库 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -20,7 +19,6 @@
             </div>
         </header>
         <main class="article-content" id="article-content">
-            <!-- Markdown内容将在这里渲染 -->
             <p>加载文章内容中...</p>
         </main>
     </div>
@@ -88,17 +86,6 @@
                     console.error('加载元数据失败:', error);
                     document.getElementById('article-content').innerHTML = '<p>加载文章信息失败</p>';
                 });
-
-            // 导航高亮逻辑
-            const currentPage = window.location.pathname.split('/').pop();
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href');
-                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-                    link.classList.add('active');
-                }
-            });
-            
-            document.body.style.visibility = 'visible';
         });
     </script>
 </body>

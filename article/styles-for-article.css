@@ -26,7 +26,7 @@ a:hover {
 }
 .article-container {
     max-width: 1000px;
-    margin: 40px auto 2rem;
+    margin: 20px auto 2rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
