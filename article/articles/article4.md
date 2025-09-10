@@ -1,0 +1,17 @@
+On Dec. 7<sup>th</sup>, 2020, the International Olympic Committee held a meeting of its Executive Board and agreed to add a break dance event to the Paris 2024 Olympic Games.<sup>1</sup> Dance, an art form that combines rhythm, movement, and expression, has long been admired for its elegance and athleticism. Therefore, I think that dance should be recognized as an Olympic sport.
+
+First of all, dance is a highly athletic activity that requires special physical fitness. Dancers must possess strength, flexibility, endurance, and coordination to perform complex movements gracefully. In track and field, scoring is a priority, and no one cares what moves you use. But dance, in particular, requires muscle memory, and what to see is elegance and skilfulness of the posture. Dance abstracts the "somatosensory" from traditional movements. The rigors of the dance preparation are on par with other Olympic sports, making it a worthy contender.
+
+Secondly, dance is a universal form of expression that transcends cultural boundaries. Last year, "Subject Three" became popular all over the world. Even the Russian Royal Ballet danced "Subject Three" at the curtain call of "Swan Lake". And Christina, the world champion of Latin dance, danced "Subject Three", too.<sup>2</sup> This is a reflection of solidarity between nations, and the Olympic Games are designed to promote solidarity and mutual respect among participants. The use of dance as an official sport can promote cultural diversity and enhance the Olympic spirit through the power of sport.
+
+Moreover, dance, as an Olympic sport, will encourage more young people to engage in physical activity and promote a healthy lifestyle. The visibility and prestige associated with the Olympics can inspire a new generation of dancers, thereby increasing their participation in the dance program, as well as a broader appreciation of the art form.
+
+However, some people will think that dance doesn’t have fixed movements like gymnastics, and it’s difficult to quantitatively judge whether a dance is good or bad. In fact, the 2.1 scoring system in dance sport divides the criteria into TQ, MM, PS, CP, which combines technique and art to evaluate dance more objectively. From this, we can see that the inclusion of dance in the Olympic Games will require the establishment of clear and objective judging criteria. This is a challenge that can be overcome through consultation with dance experts and the development of a standardized evaluation system.
+
+To sum up, dance should be recognized as an Olympic sport because of its demand for sport, cultural significance, and potential to inspire young people. While there are challenges in judging criteria, these challenges can be addressed through careful consideration and collaboration. Looking forward to the day when more dances are selected for the Olympics!
+
+## Reference
+
+[1] EJ Monica Kim, “A closer look at the new Olympic Games at Paris 2024: break dancing”, <a href="https://olympics.com/zh/news/paris-2024-what-is-breaking-new-olympic-sport">https://olympics.com/zh/news/paris-2024-what-is-breaking-new-olympic-sport</a>, May 12<sup>th</sup>, 2023
+
+[2] China Daily, ““科目三”火到国外了？俄罗斯皇家芭蕾舞团、世界拉丁舞冠军都跳起来了”, <a href="https://www.163.com/dy/article/IM8IJC9K0530SFP3.html">https://www.163.com/dy/article/IM8IJC9K0530SFP3.html</a>, Dec. 18<sup>th</sup>, 2023
