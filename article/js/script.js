@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('article.json')
+    fetch('json/article.json')
         .then(response => response.json())
         .then(data => {
             renderArticles(data);
