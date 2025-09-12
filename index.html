@@ -6,7 +6,6 @@
     <title>首页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
 </head>
 <body>
     <div class="main-nav-bar" id="mainNavBar">
@@ -25,115 +24,26 @@
     </div>
     <div class="container">
         <div class="left-column">
-            <section class="profile-section" id="profile">
-                <div class="profile">
-                    <img src="/img/touxiang.jpg" alt="我的头像" class="profile-img">
-                    <div class="profile-text">
-                        <h1>杨承轩</h1>
-                        <p>智能制造工程 | ISFP | GPA3.8/4</p>
-                        <p>📍 坐标：中国·陕西·西安</p>
-                    </div>
-                </div>
-                <p style="margin-top: 1rem;">
-                    你好！我是杨承轩，你也可以叫我seal。我是2022级西安交通大学少年班学生，现智能制造工程（钱学森班-计算机）大二在读，专业排名8/39。我喜欢音乐和体育，学习过双排键和萨克斯，在少年班成人礼、钱班音乐会等均曾上台演出，同时是2024年西安交通大学男子30秒单摇个人第9名，也带领智造钱2401班获得2025年西安交通大学广播操比赛第4名。生活上我还喜欢旅游、摄影和骑行，有志同道合的小伙伴欢迎一起来玩！
-                </p>
-            </section>
-            
-            <section class="contact-section">
-                <h2>联系方式</h2>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:2223510297@stu.xjtu.edu.cn" style="color: inherit; text-decoration: none;">2223510297@stu.xjtu.edu.cn</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/HenryTJS" target="_blank" style="color: inherit; text-decoration: none;">GitHub: HenryTJS</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-qq"></i>
-                    <a href="https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes" target="_blank" style="color: inherit; text-decoration: none;">QQ: 1743495223</a>
-                </div>
-            </section>
+            <section class="profile-section" id="profile"></section>
+            <section class="contact-section" id="contact"></section>
         </div>
         <div class="right-column">
-            <section class="achievements-section" id="content">
+            <section class="achievements-section">
                 <div class="tab-container">
                     <button class="tab active" onclick="openTab(event, 'achievements')">个人成就</button>
                     <button class="tab" onclick="openTab(event, 'experience')">个人履历</button>
                 </div>
-                <div id="achievements" class="tab-content active">
-                    <p>💰 <strong>2024西安交通大学校级三等奖学金</strong>
-                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                            <li>综合成绩专业前15%</li>
-                        </ul>
-                    </p>
-                    <p>💻 <strong>2025中国大学生计算机设计大赛西北赛区三等奖</strong>
-                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                            <li>项目名称：伯努利原理及其相关应用</li>
-                        </ul>
-                    </p>
-                    <p>🔢 <strong>2024亚太地区大学生数学建模竞赛三等奖</strong>
-                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                            <li>项目名称：<i>Analyzing the Development of China's Pet Industry from a Linear Regression Perspective</i></li>
-                        </ul>
-                    </p>
-                    <p>🌐 <strong>2025陕西省"大学生创新项目训练"立项</strong>
-                        <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                            <li>项目名称：和风知遇——中日舆情解码研究</li>
-                        </ul>
-                    </p>
-                    <p>🔠 <strong>英语四级592，六级535</strong></p>
-                    <p>🖥 <strong>计算机二级良好</strong></p>
-                </div>
-                <div id="experience" class="tab-content">
-                    <p><strong>教育经历</strong></p>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>2024.09 - 至今：西安交通大学 智能制造工程（钱学森班）</li>
-                        <li>2023.09 - 2024.06：西安交通大学 少年班</li>
-                        <li>2022.09 - 2023.06：江苏省苏州中学园区校 少科班</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><strong>任职经历</strong></p>
-                    <ul style="margin-left: 1.5rem; list-style-type: circle;">
-                        <li>2025.09 - 至今：西安交通大学招生公益社宣传部副部长</li>
-                        <li>2024.09 - 至今：西安交通大学钱学森书院学生第一党支部钱学组负责人</li>
-                    </ul>
-                </div>
+                <div id="achievements" class="tab-content active"></div>
+                <div id="experience" class="tab-content"></div>
             </section>
-            <section class="apps-section">
-                <h2>我的应用</h2>
-                <div class="app-grid">
-                    <a href="/article" class="app-item">
-                        <div class="app-icon"><i class="fas fa-book"></i></div>
-                        <div class="app-name">阅读笔记</div>
-                    </a>
-                    <a href="/course" class="app-item">
-                        <div class="app-icon"><i class="fas fa-table"></i></div>
-                        <div class="app-name">课程资料</div>
-                    </a>
-                    <a href="#" class="app-item">
-                        <div class="app-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="app-name">数据分析</div>
-                    </a>
-                    <a href="#" class="app-item">
-                        <div class="app-icon"><i class="fas fa-camera"></i></div>
-                        <div class="app-name">摄影作品</div>
-                    </a>
-                    <a href="#" class="app-item">
-                        <div class="app-icon"><i class="fas fa-music"></i></div>
-                        <div class="app-name">音乐空间</div>
-                    </a>
-                    <a href="#" class="app-item">
-                        <div class="app-icon"><i class="fas fa-biking"></i></div>
-                        <div class="app-name">骑行记录</div>
-                    </a>
-                </div>
-            </section>
+            <section class="apps-section" id="apps"></section>
         </div>
     </div>
     <footer>
         <div class="footer-content">
-            <p style="margin-top: 1rem;">© 2025 seal的个人主页. 保留所有权利.</p>
+            <p>© 2025 seal的个人主页. 保留所有权利.</p>
         </div>
     </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
