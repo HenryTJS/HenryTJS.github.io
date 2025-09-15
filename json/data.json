@@ -75,7 +75,7 @@
   ],
   "apps": [
     { "icon": "fas fa-book", "name": "阅读笔记", "link": "/article" },
-    { "icon": "fas fa-chart-line", "name": "数据分析", "link": "#" },
+    { "icon": "fas fa-map-marker", "name": "旅行地图", "link": "/map" },
     { "icon": "fas fa-camera", "name": "摄影作品", "link": "#" },
     { "icon": "fas fa-music", "name": "音乐空间", "link": "#" },
     { "icon": "fas fa-biking", "name": "骑行记录", "link": "#" }
