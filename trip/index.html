@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的足迹地图</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.8&key=abfc6c7f01853605691562a41f0b966a"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>我的足迹地图</h1>
+            <p>记录我到过的每一个城市</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="map-container">
+                <div id="mapContainer"></div>
+            </div>
+            
+            <div class="control-panel">
+                <div class="panel-section">
+                    <h3>我的足迹</h3>
+                    <div id="footprintList" class="footprint-list">
+                        <!-- 足迹列表将在这里动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>统计信息</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalCities">0</span>
+                            <span class="stat-label">已访问城市</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalProvinces">0</span>
+                            <span class="stat-label">已访问省份</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h3>使用说明</h3>
+                    <div class="instructions">
+                        <p>• 点击地图上的标记查看详细信息</p>
+                        <p>• 鼠标悬停在标记上显示城市名称</p>
+                        <p>• 地图会自动调整视野显示所有足迹</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
