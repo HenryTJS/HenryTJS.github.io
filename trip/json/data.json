@@ -57,6 +57,17 @@
     },
     {
         "id": 6,
+        "city": "宝鸡市",
+        "province": "陕西省",
+        "longitude": 107.1402,
+        "latitude": 34.3693,
+        "visitDate": "2017-08",
+        "type": "旅游",
+        "note": "没印象了",
+        "color": "#a07aff"
+    },
+    {
+        "id": 7,
         "city": "沈阳市",
         "province": "辽宁省",
         "longitude": 123.3890,
@@ -67,7 +78,7 @@
         "color": "#ff33f3"
     },
     {
-        "id": 7,
+        "id": 8,
         "city": "抚顺市",
         "province": "辽宁省",
         "longitude": 123.9512,
@@ -78,7 +89,7 @@
         "color": "#33fff3"
     },
     {
-        "id": 8,
+        "id": 9,
         "city": "湘潭市",
         "province": "湖南省",
         "longitude": 112.9093,
@@ -89,7 +100,7 @@
         "color": "#a633ff"
     },
     {
-        "id": 9,
+        "id": 10,
         "city": "苏州市",
         "province": "江苏省",
         "longitude": 120.6196,
@@ -100,7 +111,7 @@
         "color": "#33ff99"
     },
     {
-        "id": 10,
+        "id": 11,
         "city": "温州市",
         "province": "浙江省",
         "longitude": 120.6522,
@@ -111,7 +122,7 @@
         "color": "#9933ff"
     },
     {
-        "id": 11,
+        "id": 12,
         "city": "南京市",
         "province": "江苏省",
         "longitude": 118.7969,
@@ -122,7 +133,7 @@
         "color": "#ff3366"
     },
     {
-        "id": 12,
+        "id": 13,
         "city": "厦门市",
         "province": "浙江省",
         "longitude": 118.0894,
@@ -133,7 +144,7 @@
         "color": "#33ffff"
     },
     {
-        "id": 13,
+        "id": 14,
         "city": "上海市",
         "province": "上海市",
         "longitude": 121.4737,
@@ -144,7 +155,7 @@
         "color": "#6633ff"
     },
     {
-        "id": 14,
+        "id": 15,
         "city": "南昌市",
         "province": "江西省",
         "longitude": 115.8922,
@@ -155,7 +166,7 @@
         "color": "#ffcc33"
     },
     {
-        "id": 15,
+        "id": 16,
         "city": "蚌埠市",
         "province": "安徽省",
         "longitude": 117.3632,
@@ -166,7 +177,7 @@
         "color": "#33ccff"
     },
     {
-        "id": 16,
+        "id": 17,
         "city": "黄山市",
         "province": "安徽省",
         "longitude": 118.3171,
@@ -177,7 +188,7 @@
         "color": "#cc33ff"
     },
     {
-        "id": 17,
+        "id": 18,
         "city": "池州市",
         "province": "安徽省",
         "longitude": 117.4892,
@@ -188,7 +199,7 @@
         "color": "#8b4513"
     },
     {
-        "id": 18,
+        "id": 19,
         "city": "衢州市",
         "province": "浙江省",
         "longitude": 118.8726,
@@ -199,7 +210,7 @@
         "color": "#7affa0"
     },
     {
-        "id": 19,
+        "id": 20,
         "city": "西安市",
         "province": "陕西省",
         "longitude": 108.9553,
@@ -210,7 +221,7 @@
         "color": "#458b13"
     },
     {
-        "id": 20,
+        "id": 21,
         "city": "延安市",
         "province": "陕西省",
         "longitude": 109.4912,
@@ -221,7 +232,7 @@
         "color": "#13458b"
     },
     {
-        "id": 21,
+        "id": 22,
         "city": "咸阳市",
         "province": "陕西省",
         "longitude": 108.7051,
@@ -232,7 +243,7 @@
         "color": "#8b1345"
     },
     {
-        "id": 22,
+        "id": 23,
         "city": "商洛市",
         "province": "陕西省",
         "longitude": 109.9398,
@@ -243,7 +254,7 @@
         "color": "#138b45"
     },
     {
-        "id": 23,
+        "id": 24,
         "city": "阜阳市",
         "province": "安徽省",
         "longitude": 115.8197,
@@ -254,7 +265,7 @@
         "color": "#45138b"
     },
     {
-        "id": 24,
+        "id": 25,
         "city": "莆田市",
         "province": "福建省",
         "longitude": 119.0072,
@@ -265,7 +276,7 @@
         "color": "#ff33ff"
     },
     {
-        "id": 25,
+        "id": 26,
         "city": "长沙市",
         "province": "湖南省",
         "longitude": 112.9822,
@@ -276,7 +287,7 @@
         "color": "#ff6347"
     },
     {
-        "id": 26,
+        "id": 27,
         "city": "成都市",
         "province": "四川省",
         "longitude": 104.0657,
@@ -287,7 +298,7 @@
         "color": "#47ff63"
     },
     {
-        "id": 27,
+        "id": 28,
         "city": "德阳市",
         "province": "四川省",
         "longitude": 104.3986,
@@ -298,7 +309,7 @@
         "color": "#6347ff"
     },
     {
-        "id": 28,
+        "id": 29,
         "city": "榆林市",
         "province": "陕西省",
         "longitude": 109.7412,
@@ -309,7 +320,7 @@
         "color": "#ffff33"
     },
     {
-        "id": 29,
+        "id": 30,
         "city": "杭州市",
         "province": "浙江省",
         "longitude": 120.1536,
@@ -320,7 +331,7 @@
         "color": "#dda0dd"
     },
     {
-        "id": 30,
+        "id": 31,
         "city": "深圳市",
         "province": "广东省",
         "longitude": 114.0579,
@@ -331,7 +342,7 @@
         "color": "#a0dda0"
     },
     {
-        "id": 31,
+        "id": 32,
         "city": "宁波市",
         "province": "浙江省",
         "longitude": 121.5506,
@@ -342,7 +353,7 @@
         "color": "#33ff66"
     },
     {
-        "id": 32,
+        "id": 33,
         "city": "舟山市",
         "province": "浙江省",
         "longitude": 122.2078,
@@ -353,7 +364,7 @@
         "color": "#a0a0dd"
     },
     {
-        "id": 33,
+        "id": 34,
         "city": "徐州市",
         "province": "江苏省",
         "longitude": 117.1848,

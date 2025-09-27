@@ -5,108 +5,74 @@ class FootprintMap {
         this.markers = [];
         this.footprints = [];
         this.cities = [];
-        
         this.init();
     }
-    
-    // 初始化
     async init() {
         try {
             console.log('开始初始化足迹地图系统...');
-            
-            // 首先加载数据（不依赖地图API）
             await this.loadData();
             console.log('数据加载完成');
-            
-            // 渲染足迹列表（不依赖地图API）
             this.renderFootprintList();
             console.log('足迹列表渲染完成');
-            
-            // 更新统计信息（不依赖地图API）
             this.updateStats();
             console.log('统计信息更新完成');
-            
-            // 检查高德地图API是否加载
             if (typeof AMap === 'undefined') {
                 console.warn('高德地图API未加载，仅显示列表模式');
                 this.showMapError('地图服务暂时不可用，但足迹列表已正常显示');
                 return;
             }
             console.log('高德地图API加载成功');
-            
-            // 初始化地图
             this.initMap();
             console.log('地图初始化完成');
-            
-            // 渲染足迹到地图
             this.renderFootprints();
             console.log('足迹渲染完成');
-            
             console.log('足迹地图系统初始化成功！');
-            
         } catch (error) {
             console.error('初始化失败:', error);
             this.showError(`系统初始化失败: ${error.message}。请检查控制台获取详细信息。`);
         }
     }
-    
-    // 加载数据
     async loadData() {
         try {
             console.log('正在加载数据文件...');
             const response = await fetch('json/data.json');
-            
             if (!response.ok) {
                 throw new Error(`HTTP错误: ${response.status} ${response.statusText}`);
             }
-            
             const data = await response.json();
             this.footprints = data.footprints || [];
             this.cities = data.cities || [];
-            
             console.log(`数据加载成功: ${this.footprints.length}个足迹, ${this.cities.length}个城市`);
-            
         } catch (error) {
             console.error('数据加载失败:', error);
             this.footprints = [];
             this.cities = [];
         }
     }
-    
-    // 初始化地图
     initMap() {
         try {
             console.log('正在初始化地图...');
-            
-            // 创建地图实例
             this.map = new AMap.Map('mapContainer', {
                 zoom: 5,
-                center: [104.114129, 37.550339], // 中国中心点
+                center: [104.114129, 37.550339],
                 mapStyle: 'amap://styles/blue',
                 viewMode: '3D',
                 pitch: 0,
                 showLabel: true,
                 features: ['bg', 'road', 'building', 'point']
             });
-            
             console.log('地图实例创建成功');
             console.log('地图初始化成功');
-            
         } catch (error) {
             console.error('地图初始化失败:', error);
             throw new Error(`地图初始化失败: ${error.message}`);
         }
     }
-    
-    // 渲染足迹到地图
     renderFootprints() {
         if (this.footprints.length === 0) {
             return;
         }
-        
-        // 添加足迹标记
         this.footprints.forEach(footprint => {
-            // 使用CircleMarker替代自定义标记，避免缩放偏移问题
             const circleMarker = new AMap.CircleMarker({
                 center: [footprint.longitude, footprint.latitude],
                 radius: 10,
@@ -117,39 +83,28 @@ class FootprintMap {
                 strokeOpacity: 1,
                 cursor: 'pointer'
             });
-            
-            // 添加点击事件
             circleMarker.on('click', () => {
                 this.showFootprintInfo(footprint);
             });
-            
-            // 添加鼠标悬停效果
             circleMarker.on('mouseover', () => {
                 circleMarker.setOptions({
                     radius: 12,
                     fillOpacity: 1
                 });
             });
-            
             circleMarker.on('mouseout', () => {
                 circleMarker.setOptions({
                     radius: 10,
                     fillOpacity: 0.8
                 });
             });
-            
             this.markers.push(circleMarker);
             this.map.add(circleMarker);
         });
-        
-        // 调整地图视野以显示所有足迹
         if (this.markers.length > 0) {
             this.map.setFitView(this.markers);
         }
     }
-    
-    
-    // 显示足迹信息
     showFootprintInfo(footprint) {
         const info = `
             <div style="padding: 15px; min-width: 200px;">
@@ -160,30 +115,21 @@ class FootprintMap {
                 ${footprint.note ? `<p style="margin: 5px 0; color: #666; font-size: 14px;"><strong>备注:</strong> ${footprint.note}</p>` : ''}
             </div>
         `;
-        
-        // 创建信息窗口
         const infoWindow = new AMap.InfoWindow({
             content: info,
             offset: new AMap.Pixel(0, -30)
         });
-        
         infoWindow.open(this.map, [footprint.longitude, footprint.latitude]);
     }
-    
-    // 渲染足迹列表
     renderFootprintList() {
         const listContainer = document.getElementById('footprintList');
-        
         if (this.footprints.length === 0) {
             listContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">暂无足迹记录</p>';
             return;
         }
-        
-        // 按访问日期排序
         const sortedFootprints = [...this.footprints].sort((a, b) => 
             new Date(b.visitDate) - new Date(a.visitDate)
         );
-        
         listContainer.innerHTML = sortedFootprints.map(footprint => `
             <div class="footprint-item" data-id="${footprint.id}">
                 <h4>${footprint.city}</h4>
@@ -194,26 +140,18 @@ class FootprintMap {
             </div>
         `).join('');
     }
-    
-    // 更新统计信息
     updateStats() {
         const totalCities = this.footprints.length;
         const totalProvinces = new Set(this.footprints.map(f => f.province)).size;
-        
-        // 更新统计显示
         const citiesElement = document.getElementById('totalCities');
         const provincesElement = document.getElementById('totalProvinces');
-        
         if (citiesElement) {
             citiesElement.textContent = totalCities;
         }
         if (provincesElement) {
             provincesElement.textContent = totalProvinces;
         }
-        
     }
-    
-    // 显示地图错误信息
     showMapError(message) {
         const mapContainer = document.getElementById('mapContainer');
         if (mapContainer) {
@@ -238,8 +176,6 @@ class FootprintMap {
             `;
         }
     }
-    
-    // 显示错误信息
     showError(message) {
         const mapContainer = document.getElementById('mapContainer');
         if (mapContainer) {
@@ -263,12 +199,8 @@ class FootprintMap {
         }
     }
 }
-
-// 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
     console.log('页面DOM加载完成，开始初始化足迹地图系统...');
-    
-    // 直接初始化足迹地图（内部会处理地图API检查）
     try {
         window.footprintMap = new FootprintMap();
     } catch (error) {
