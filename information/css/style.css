@@ -1,0 +1,77 @@
+:root {
+  --bg: #f6f1e7;       /* 米黄色背景 */
+  --card: #ffffff;     /* 保持卡片白色提升对比度 */
+  --card-2: #f3ebdf;   /* 偏暖的浅色块 */
+  --border: #e8e2d9;   /* 偏暖的边框色 */
+  --text: #1f2a37;
+  --muted: #6f7b8c;
+  --brand: #4f7cff;
+  --brand-2: #2cc7a5;
+  --danger: #e05252;
+  --shadow: 0 8px 24px rgba(31, 42, 55, .06);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container { width: min(1100px, 92%); margin: 0 auto; }
+
+.inf-header { display: none; }
+
+.inf-main { padding: 28px 0 60px; }
+
+.search-panel { display: grid; gap: 14px; }
+.page-title { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: .2px; color: var(--text); }
+.page-title .logo { font-size: 20px; margin-right: 6px; }
+.search-box { position: relative; display: flex; align-items: center; }
+.search-box i { position: absolute; left: 12px; color: var(--muted); }
+#searchInput { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 12px 40px; border-radius: 12px; outline: none; }
+#searchInput::placeholder { color: #8190b0; }
+#clearSearch { position: absolute; right: 8px; height: 32px; width: 32px; border-radius: 8px; border: 1px solid var(--border); background: var(--card-2); color: var(--muted); cursor: pointer; }
+#clearSearch:hover { color: var(--text); border-color: var(--brand); }
+
+.filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filter-btn { background: var(--card-2); color: var(--muted); border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 1px 0 #fff inset; }
+.filter-btn:hover { color: var(--text); border-color: var(--brand); }
+.filter-btn.active { background: linear-gradient(180deg, rgba(110,168,254,.12), rgba(61,217,178,.1)); color: var(--text); border-color: var(--brand); box-shadow: inset 0 0 0 1px rgba(110,168,254,.15); }
+
+.view-switch { display: none; }
+.view-btn { display: none; }
+.view-btn.active { display: none; }
+
+.card-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 16px; }
+.card-list { display: none; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.card:hover { transform: translateY(-2px); border-color: rgba(110,168,254,.45); box-shadow: 0 10px 36px rgba(0,0,0,.45); }
+.card-body { padding: 14px; display: grid; gap: 10px; }
+.card-head { display: flex; align-items: center; gap: 12px; }
+.card-icon { flex: 0 0 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, rgba(110,168,254,.25), rgba(61,217,178,.22)); display: grid; place-items: center; color: #e9f1ff; }
+.card-title { margin: 0; font-size: 15px; font-weight: 700; }
+.card-desc { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; color: #cfe0ff; border: 1px solid rgba(110,168,254,.3); background: rgba(110,168,254,.12); padding: 3px 8px; border-radius: 999px; }
+.action-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { appearance: none; border: 1px solid var(--border); background: var(--card-2); color: var(--text); padding: 8px 10px; font-weight: 600; border-radius: 10px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn:hover { border-color: var(--brand); }
+.btn.primary { background: linear-gradient(180deg, rgba(110,168,254,.16), rgba(61,217,178,.12)); border-color: rgba(110,168,254,.35); }
+.btn.ghost { background: transparent; }
+.btn.danger { border-color: rgba(255,107,107,.4); color: #ffd5d5; }
+
+.empty-state { text-align: center; color: var(--muted); padding: 40px 0; display: grid; place-items: center; gap: 10px; }
+.empty-state i { font-size: 36px; opacity: .9; }
+
+@media (max-width: 768px) { .card-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('header-title').textContent = articleMeta.title;
                 document.getElementById('article-date').textContent = articleMeta.date;
                 document.getElementById('article-category').textContent = categoryName;
-                document.getElementById('article-category').href = `../index.html`;
+                document.getElementById('article-category').href = `../`;
                 fetch(`md/${articleId}.md`)
                     .then(response => {
                         if (!response.ok) throw new Error('文章不存在');

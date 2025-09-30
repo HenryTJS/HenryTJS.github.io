@@ -1,0 +1,87 @@
+{
+  "resources": [
+    {
+      "title": "GitHub",
+      "description": "全球最大的代码托管与协作平台",
+      "category": "websites",
+      "icon": "fa-brands fa-github",
+      "tags": ["开发", "开源", "版本控制"],
+      "links": [{ "text": "访问", "url": "https://github.com", "type": "primary" }]
+    },
+    {
+      "title": "MDN Web Docs",
+      "description": "Web 前端权威文档与教程",
+      "category": "websites",
+      "icon": "fa-brands fa-firefox",
+      "tags": ["HTML", "CSS", "JavaScript"],
+      "links": [{ "text": "访问", "url": "https://developer.mozilla.org/zh-CN/", "type": "primary" }]
+    },
+    {
+      "title": "LeetCode",
+      "description": "算法与数据结构刷题平台",
+      "category": "websites",
+      "icon": "fa-solid fa-code",
+      "tags": ["算法", "面试", "数据结构"],
+      "links": [{ "text": "访问", "url": "https://leetcode.cn", "type": "primary" }]
+    },
+    {
+      "title": "VS Code",
+      "description": "轻量强大的代码编辑器",
+      "category": "apps",
+      "icon": "fa-solid fa-code",
+      "tags": ["编辑器", "插件", "跨平台"],
+      "links": [{ "text": "下载", "url": "https://code.visualstudio.com", "type": "primary" }]
+    },
+    {
+      "title": "Postman",
+      "description": "API 调试与自动化测试工具",
+      "category": "apps",
+      "icon": "fa-solid fa-paper-plane",
+      "tags": ["API", "测试"],
+      "links": [{ "text": "下载", "url": "https://www.postman.com/", "type": "primary" }]
+    },
+    {
+      "title": "常用 - 学校门户",
+      "description": "西安交通大学统一门户与常用服务入口",
+      "category": "links",
+      "icon": "fa-solid fa-building-columns",
+      "tags": ["XJTU", "门户", "服务"],
+      "links": [{ "text": "访问", "url": "https://my.xjtu.edu.cn/", "type": "primary" }]
+    },
+    {
+      "title": "常用 - 邮箱",
+      "description": "学校企业邮箱登录入口",
+      "category": "links",
+      "icon": "fa-solid fa-envelope",
+      "tags": ["邮箱", "邮件"],
+      "links": [{ "text": "访问", "url": "https://mail.stu.xjtu.edu.cn/", "type": "primary" }]
+    },
+    {
+      "title": "个人简历（示例）",
+      "description": "PDF 简历占位示例，请替换为实际文件路径",
+      "category": "docs",
+      "icon": "fa-regular fa-file-pdf",
+      "tags": ["简历", "PDF"],
+      "links": [
+        { "text": "查看", "url": "/documents/resume.pdf", "type": "primary" },
+        { "text": "下载", "url": "/documents/resume.pdf", "type": "download" }
+      ]
+    },
+    {
+      "title": "Node.js",
+      "description": "JavaScript 运行时，用于构建服务端与工具链",
+      "category": "apps",
+      "icon": "fa-brands fa-node",
+      "tags": ["运行时", "后端"],
+      "links": [{ "text": "下载", "url": "https://nodejs.org/", "type": "primary" }]
+    },
+    {
+      "title": "Docker",
+      "description": "容器化与交付平台",
+      "category": "apps",
+      "icon": "fa-brands fa-docker",
+      "tags": ["容器", "DevOps"],
+      "links": [{ "text": "下载", "url": "https://www.docker.com/", "type": "primary" }]
+    }
+  ]
+}

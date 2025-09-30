@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料汇总</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2Pkf0v0D1R5xUQxXta1i7g9lGZCwZ2n5G2lW8GJ7d0C1QkH6QxQ8b+NGVg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="inf-main">
+        <section class="search-panel container">
+            <h1 class="page-title"><span class="logo">📚</span> 资料汇总</h1>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="searchInput" type="text" placeholder="搜索标题、描述或标签...">
+                <button id="clearSearch" title="清空"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-category="links"><i class="fa-solid fa-link"></i> 常用链接</button>
+                <button class="filter-btn" data-category="websites"><i class="fa-solid fa-globe"></i> 网站</button>
+                <button class="filter-btn" data-category="apps"><i class="fa-solid fa-mobile-screen"></i> 软件</button>
+                <button class="filter-btn" data-category="docs"><i class="fa-solid fa-file-lines"></i> 文件</button>
+            </div>
+        </section>
+
+        <section class="container">
+            <div id="resourceContainer" class="card-grid"></div>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
