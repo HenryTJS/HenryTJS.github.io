@@ -84,4 +84,13 @@ body {
     .card-grid {
         grid-template-columns: 1fr;
     }
+    .content-card {
+        min-height: auto;
+        padding-bottom: 1rem;
+    }
+    .read-more {
+        position: static;
+        display: inline-block;
+        margin: 1rem 1.5rem 1.5rem;
+    }
 }
