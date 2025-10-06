@@ -1,4 +1,3 @@
-// 足迹地图系统 - 纯展示版本
 class FootprintMap {
     constructor() {
         this.map = null;

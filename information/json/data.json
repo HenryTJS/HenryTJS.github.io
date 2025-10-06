@@ -1,210 +1,210 @@
 {
-  "resources": [
-    {
-      "title": "GitHub",
-      "description": "全球最大的代码托管与协作平台",
-      "category": "websites",
-      "tags": ["开发", "开源", "版本控制"],
-      "links": [{ "text": "访问", "url": "https://github.com", "type": "primary" }]
-    },
-    {
-      "title": "LeetCode",
-      "description": "算法与数据结构刷题平台",
-      "category": "websites",
-      "tags": ["算法", "面试", "数据结构"],
-      "links": [{ "text": "访问", "url": "https://leetcode.cn", "type": "primary" }]
-    },
-    {
-      "title": "VS Code",
-      "description": "轻量强大的代码编辑器",
-      "category": "apps",
-      "tags": ["编辑器", "插件", "跨平台"],
-      "links": [{ "text": "下载", "url": "https://code.visualstudio.com", "type": "primary" }]
-    },
-    {
-      "title": "个人简历（示例）",
-      "description": "PDF 简历占位示例，请替换为实际文件路径",
-      "category": "docs",
-      "tags": ["简历", "PDF"],
-      "links": [
-        { "text": "查看", "url": "/documents/resume.pdf", "type": "primary" },
-        { "text": "下载", "url": "/documents/resume.pdf", "type": "download" }
-      ]
-    },
-    {
-      "title": "Kaggle",
-      "description": "数据科学竞赛与数据集平台",
-      "category": "websites",
-      "tags": ["数据科学", "竞赛", "数据集"],
-      "links": [{ "text": "访问", "url": "https://www.kaggle.com", "type": "primary" }]
-    },
-    {
-      "title": "Z-Library",
-      "description": "电子书与学术资源检索平台",
-      "category": "websites",
-      "tags": ["电子书", "图书馆", "资料"],
-      "links": [{ "text": "访问", "url": "https://zh.z-library.sk/", "type": "primary" }]
-    },
-    {
-      "title": "Adobe",
-      "description": "创意设计与数字媒体工具套件",
-      "category": "apps",
-      "tags": ["设计", "PS", "PR"],
-      "links": [{ "text": "下载", "url": "https://www.adobe.com/", "type": "primary" }]
-    },
-    {
-      "title": "JetBrains",
-      "description": "专业开发者集成开发环境套件",
-      "category": "apps",
-      "tags": ["IDE", "开发", "工具"],
-      "links": [{ "text": "下载", "url": "https://www.jetbrains.com/", "type": "primary" }]
-    },
-    {
-      "title": "菜鸟教程",
-      "description": "编程与开发入门教程与速查",
-      "category": "websites",
-      "tags": ["教程", "编程", "速查"],
-      "links": [{ "text": "访问", "url": "https://www.runoob.com/", "type": "primary" }]
-    },
-    {
-      "title": "中国大学MOOC",
-      "description": "高校在线课程学习平台",
-      "category": "websites",
-      "tags": ["课程", "慕课", "学习"],
-      "links": [{ "text": "访问", "url": "https://www.icourse163.org/", "type": "primary" }]
-    },
-    {
-      "title": "DeepSeek",
-      "description": "AI 模型与对话平台",
-      "category": "websites",
-      "tags": ["AI", "对话", "模型"],
-      "links": [{ "text": "访问", "url": "https://www.deepseek.com/", "type": "primary" }]
-    },
-    {
-      "title": "ChatGPT",
-      "description": "OpenAI 对话式人工智能",
-      "category": "websites",
-      "tags": ["AI", "对话", "OpenAI"],
-      "links": [{ "text": "访问", "url": "https://chatgpt.com/", "type": "primary" }]
-    },
-    {
-      "title": "Anaconda",
-      "description": "Python/R 科学计算与数据科学发行版",
-      "category": "apps",
-      "tags": ["Python", "数据科学", "包管理"],
-      "links": [{ "text": "下载", "url": "https://www.anaconda.com/", "type": "primary" }]
-    },
-    {
-      "title": "MuseScore",
-      "description": "开源乐谱制作与编曲软件",
-      "category": "apps",
-      "tags": ["音乐", "乐谱", "编曲"],
-      "links": [{ "text": "下载", "url": "https://musescore.org/", "type": "primary" }]
-    },
-    {
-      "title": "SOLIDWORKS",
-      "description": "三维 CAD 设计与工程仿真软件",
-      "category": "apps",
-      "tags": ["CAD", "三维", "工程"],
-      "links": [{ "text": "下载", "url": "https://www.solidworks.com/", "type": "primary" }]
-    },
-    {
-      "title": "MATLAB",
-      "description": "数值计算与可视化编程环境",
-      "category": "apps",
-      "tags": ["数学", "算法", "可视化"],
-      "links": [{ "text": "下载", "url": "https://www.mathworks.com/products/matlab.html", "type": "primary" }]
-    },
-    {
-      "title": "Cursor",
-      "description": "AI 助力的开发者编辑器",
-      "category": "apps",
-      "tags": ["IDE", "AI", "开发"],
-      "links": [{ "text": "下载", "url": "https://cursor.sh/", "type": "primary" }]
-    },
-    {
-      "title": "Canva",
-      "description": "在线平面设计与协作平台",
-      "category": "apps",
-      "tags": ["设计", "海报", "社媒"],
-      "links": [{ "text": "下载", "url": "https://www.canva.com/", "type": "primary" }]
-    },
-    {
-      "title": "知网",
-      "description": "中国知网学术文献检索与服务平台",
-      "category": "websites",
-      "tags": ["学术", "论文", "检索"],
-      "links": [{ "text": "访问", "url": "https://www.cnki.net/", "type": "primary" }]
-    },
-    {
-        "title": "学校主页",
-        "description": "学校官方网站主页入口",
-        "category": "links",
-        "tags": ["学校", "门户"],
-        "links": [{ "text": "访问", "url": "https://www.xjtu.edu.cn/", "type": "primary" }]
-      },
-    {
-      "title": "教务处",
-      "description": "学校教务处官网入口",
-      "category": "links",
-      "tags": ["学校", "教务"],
-      "links": [{ "text": "访问", "url": "https://jwc.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "招生网",
-      "description": "学校招生信息与公告入口",
-      "category": "links",
-      "tags": ["学校", "招生"],
-      "links": [{ "text": "访问", "url": "https://zs.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "教务系统",
-      "description": "教务管理与选课系统入口",
-      "category": "links",
-      "tags": ["学校", "教务", "选课"],
-      "links": [{ "text": "访问", "url": "https://jwxt.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "思源学堂",
-      "description": "学校在线课程学习平台入口",
-      "category": "links",
-      "tags": ["学校", "课程", "学习"],
-      "links": [{ "text": "访问", "url": "https://lms.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "学校邮箱",
-      "description": "学生企业邮箱登录入口",
-      "category": "links",
-      "tags": ["学校", "邮箱"],
-      "links": [{ "text": "访问", "url": "https://stu.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "选课系统",
-      "description": "课程选课与教学管理系统入口",
-      "category": "links",
-      "tags": ["学校", "选课", "教务"],
-      "links": [{ "text": "访问", "url": "https://xkfw.xjtu.edu.cn/", "type": "primary" }]
-    },
-    {
-      "title": "MOOC作业利器",
-      "description": "MOOC作业利器",
-      "category": "links",
-      "tags": ["MOOC", "作业", "管理"],
-      "links": [{ "text": "访问", "url": "https://ginnnnnn.top/mooc", "type": "primary" }]
-    },
-    {
-      "title": "Overleaf",
-      "description": "在线 LaTeX 协作与论文写作平台",
-      "category": "websites",
-      "tags": ["LaTeX", "论文", "协作"],
-      "links": [{ "text": "访问", "url": "https://www.overleaf.com/", "type": "primary" }]
-    },
-    {
-      "title": "PTA",
-      "description": "程序设计题库与在线测评平台",
-      "category": "websites",
-      "tags": ["算法", "题库", "OJ"],
-      "links": [{ "text": "访问", "url": "https://pintia.cn/", "type": "primary" }]
-    }
-  ]
+    "resources": [
+        {
+            "title": "GitHub",
+            "description": "全球最大的代码托管与协作平台",
+            "category": "websites",
+            "tags": ["开发", "开源", "版本控制"],
+            "links": [{ "text": "访问", "url": "https://github.com", "type": "primary" }]
+        },
+        {
+            "title": "LeetCode",
+            "description": "算法与数据结构刷题平台",
+            "category": "websites",
+            "tags": ["算法", "面试", "数据结构"],
+            "links": [{ "text": "访问", "url": "https://leetcode.cn", "type": "primary" }]
+        },
+        {
+            "title": "VS Code",
+            "description": "轻量强大的代码编辑器",
+            "category": "apps",
+            "tags": ["编辑器", "插件", "跨平台"],
+            "links": [{ "text": "下载", "url": "https://code.visualstudio.com", "type": "download" }]
+        },
+        {
+            "title": "个人简历（示例）",
+            "description": "PDF 简历占位示例，请替换为实际文件路径",
+            "category": "docs",
+            "tags": ["简历", "PDF"],
+            "links": [
+                { "text": "查看", "url": "/documents/resume.pdf", "type": "primary" },
+                { "text": "下载", "url": "/documents/resume.pdf", "type": "download" }
+            ]
+        },
+        {
+            "title": "Kaggle",
+            "description": "数据科学竞赛与数据集平台",
+            "category": "websites",
+            "tags": ["数据科学", "竞赛", "数据集"],
+            "links": [{ "text": "访问", "url": "https://www.kaggle.com", "type": "primary" }]
+        },
+        {
+            "title": "Z-Library",
+            "description": "电子书与学术资源检索平台",
+            "category": "websites",
+            "tags": ["电子书", "图书馆", "资料"],
+            "links": [{ "text": "访问", "url": "https://zh.z-library.sk/", "type": "primary" }]
+        },
+        {
+            "title": "Adobe",
+            "description": "创意设计与数字媒体工具套件",
+            "category": "apps",
+            "tags": ["设计", "PS", "PR"],
+            "links": [{ "text": "下载", "url": "https://www.adobe.com/", "type": "download" }]
+        },
+        {
+            "title": "JetBrains",
+            "description": "专业开发者集成开发环境套件",
+            "category": "apps",
+            "tags": ["IDE", "开发", "工具"],
+            "links": [{ "text": "下载", "url": "https://www.jetbrains.com/", "type": "download" }]
+        },
+        {
+            "title": "菜鸟教程",
+            "description": "编程与开发入门教程与速查",
+            "category": "websites",
+            "tags": ["教程", "编程", "速查"],
+            "links": [{ "text": "访问", "url": "https://www.runoob.com/", "type": "primary" }]
+        },
+        {
+            "title": "中国大学MOOC",
+            "description": "高校在线课程学习平台",
+            "category": "websites",
+            "tags": ["课程", "慕课", "学习"],
+            "links": [{ "text": "访问", "url": "https://www.icourse163.org/", "type": "primary" }]
+        },
+        {
+            "title": "DeepSeek",
+            "description": "AI 模型与对话平台",
+            "category": "websites",
+            "tags": ["AI", "对话", "模型"],
+            "links": [{ "text": "访问", "url": "https://www.deepseek.com/", "type": "primary" }]
+        },
+        {
+            "title": "ChatGPT",
+            "description": "OpenAI 对话式人工智能",
+            "category": "websites",
+            "tags": ["AI", "对话", "OpenAI"],
+            "links": [{ "text": "访问", "url": "https://chatgpt.com/", "type": "primary" }]
+        },
+        {
+            "title": "Anaconda",
+            "description": "Python/R 科学计算与数据科学发行版",
+            "category": "apps",
+            "tags": ["Python", "数据科学", "包管理"],
+            "links": [{ "text": "下载", "url": "https://www.anaconda.com/", "type": "download" }]
+        },
+        {
+            "title": "MuseScore",
+            "description": "开源乐谱制作与编曲软件",
+            "category": "apps",
+            "tags": ["音乐", "乐谱", "编曲"],
+            "links": [{ "text": "下载", "url": "https://musescore.org/", "type": "download" }]
+        },
+        {
+            "title": "SOLIDWORKS",
+            "description": "三维 CAD 设计与工程仿真软件",
+            "category": "apps",
+            "tags": ["CAD", "三维", "工程"],
+            "links": [{ "text": "下载", "url": "https://www.solidworks.com/", "type": "download" }]
+        },
+        {
+            "title": "MATLAB",
+            "description": "数值计算与可视化编程环境",
+            "category": "apps",
+            "tags": ["数学", "算法", "可视化"],
+            "links": [{ "text": "下载", "url": "https://www.mathworks.com/products/matlab.html", "type": "download" }]
+        },
+        {
+            "title": "Cursor",
+            "description": "AI 助力的开发者编辑器",
+            "category": "apps",
+            "tags": ["IDE", "AI", "开发"],
+            "links": [{ "text": "下载", "url": "https://cursor.sh/", "type": "download" }]
+        },
+        {
+            "title": "Canva",
+            "description": "在线平面设计与协作平台",
+            "category": "apps",
+            "tags": ["设计", "海报", "社媒"],
+            "links": [{ "text": "下载", "url": "https://www.canva.com/", "type": "download" }]
+        },
+        {
+            "title": "知网",
+            "description": "中国知网学术文献检索与服务平台",
+            "category": "websites",
+            "tags": ["学术", "论文", "检索"],
+            "links": [{ "text": "访问", "url": "https://www.cnki.net/", "type": "primary" }]
+        },
+        {
+            "title": "学校主页",
+            "description": "学校官方网站主页入口",
+            "category": "links",
+            "tags": ["学校", "门户"],
+            "links": [{ "text": "访问", "url": "https://www.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "教务处",
+            "description": "学校教务处官网入口",
+            "category": "links",
+            "tags": ["学校", "教务"],
+            "links": [{ "text": "访问", "url": "https://jwc.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "招生网",
+            "description": "学校招生信息与公告入口",
+            "category": "links",
+            "tags": ["学校", "招生"],
+            "links": [{ "text": "访问", "url": "https://zs.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "教务系统",
+            "description": "教务管理与选课系统入口",
+            "category": "links",
+            "tags": ["学校", "教务", "选课"],
+            "links": [{ "text": "访问", "url": "https://jwxt.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "思源学堂",
+            "description": "学校在线课程学习平台入口",
+            "category": "links",
+            "tags": ["学校", "课程", "学习"],
+            "links": [{ "text": "访问", "url": "https://lms.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "学校邮箱",
+            "description": "学生企业邮箱登录入口",
+            "category": "links",
+            "tags": ["学校", "邮箱"],
+            "links": [{ "text": "访问", "url": "https://stu.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "选课系统",
+            "description": "课程选课与教学管理系统入口",
+            "category": "links",
+            "tags": ["学校", "选课", "教务"],
+            "links": [{ "text": "访问", "url": "https://xkfw.xjtu.edu.cn/", "type": "primary" }]
+        },
+        {
+            "title": "MOOC作业利器",
+            "description": "MOOC作业利器",
+            "category": "links",
+            "tags": ["MOOC", "作业", "管理"],
+            "links": [{ "text": "访问", "url": "https://ginnnnnn.top/mooc", "type": "primary" }]
+        },
+        {
+            "title": "Overleaf",
+            "description": "在线 LaTeX 协作与论文写作平台",
+            "category": "websites",
+            "tags": ["LaTeX", "论文", "协作"],
+            "links": [{ "text": "访问", "url": "https://www.overleaf.com/", "type": "primary" }]
+        },
+        {
+            "title": "PTA",
+            "description": "程序设计题库与在线测评平台",
+            "category": "websites",
+            "tags": ["算法", "题库", "OJ"],
+            "links": [{ "text": "访问", "url": "https://pintia.cn/", "type": "primary" }]
+        }
+    ]
 }

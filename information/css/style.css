@@ -1,36 +1,29 @@
 * {
     box-sizing: border-box;
 }
-
 html, body {
     height: 100%;
 }
-
 body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
     background: #f6f1e7;
     color: #1f2a37;
 }
-
 .container {
     width: min(1100px, 92%);
     margin: 0 auto;
 }
-
 .inf-header {
     display: none;
 }
-
 .inf-main {
     padding: 28px 0 60px;
 }
-
 .search-panel {
     display: grid;
     gap: 14px;
 }
-
 .page-title {
     margin: 0;
     font-size: 22px;
@@ -38,24 +31,20 @@ body {
     letter-spacing: .2px;
     color: #1f2a37;
 }
-
 .page-title .logo {
     font-size: 20px;
     margin-right: 6px;
 }
-
 .search-box {
     position: relative;
     display: flex;
     align-items: center;
 }
-
 .search-box i {
     position: absolute;
     left: 12px;
     color: #6f7b8c;
 }
-
 #searchInput {
     width: 100%;
     background: #ffffff;
@@ -65,20 +54,15 @@ body {
     border-radius: 12px;
     outline: none;
 }
-
 #searchInput::placeholder {
     color: #8190b0;
 }
-
-/* 清空按钮已移除 */
-
 .filters {
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
 }
-
 .filter-btn {
     background: #f3ebdf;
     color: #6f7b8c;
@@ -91,42 +75,34 @@ body {
     gap: 8px;
     box-shadow: 0 1px 0 #fff inset;
 }
-
 .filter-btn:hover {
     color: #1f2a37;
     border-color: #4f7cff;
 }
-
 .filter-btn.active {
     background: linear-gradient(180deg, rgba(110,168,254,.12), rgba(61,217,178,.1));
     color: #1f2a37;
     border-color: #4f7cff;
     box-shadow: inset 0 0 0 1px rgba(110,168,254,.15);
 }
-
 .view-switch {
     display: none;
 }
-
 .view-btn {
     display: none;
 }
-
 .view-btn.active {
     display: none;
 }
-
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
     gap: 14px;
     margin-top: 16px;
 }
-
 .card-list {
     display: none;
 }
-
 .card {
     background: #ffffff;
     border: 1px solid #e8e2d9;
@@ -135,25 +111,21 @@ body {
     overflow: hidden;
     transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-
 .card:hover {
     transform: translateY(-2px);
     border-color: rgba(110,168,254,.45);
     box-shadow: 0 10px 36px rgba(0,0,0,.45);
 }
-
 .card-body {
     padding: 14px;
     display: grid;
     gap: 10px;
 }
-
 .card-head {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
 .card-icon {
     flex: 0 0 40px;
     height: 40px;
@@ -163,26 +135,22 @@ body {
     place-items: center;
     font-size: 18px;
 }
-
 .card-title {
     margin: 0;
     font-size: 15px;
     font-weight: 700;
 }
-
 .card-desc {
     margin: 0;
     color: #6f7b8c;
     font-size: 13px;
     line-height: 1.6;
 }
-
 .tag-row {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
-
 .tag {
     font-size: 11px;
     color: #4a5c7a;
@@ -191,14 +159,12 @@ body {
     padding: 3px 8px;
     border-radius: 999px;
 }
-
 .action-row {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
 }
-
 .btn {
     appearance: none;
     border: 1px solid #e8e2d9;
@@ -213,25 +179,20 @@ body {
     align-items: center;
     gap: 8px;
 }
-
 .btn:hover {
     border-color: #4f7cff;
 }
-
 .btn.primary {
     background: linear-gradient(180deg, rgba(110,168,254,.16), rgba(61,217,178,.12));
     border-color: rgba(110,168,254,.35);
 }
-
 .btn.ghost {
     background: transparent;
 }
-
 .btn.danger {
     border-color: rgba(255,107,107,.4);
     color: #ffd5d5;
 }
-
 .empty-state {
     text-align: center;
     color: #6f7b8c;
@@ -240,12 +201,10 @@ body {
     place-items: center;
     gap: 10px;
 }
-
 .empty-state i {
     font-size: 36px;
     opacity: .9;
 }
-
 @media (max-width: 768px) {
     .card-grid {
         grid-template-columns: repeat(2, minmax(0,1fr));

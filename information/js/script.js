@@ -1,29 +1,24 @@
-// 轻量状态
 let state = {
     resources: [],
     keyword: '',
     category: 'links'
 };
-
 const els = {
     container: null,
     search: null,
     filters: null
 };
-
 document.addEventListener('DOMContentLoaded', async () => {
     cacheDom();
     bindEvents();
     await loadData();
     render();
 });
-
 function cacheDom() {
     els.container = document.getElementById('resourceContainer');
     els.search = document.getElementById('searchInput');
     els.filters = document.querySelector('.filters');
 }
-
 function bindEvents() {
     if (els.search) {
         els.search.addEventListener('input', debounce((e) => {
@@ -31,7 +26,6 @@ function bindEvents() {
             render();
         }, 200));
     }
-    // 清空按钮已移除
     if (els.filters) {
         els.filters.addEventListener('click', (e) => {
             const btn = e.target.closest('.filter-btn');
@@ -42,9 +36,7 @@ function bindEvents() {
             render();
         });
     }
-    // 视图切换已移除，固定为网格
 }
-
 async function loadData() {
     try {
         const res = await fetch('json/data.json', { cache: 'no-store' });
@@ -54,7 +46,6 @@ async function loadData() {
         state.resources = [];
     }
 }
-
 function filteredResources() {
     const { resources, keyword, category } = state;
     return resources.filter(r => {
@@ -67,7 +58,6 @@ function filteredResources() {
         return inCategory && inKeyword;
     });
 }
-
 function render() {
     const list = filteredResources();
     els.container.className = 'card-grid';
@@ -80,7 +70,6 @@ function render() {
     list.forEach(item => frag.appendChild(renderCard(item)));
     els.container.appendChild(frag);
 }
-
 function renderCard(item) {
     const card = document.createElement('article');
     card.className = 'card';
@@ -99,7 +88,6 @@ function renderCard(item) {
     `;
     return card;
 }
-
 function renderLink(link) {
     const type = link.type || 'primary';
     const icon = type === 'download' ? '⬇️' : '↗️';
@@ -107,9 +95,7 @@ function renderLink(link) {
     const target = (link.url || '').startsWith('http') ? ' target="_blank" rel="noopener"' : '';
     return `<a class="${cls}" href="${encodeURI(link.url || '#')}"${target}>${icon}${escapeHtml(link.text || '打开')}</a>`;
 }
-
 function iconClass(item) {
-    // 忽略数据中的 Font Awesome 图标，统一使用 emoji
     const map = { 
         websites: '🌐', 
         apps: '📱', 
@@ -119,9 +105,6 @@ function iconClass(item) {
     };
     return map[item.category] || 'ℹ️';
 }
-
-// 视图切换函数删除，固定三列
-
 function debounce(fn, wait) {
     let t;
     return (...args) => {
@@ -129,7 +112,6 @@ function debounce(fn, wait) {
         t = setTimeout(() => fn(...args), wait);
     };
 }
-
 function escapeHtml(str) {
     return String(str).replace(/[&<>"]+/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[s]));
 }
