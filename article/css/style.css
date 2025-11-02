@@ -36,7 +36,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e0e0e0;
     position: relative;
-    min-height: 280px;
+    min-height: 320px;
     padding-bottom: 50px;
 }
 .content-card:hover {

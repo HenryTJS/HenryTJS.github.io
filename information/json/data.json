@@ -15,6 +15,13 @@
             "links": [{ "text": "下载", "url": "https://www.anaconda.com/", "type": "download" }]
         },
         {
+            "title": "Arduino",
+            "description": "开源电子原型开发平台与IDE",
+            "category": "apps",
+            "tags": ["嵌入式", "开发", "硬件"],
+            "links": [{ "text": "下载", "url": "https://www.arduino.cc/", "type": "download" }]
+        },
+        {
             "title": "Canva",
             "description": "在线平面设计与协作平台",
             "category": "apps",
@@ -22,11 +29,25 @@
             "links": [{ "text": "下载", "url": "https://www.canva.com/", "type": "download" }]
         },
         {
+            "title": "ChemOffice",
+            "description": "化学结构绘制与分子建模软件套件",
+            "category": "apps",
+            "tags": ["化学", "分子建模", "结构绘制"],
+            "links": [{ "text": "下载", "url": "https://www.perkinelmer.com/product/chemoffice-professional-su-b1198", "type": "download" }]
+        },
+        {
             "title": "Cursor",
             "description": "AI 助力的开发者编辑器",
             "category": "apps",
             "tags": ["IDE", "AI", "开发"],
             "links": [{ "text": "下载", "url": "https://cursor.sh/", "type": "download" }]
+        },
+        {
+            "title": "GAMS",
+            "description": "通用代数建模系统，优化与数学规划软件",
+            "category": "apps",
+            "tags": ["优化", "建模", "数学规划"],
+            "links": [{ "text": "下载", "url": "https://www.gams.com/", "type": "download" }]
         },
         {
             "title": "JetBrains",
@@ -158,11 +179,25 @@
             "links": [{ "text": "访问", "url": "https://lms.xjtu.edu.cn/", "type": "primary" }]
         },
         {
+            "title": "钱学组",
+            "description": "钱学森班学业分享小组官方网站",
+            "category": "links",
+            "tags": ["学校", "学习", "分享"],
+            "links": [{ "text": "访问", "url": "https://xjtu-qian-xuesen-class.github.io/XJTU-QXZ/主页/", "type": "primary" }]
+        },
+        {
             "title": "AIStudio",
             "description": "百度AI开发与学习平台",
             "category": "websites",
             "tags": ["AI", "开发", "学习"],
             "links": [{ "text": "访问", "url": "https://aistudio.baidu.com/", "type": "primary" }]
+        },
+        {
+            "title": "菜鸟教程",
+            "description": "编程与开发入门教程与速查",
+            "category": "websites",
+            "tags": ["教程", "编程", "速查"],
+            "links": [{ "text": "访问", "url": "https://www.runoob.com/", "type": "primary" }]
         },
         {
             "title": "ChatGPT",
@@ -172,18 +207,18 @@
             "links": [{ "text": "访问", "url": "https://chatgpt.com/", "type": "primary" }]
         },
         {
-            "title": "中国大学MOOC",
-            "description": "高校在线课程学习平台",
-            "category": "websites",
-            "tags": ["课程", "慕课", "学习"],
-            "links": [{ "text": "访问", "url": "https://www.icourse163.org/", "type": "primary" }]
-        },
-        {
             "title": "DeepSeek",
             "description": "AI 模型与对话平台",
             "category": "websites",
             "tags": ["AI", "对话", "模型"],
             "links": [{ "text": "访问", "url": "https://www.deepseek.com/", "type": "primary" }]
+        },
+        {
+            "title": "featurize",
+            "description": "远程GPU算力平台，提供深度学习训练与推理服务",
+            "category": "websites",
+            "tags": ["GPU", "深度学习", "云计算"],
+            "links": [{ "text": "访问", "url": "https://featurize.cn/", "type": "primary" }]
         },
         {
             "title": "GitHub",
@@ -221,11 +256,11 @@
             "links": [{ "text": "访问", "url": "https://pintia.cn/", "type": "primary" }]
         },
         {
-            "title": "菜鸟教程",
-            "description": "编程与开发入门教程与速查",
+            "title": "render",
+            "description": "应用托管与部署平台，支持自动化构建和部署",
             "category": "websites",
-            "tags": ["教程", "编程", "速查"],
-            "links": [{ "text": "访问", "url": "https://www.runoob.com/", "type": "primary" }]
+            "tags": ["部署", "托管", "云计算"],
+            "links": [{ "text": "访问", "url": "https://render.com/", "type": "primary" }]
         },
         {
             "title": "知网",
@@ -233,6 +268,13 @@
             "category": "websites",
             "tags": ["学术", "论文", "检索"],
             "links": [{ "text": "访问", "url": "https://www.cnki.net/", "type": "primary" }]
+        },
+        {
+            "title": "中国大学MOOC",
+            "description": "高校在线课程学习平台",
+            "category": "websites",
+            "tags": ["课程", "慕课", "学习"],
+            "links": [{ "text": "访问", "url": "https://www.icourse163.org/", "type": "primary" }]
         },
         {
             "title": "Z-Library",
