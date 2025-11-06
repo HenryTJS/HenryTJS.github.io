@@ -34,7 +34,7 @@ class FootprintMap {
     async loadData() {
         try {
             console.log('正在加载数据文件...');
-            const response = await fetch('json/data.json');
+            const response = await fetch('/trip/json/data.json');
             if (!response.ok) {
                 throw new Error(`HTTP错误: ${response.status} ${response.statusText}`);
             }
