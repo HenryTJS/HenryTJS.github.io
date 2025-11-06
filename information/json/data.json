@@ -263,6 +263,20 @@
             "links": [{ "text": "访问", "url": "https://render.com/", "type": "primary" }]
         },
         {
+            "title": "赛氪",
+            "description": "高校赛事与竞赛信息平台，提供报名与赛事管理",
+            "category": "websites",
+            "tags": ["竞赛", "比赛", "报名"],
+            "links": [{ "text": "访问", "url": "https://www.saikr.com/", "type": "primary" }]
+        },
+        {
+            "title": "秀米",
+            "description": "微信公众号图文编辑与排版工具",
+            "category": "websites",
+            "tags": ["编辑", "排版", "公众号"],
+            "links": [{ "text": "访问", "url": "https://xiumi.us/", "type": "primary" }]
+        },
+        {
             "title": "知网",
             "description": "中国知网学术文献检索与服务平台",
             "category": "websites",
