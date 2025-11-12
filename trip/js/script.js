@@ -3,7 +3,6 @@ class FootprintMap {
         this.map = null;
         this.markers = [];
         this.footprints = [];
-        this.cities = [];
         this.init();
     }
     async init() {
@@ -15,6 +14,8 @@ class FootprintMap {
             console.log('足迹列表渲染完成');
             this.updateStats();
             console.log('统计信息更新完成');
+            // 首次根据右侧块计算左侧高度
+            this.syncMapHeightWithRight();
             if (typeof AMap === 'undefined') {
                 console.warn('高德地图API未加载，仅显示列表模式');
                 this.showMapError('地图服务暂时不可用，但足迹列表已正常显示');
@@ -25,6 +26,12 @@ class FootprintMap {
             console.log('地图初始化完成');
             this.renderFootprints();
             console.log('足迹渲染完成');
+            // 确保地图在容器最终高度下完成自适应
+            if (this.map && typeof this.map.resize === 'function') {
+                requestAnimationFrame(() => this.map.resize());
+            }
+            // 监听窗口变化，同步高度
+            window.addEventListener('resize', () => this.syncMapHeightWithRight());
             console.log('足迹地图系统初始化成功！');
         } catch (error) {
             console.error('初始化失败:', error);
@@ -40,12 +47,10 @@ class FootprintMap {
             }
             const data = await response.json();
             this.footprints = data.footprints || [];
-            this.cities = data.cities || [];
-            console.log(`数据加载成功: ${this.footprints.length}个足迹, ${this.cities.length}个城市`);
+            console.log(`数据加载成功: ${this.footprints.length}个足迹`);
         } catch (error) {
             console.error('数据加载失败:', error);
             this.footprints = [];
-            this.cities = [];
         }
     }
     initMap() {
@@ -102,6 +107,34 @@ class FootprintMap {
         });
         if (this.markers.length > 0) {
             this.map.setFitView(this.markers);
+        }
+    }
+    syncMapHeightWithRight() {
+        try {
+            const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+            const mapEl = document.getElementById('mapContainer');
+            if (!mapEl) return;
+            if (isMobile) {
+                mapEl.style.height = '50vh';
+                if (this.map && typeof this.map.resize === 'function') this.map.resize();
+                return;
+            }
+            const statsGrid = document.querySelector('.stats-grid');
+            const controlPanel = document.querySelector('.control-panel');
+            const mainContent = document.querySelector('.main-content');
+            if (!statsGrid || !controlPanel || !mainContent) return;
+            const statsH = statsGrid.offsetHeight || 0;
+            const panelH = controlPanel.offsetHeight || 0;
+            const cs = window.getComputedStyle(mainContent);
+            const rowGapStr = cs.rowGap || cs.gap || '0px';
+            const rowGap = parseFloat(rowGapStr) || 0;
+            const total = statsH + panelH + rowGap;
+            if (total > 0) {
+                mapEl.style.height = total + 'px';
+                if (this.map && typeof this.map.resize === 'function') this.map.resize();
+            }
+        } catch (e) {
+            console.warn('同步地图高度失败:', e);
         }
     }
     showFootprintInfo(footprint) {

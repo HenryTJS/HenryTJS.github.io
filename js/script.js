@@ -20,7 +20,6 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add('active');
     evt.currentTarget.classList.add('active');
 }
-// 加载 JSON 数据
 fetch('json/data.json')
     .then(response => response.json())
     .then(data => {
@@ -31,8 +30,6 @@ fetch('json/data.json')
         renderApps(data.apps);
     })
     .catch(error => console.error('Error loading JSON:', error));
-
-// 渲染个人信息
 function renderProfile(profile) {
     const profileSection = document.getElementById('profile');
     profileSection.innerHTML = `
@@ -47,8 +44,6 @@ function renderProfile(profile) {
         <p style="margin-top: 1rem;">${profile.intro}</p>
     `;
 }
-
-// 渲染联系方式
 function renderContact(contact) {
     const contactSection = document.getElementById('contact');
     contactSection.innerHTML = `
@@ -61,8 +56,6 @@ function renderContact(contact) {
         `).join('')}
     `;
 }
-
-// 渲染成就
 function renderAchievements(achievements) {
     const achievementsSection = document.getElementById('achievements');
     achievementsSection.innerHTML = achievements.map(item => `
@@ -73,8 +66,6 @@ function renderAchievements(achievements) {
         </p>
     `).join('');
 }
-
-// 渲染履历
 function renderExperience(experience) {
     const experienceSection = document.getElementById('experience');
     experienceSection.innerHTML = experience.map(item => `
@@ -84,8 +75,6 @@ function renderExperience(experience) {
         </ul>
     `).join('');
 }
-
-// 渲染应用
 function renderApps(apps) {
     const appsSection = document.getElementById('apps');
     appsSection.innerHTML = `

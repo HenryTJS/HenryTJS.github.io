@@ -15,27 +15,20 @@
             <p>记录我到过的每一个城市</p>
         </header>
         <div class="main-content">
-            <div class="map-container">
-                <div id="mapContainer"></div>
+            <div id="mapContainer"></div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCities">0</span>
+                    <span class="stat-label">已访问城市</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalProvinces">0</span>
+                    <span class="stat-label">已访问省份</span>
+                </div>
             </div>
             <div class="control-panel">
-                <div class="panel-section">
-                    <h3>我的足迹</h3>
-                    <div id="footprintList" class="footprint-list"></div>
-                </div>
-                <div class="panel-section">
-                    <h3>统计信息</h3>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalCities">0</span>
-                            <span class="stat-label">已访问城市</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalProvinces">0</span>
-                            <span class="stat-label">已访问省份</span>
-                        </div>
-                    </div>
-                </div>
+                <h3>我的足迹</h3>
+                <div id="footprintList" class="footprint-list"></div>
             </div>
         </div>
     </div>
