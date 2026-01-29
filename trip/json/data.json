@@ -135,7 +135,7 @@
         {
             "id": 13,
             "city": "厦门市",
-            "province": "浙江省",
+            "province": "福建省",
             "longitude": 118.0894,
             "latitude": 24.4629,
             "visitDate": "2023-05",
@@ -384,6 +384,17 @@
             "type": "旅游",
             "note": "喜欢有共享单车的城市",
             "color": "#f0e68c"
+        },
+        {
+            "id": 36,
+            "city": "无锡市",
+            "province": "江苏省",
+            "longitude": 120.3017,
+            "latitude": 31.5749,
+            "visitDate": "2026-01",
+            "type": "旅游",
+            "note": "邪恶水蜜桃",
+            "color": "#8ce6f0"
         }
     ]
 }
