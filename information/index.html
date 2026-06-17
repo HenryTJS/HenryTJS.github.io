@@ -3,28 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友情链接</title>
+    <title>友情链接 - seal的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- 导航栏 -->
+    <nav class="main-nav-bar" id="mainNavBar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-icon">S</span>
+                <span>seal</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home"></i><span>首页</span></a></li>
+                <li><a href="/article"><i class="fas fa-book"></i><span>阅读</span></a></li>
+                <li><a href="/trip"><i class="fas fa-map-marker-alt"></i><span>足迹</span></a></li>
+                <li><a href="/information" class="active"><i class="fas fa-link"></i><span>链接</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
     <main class="inf-main">
         <section class="search-panel container">
-            <h1 class="page-title"><span class="logo">📚</span> 友情链接</h1>
+            <h1 class="page-title"><span class="logo">🔗</span> 友情链接</h1>
             <div class="search-box">
-                <i>🔍</i>
+                <i class="fas fa-search"></i>
                 <input id="searchInput" type="text" placeholder="搜索标题、描述或标签...">
             </div>
             <div class="filters">
-                <button class="filter-btn active" data-category="links"><i>🔗</i> 常用链接</button>
-                <button class="filter-btn" data-category="websites"><i>🌐</i> 网站</button>
-                <button class="filter-btn" data-category="apps"><i>📱</i> 软件</button>
-                <button class="filter-btn" data-category="docs"><i>📄</i> 文件</button>
+                <button class="filter-btn active" data-category="links"><i class="fas fa-link"></i> 常用链接</button>
+                <button class="filter-btn" data-category="websites"><i class="fas fa-globe"></i> 网站</button>
+                <button class="filter-btn" data-category="apps"><i class="fas fa-download"></i> 软件</button>
+                <button class="filter-btn" data-category="docs"><i class="fas fa-file-alt"></i> 文件</button>
             </div>
         </section>
         <section class="container">
             <div id="resourceContainer" class="card-grid"></div>
         </section>
     </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 seal的个人主页. 保留所有权利.</p>
+        </div>
+    </footer>
+
     <script src="js/script.js"></script>
 </body>
 </html>

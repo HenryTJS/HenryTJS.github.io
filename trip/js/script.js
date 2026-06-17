@@ -1,3 +1,7 @@
+/* ============================================
+   足迹地图 - JavaScript
+   ============================================ */
+
 class FootprintMap {
     constructor() {
         this.map = null;
@@ -5,57 +9,60 @@ class FootprintMap {
         this.footprints = [];
         this.init();
     }
+
     async init() {
         try {
-            console.log('开始初始化足迹地图系统...');
+            // 导航栏滚动效果
+            const navBar = document.getElementById('mainNavBar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navBar.classList.add('scrolled');
+                } else {
+                    navBar.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
             await this.loadData();
-            console.log('数据加载完成');
             this.renderFootprintList();
-            console.log('足迹列表渲染完成');
             this.updateStats();
-            console.log('统计信息更新完成');
-            // 首次根据右侧块计算左侧高度
             this.syncMapHeightWithRight();
+
             if (typeof AMap === 'undefined') {
                 console.warn('高德地图API未加载，仅显示列表模式');
                 this.showMapError('地图服务暂时不可用，但足迹列表已正常显示');
                 return;
             }
-            console.log('高德地图API加载成功');
+
             this.initMap();
-            console.log('地图初始化完成');
             this.renderFootprints();
-            console.log('足迹渲染完成');
-            // 确保地图在容器最终高度下完成自适应
+
             if (this.map && typeof this.map.resize === 'function') {
                 requestAnimationFrame(() => this.map.resize());
             }
-            // 监听窗口变化，同步高度
+
             window.addEventListener('resize', () => this.syncMapHeightWithRight());
-            console.log('足迹地图系统初始化成功！');
         } catch (error) {
             console.error('初始化失败:', error);
-            this.showError(`系统初始化失败: ${error.message}。请检查控制台获取详细信息。`);
+            this.showError(`系统初始化失败: ${error.message}`);
         }
     }
+
     async loadData() {
         try {
-            console.log('正在加载数据文件...');
             const response = await fetch('/trip/json/data.json');
             if (!response.ok) {
-                throw new Error(`HTTP错误: ${response.status} ${response.statusText}`);
+                throw new Error(`HTTP错误: ${response.status}`);
             }
             const data = await response.json();
             this.footprints = data.footprints || [];
-            console.log(`数据加载成功: ${this.footprints.length}个足迹`);
         } catch (error) {
             console.error('数据加载失败:', error);
             this.footprints = [];
         }
     }
+
     initMap() {
         try {
-            console.log('正在初始化地图...');
             this.map = new AMap.Map('mapContainer', {
                 zoom: 5,
                 center: [104.114129, 37.550339],
@@ -65,70 +72,78 @@ class FootprintMap {
                 showLabel: true,
                 features: ['bg', 'road', 'building', 'point']
             });
-            console.log('地图实例创建成功');
-            console.log('地图初始化成功');
         } catch (error) {
             console.error('地图初始化失败:', error);
             throw new Error(`地图初始化失败: ${error.message}`);
         }
     }
+
     renderFootprints() {
-        if (this.footprints.length === 0) {
-            return;
-        }
+        if (this.footprints.length === 0) return;
+
         this.footprints.forEach(footprint => {
             const circleMarker = new AMap.CircleMarker({
                 center: [footprint.longitude, footprint.latitude],
                 radius: 10,
-                fillColor: footprint.color || '#ff6b6b',
+                fillColor: footprint.color || '#6c63ff',
                 fillOpacity: 0.8,
                 strokeColor: '#ffffff',
                 strokeWeight: 2,
                 strokeOpacity: 1,
                 cursor: 'pointer'
             });
+
             circleMarker.on('click', () => {
                 this.showFootprintInfo(footprint);
             });
+
             circleMarker.on('mouseover', () => {
                 circleMarker.setOptions({
-                    radius: 12,
+                    radius: 13,
                     fillOpacity: 1
                 });
             });
+
             circleMarker.on('mouseout', () => {
                 circleMarker.setOptions({
                     radius: 10,
                     fillOpacity: 0.8
                 });
             });
+
             this.markers.push(circleMarker);
             this.map.add(circleMarker);
         });
+
         if (this.markers.length > 0) {
             this.map.setFitView(this.markers);
         }
     }
+
     syncMapHeightWithRight() {
         try {
             const isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
             const mapEl = document.getElementById('mapContainer');
             if (!mapEl) return;
+
             if (isMobile) {
                 mapEl.style.height = '50vh';
                 if (this.map && typeof this.map.resize === 'function') this.map.resize();
                 return;
             }
+
             const statsGrid = document.querySelector('.stats-grid');
             const controlPanel = document.querySelector('.control-panel');
             const mainContent = document.querySelector('.main-content');
             if (!statsGrid || !controlPanel || !mainContent) return;
+
             const statsH = statsGrid.offsetHeight || 0;
             const panelH = controlPanel.offsetHeight || 0;
             const cs = window.getComputedStyle(mainContent);
             const rowGapStr = cs.rowGap || cs.gap || '0px';
             const rowGap = parseFloat(rowGapStr) || 0;
             const total = statsH + panelH + rowGap;
+
             if (total > 0) {
                 mapEl.style.height = total + 'px';
                 if (this.map && typeof this.map.resize === 'function') this.map.resize();
@@ -137,14 +152,15 @@ class FootprintMap {
             console.warn('同步地图高度失败:', e);
         }
     }
+
     showFootprintInfo(footprint) {
         const info = `
             <div style="padding: 15px; min-width: 200px;">
-                <h4 style="margin: 0 0 10px 0; color: #333; font-size: 16px;">${footprint.city}</h4>
-                <p style="margin: 5px 0; color: #666; font-size: 14px;"><strong>省份:</strong> ${footprint.province}</p>
-                <p style="margin: 5px 0; color: #666; font-size: 14px;"><strong>访问时间:</strong> ${footprint.visitDate}</p>
-                <p style="margin: 5px 0; color: #666; font-size: 14px;"><strong>访问类型:</strong> ${footprint.type}</p>
-                ${footprint.note ? `<p style="margin: 5px 0; color: #666; font-size: 14px;"><strong>备注:</strong> ${footprint.note}</p>` : ''}
+                <h4 style="margin: 0 0 10px 0; color: #1a1a2e; font-size: 16px; font-weight: 600;">${footprint.city}</h4>
+                <p style="margin: 5px 0; color: #4a4a6a; font-size: 14px;"><strong>省份:</strong> ${footprint.province}</p>
+                <p style="margin: 5px 0; color: #4a4a6a; font-size: 14px;"><strong>访问时间:</strong> ${footprint.visitDate}</p>
+                <p style="margin: 5px 0; color: #4a4a6a; font-size: 14px;"><strong>访问类型:</strong> ${footprint.type}</p>
+                ${footprint.note ? `<p style="margin: 5px 0; color: #4a4a6a; font-size: 14px;"><strong>备注:</strong> ${footprint.note}</p>` : ''}
             </div>
         `;
         const infoWindow = new AMap.InfoWindow({
@@ -153,30 +169,36 @@ class FootprintMap {
         });
         infoWindow.open(this.map, [footprint.longitude, footprint.latitude]);
     }
+
     renderFootprintList() {
         const listContainer = document.getElementById('footprintList');
         if (this.footprints.length === 0) {
-            listContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">暂无足迹记录</p>';
+            listContainer.innerHTML = '<p style="text-align: center; color: var(--color-text-muted); padding: 20px;">暂无足迹记录</p>';
             return;
         }
-        const sortedFootprints = [...this.footprints].sort((a, b) => 
+
+        const sortedFootprints = [...this.footprints].sort((a, b) =>
             new Date(b.visitDate) - new Date(a.visitDate)
         );
+
         listContainer.innerHTML = sortedFootprints.map(footprint => `
             <div class="footprint-item" data-id="${footprint.id}">
                 <h4>${footprint.city}</h4>
                 <p><strong>省份:</strong> ${footprint.province}</p>
-                <p><strong>访问时间:</strong> ${footprint.visitDate}</p>
-                <p><strong>访问类型:</strong> ${footprint.type || '未指定'}</p>
+                <p><strong>时间:</strong> ${footprint.visitDate}</p>
+                <p><strong>类型:</strong> ${footprint.type || '未指定'}</p>
                 ${footprint.note ? `<p><strong>备注:</strong> ${footprint.note}</p>` : ''}
             </div>
         `).join('');
     }
+
     updateStats() {
         const totalCities = this.footprints.length;
         const totalProvinces = new Set(this.footprints.map(f => f.province)).size;
+
         const citiesElement = document.getElementById('totalCities');
         const provincesElement = document.getElementById('totalProvinces');
+
         if (citiesElement) {
             citiesElement.textContent = totalCities;
         }
@@ -184,6 +206,7 @@ class FootprintMap {
             provincesElement.textContent = totalProvinces;
         }
     }
+
     showMapError(message) {
         const mapContainer = document.getElementById('mapContainer');
         if (mapContainer) {
@@ -194,20 +217,20 @@ class FootprintMap {
                     justify-content: center;
                     align-items: center;
                     height: 100%;
-                    background: #fff3cd;
-                    color: #856404;
+                    background: #fffbe6;
+                    color: #8e8ea0;
                     text-align: center;
                     padding: 20px;
-                    border: 1px solid #ffeaa7;
-                    border-radius: 5px;
                 ">
-                    <h3 style="margin-bottom: 15px;">⚠️ 地图服务暂时不可用</h3>
-                    <p style="margin-bottom: 10px;">${message}</p>
-                    <small style="color: #6c757d;">足迹列表和统计信息仍可正常使用</small>
+                    <i class="fas fa-map-marked-alt" style="font-size: 2.5rem; color: #6c63ff; margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 10px; color: #1a1a2e;">地图服务暂时不可用</h3>
+                    <p style="margin-bottom: 10px; color: #4a4a6a;">${message}</p>
+                    <small style="color: #8e8ea0;">足迹列表和统计信息仍可正常使用</small>
                 </div>
             `;
         }
     }
+
     showError(message) {
         const mapContainer = document.getElementById('mapContainer');
         if (mapContainer) {
@@ -219,20 +242,21 @@ class FootprintMap {
                     align-items: center;
                     height: 100%;
                     background: #f8f9fa;
-                    color: #dc3545;
+                    color: #4a4a6a;
                     text-align: center;
                     padding: 20px;
                 ">
-                    <h3 style="margin-bottom: 15px;">系统错误</h3>
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 10px; color: #1a1a2e;">系统错误</h3>
                     <p style="margin-bottom: 10px;">${message}</p>
-                    <small style="color: #6c757d;">请检查控制台获取详细信息</small>
+                    <small style="color: #8e8ea0;">请检查控制台获取详细信息</small>
                 </div>
             `;
         }
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('页面DOM加载完成，开始初始化足迹地图系统...');
     try {
         window.footprintMap = new FootprintMap();
     } catch (error) {
@@ -247,13 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     align-items: center;
                     height: 100%;
                     background: #f8f9fa;
-                    color: #dc3545;
+                    color: #4a4a6a;
                     text-align: center;
                     padding: 20px;
                 ">
-                    <h3 style="margin-bottom: 15px;">系统初始化失败</h3>
+                    <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 10px; color: #1a1a2e;">系统初始化失败</h3>
                     <p style="margin-bottom: 10px;">错误信息: ${error.message}</p>
-                    <small style="color: #6c757d;">请刷新页面重试，或检查控制台获取详细信息</small>
+                    <small style="color: #8e8ea0;">请刷新页面重试</small>
                 </div>
             `;
         }
