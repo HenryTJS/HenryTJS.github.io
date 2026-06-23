@@ -466,6 +466,29 @@ footer {
     font-size: 0.85rem;
 }
 
+/* ---------- KaTeX 公式样式 ---------- */
+.article-content .katex {
+    font-size: 1.05em;
+    line-height: 1.4;
+}
+
+.article-content .katex-display {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0;
+}
+
+.article-content .katex-display > .katex {
+    display: inline-block;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.article-content .katex .mathnormal {
+    font-style: italic;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     body {

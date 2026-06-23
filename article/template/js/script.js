@@ -56,7 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                     .then(markdown => {
                         const html = marked.parse(markdown);
-                        document.getElementById('article-content').innerHTML = html;
+                        const contentEl = document.getElementById('article-content');
+                        contentEl.innerHTML = html;
+
+                        // 渲染 LaTeX 公式
+                        if (typeof renderMathInElement === 'function') {
+                            renderMathInElement(contentEl, {
+                                delimiters: [
+                                    {left: '$$', right: '$$', display: true},
+                                    {left: '$', right: '$', display: false}
+                                ],
+                                throwOnError: false
+                            });
+                        }
                     })
                     .catch(error => {
                         document.getElementById('article-content').innerHTML = `
