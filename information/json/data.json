@@ -29,25 +29,11 @@
             "links": [{ "text": "下载", "url": "https://www.canva.com/", "type": "download" }]
         },
         {
-            "title": "ChemOffice",
-            "description": "化学结构绘制与分子建模软件套件",
-            "category": "apps",
-            "tags": ["化学", "分子建模", "结构绘制"],
-            "links": [{ "text": "下载", "url": "https://www.perkinelmer.com/product/chemoffice-professional-su-b1198", "type": "download" }]
-        },
-        {
             "title": "Cursor",
             "description": "AI 助力的开发者编辑器",
             "category": "apps",
             "tags": ["IDE", "AI", "开发"],
             "links": [{ "text": "下载", "url": "https://cursor.sh/", "type": "download" }]
-        },
-        {
-            "title": "GAMS",
-            "description": "通用代数建模系统，优化与数学规划软件",
-            "category": "apps",
-            "tags": ["优化", "建模", "数学规划"],
-            "links": [{ "text": "下载", "url": "https://www.gams.com/", "type": "download" }]
         },
         {
             "title": "JetBrains",
@@ -151,13 +137,6 @@
             "links": [{ "text": "访问", "url": "https://zs.xjtu.edu.cn/", "type": "primary" }]
         },
         {
-            "title": "学校主页",
-            "description": "学校官方网站主页入口",
-            "category": "links",
-            "tags": ["学校", "门户"],
-            "links": [{ "text": "访问", "url": "https://www.xjtu.edu.cn/", "type": "primary" }]
-        },
-        {
             "title": "学校邮箱",
             "description": "学生企业邮箱登录入口",
             "category": "links",
@@ -186,11 +165,11 @@
             "links": [{ "text": "访问", "url": "https://xjtu-qian-xuesen-class.github.io/XJTU-QXZ/主页/", "type": "primary" }]
         },
         {
-            "title": "AIStudio",
-            "description": "百度AI开发与学习平台",
-            "category": "websites",
-            "tags": ["AI", "开发", "学习"],
-            "links": [{ "text": "访问", "url": "https://aistudio.baidu.com/", "type": "primary" }]
+            "title": "少学组",
+            "description": "少年班班学业分享小组官方网站",
+            "category": "links",
+            "tags": ["学校", "学习", "分享"],
+            "links": [{ "text": "访问", "url": "http://shaoxuezu.com/", "type": "primary" }]
         },
         {
             "title": "菜鸟教程",
@@ -228,13 +207,6 @@
             "links": [{ "text": "访问", "url": "https://github.com", "type": "primary" }]
         },
         {
-            "title": "Kaggle",
-            "description": "数据科学竞赛与数据集平台",
-            "category": "websites",
-            "tags": ["数据科学", "竞赛", "数据集"],
-            "links": [{ "text": "访问", "url": "https://www.kaggle.com", "type": "primary" }]
-        },
-        {
             "title": "LeetCode",
             "description": "算法与数据结构刷题平台",
             "category": "websites",
@@ -247,20 +219,6 @@
             "category": "websites",
             "tags": ["LaTeX", "论文", "协作"],
             "links": [{ "text": "访问", "url": "https://www.overleaf.com/", "type": "primary" }]
-        },
-        {
-            "title": "PTA",
-            "description": "程序设计题库与在线测评平台",
-            "category": "websites",
-            "tags": ["算法", "题库", "OJ"],
-            "links": [{ "text": "访问", "url": "https://pintia.cn/", "type": "primary" }]
-        },
-        {
-            "title": "render",
-            "description": "应用托管与部署平台，支持自动化构建和部署",
-            "category": "websites",
-            "tags": ["部署", "托管", "云计算"],
-            "links": [{ "text": "访问", "url": "https://render.com/", "type": "primary" }]
         },
         {
             "title": "赛氪",
