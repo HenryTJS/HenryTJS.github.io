@@ -15,25 +15,11 @@
             "links": [{ "text": "下载", "url": "https://www.anaconda.com/", "type": "download" }]
         },
         {
-            "title": "Arduino",
-            "description": "开源电子原型开发平台与IDE",
-            "category": "apps",
-            "tags": ["嵌入式", "开发", "硬件"],
-            "links": [{ "text": "下载", "url": "https://www.arduino.cc/", "type": "download" }]
-        },
-        {
             "title": "Canva",
             "description": "在线平面设计与协作平台",
             "category": "apps",
             "tags": ["设计", "海报", "社媒"],
             "links": [{ "text": "下载", "url": "https://www.canva.com/", "type": "download" }]
-        },
-        {
-            "title": "Cursor",
-            "description": "AI 助力的开发者编辑器",
-            "category": "apps",
-            "tags": ["IDE", "AI", "开发"],
-            "links": [{ "text": "下载", "url": "https://cursor.sh/", "type": "download" }]
         },
         {
             "title": "JetBrains",
@@ -172,11 +158,11 @@
             "links": [{ "text": "访问", "url": "http://shaoxuezu.com/", "type": "primary" }]
         },
         {
-            "title": "菜鸟教程",
-            "description": "编程与开发入门教程与速查",
+            "title": "超星学习通",
+            "description": "高校在线课程学习平台",
             "category": "websites",
-            "tags": ["教程", "编程", "速查"],
-            "links": [{ "text": "访问", "url": "https://www.runoob.com/", "type": "primary" }]
+            "tags": ["课程", "慕课", "学习"],
+            "links": [{ "text": "访问", "url": "https://v8.chaoxing.com/", "type": "primary" }]
         },
         {
             "title": "ChatGPT",
@@ -221,13 +207,6 @@
             "links": [{ "text": "访问", "url": "https://www.overleaf.com/", "type": "primary" }]
         },
         {
-            "title": "赛氪",
-            "description": "高校赛事与竞赛信息平台，提供报名与赛事管理",
-            "category": "websites",
-            "tags": ["竞赛", "比赛", "报名"],
-            "links": [{ "text": "访问", "url": "https://www.saikr.com/", "type": "primary" }]
-        },
-        {
             "title": "秀米",
             "description": "微信公众号图文编辑与排版工具",
             "category": "websites",
@@ -240,6 +219,13 @@
             "category": "websites",
             "tags": ["学术", "论文", "检索"],
             "links": [{ "text": "访问", "url": "https://www.cnki.net/", "type": "primary" }]
+        },
+        {
+            "title": "智慧树",
+            "description": "高校在线课程学习平台",
+            "category": "websites",
+            "tags": ["课程", "慕课", "学习"],
+            "links": [{ "text": "访问", "url": "https://www.zhihuishu.com/", "type": "primary" }]
         },
         {
             "title": "中国大学MOOC",
