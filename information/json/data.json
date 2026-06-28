@@ -85,13 +85,13 @@
             "links": [{ "text": "下载", "url": "https://code.visualstudio.com", "type": "download" }]
         },
         {
-            "title": "个人简历（示例）",
-            "description": "PDF 简历占位示例，请替换为实际文件路径",
+            "title": "非常6+1",
+            "description": "西安交通大学思想政治理论课主观题范围资料汇总",
             "category": "docs",
-            "tags": ["简历", "PDF"],
+            "tags": ["复习资料", "思想政治理论", "PDF"],
             "links": [
-                { "text": "查看", "url": "/documents/resume.pdf", "type": "primary" },
-                { "text": "下载", "url": "/documents/resume.pdf", "type": "download" }
+                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/%E9%9D%9E%E5%B8%B86%2B1.pdf", "type": "primary" },
+                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/%E9%9D%9E%E5%B8%B86%2B1.pdf", "type": "download" }
             ]
         },
         {
