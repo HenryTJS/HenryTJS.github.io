@@ -90,8 +90,8 @@
             "category": "docs",
             "tags": ["复习资料", "思想政治理论", "PDF"],
             "links": [
-                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/非常6%2B1.pdf", "type": "primary" },
-                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/非常6%2B1.pdf", "type": "download" }
+                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/非常6+1.pdf", "type": "primary" },
+                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/非常6+1.pdf", "type": "download" }
             ]
         },
         {
