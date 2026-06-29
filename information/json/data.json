@@ -95,6 +95,36 @@
             ]
         },
         {
+            "title": "有机化学笔记",
+            "description": "西安交通大学化学原理-有机部分课程笔记",
+            "category": "docs",
+            "tags": ["复习资料", "有机化学", "PDF"],
+            "links": [
+                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/【笔记系列】有机化学笔记.pdf", "type": "primary" },
+                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/【笔记系列】有机化学笔记.pdf", "type": "download" }
+            ]
+        },
+        {
+            "title": "电路笔记",
+            "description": "西安交通大学电路课程笔记",
+            "category": "docs",
+            "tags": ["复习资料", "电路", "PDF"],
+            "links": [
+                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/【笔记系列】电路笔记.pdf", "type": "primary" },
+                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/【笔记系列】电路笔记.pdf", "type": "download" }
+            ]
+        },
+        {
+            "title": "高等数学笔记",
+            "description": "西安交通大学工科数学分析-1/2课程笔记",
+            "category": "docs",
+            "tags": ["复习资料", "高等数学", "PDF"],
+            "links": [
+                { "text": "查看", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/blob/main/【笔记系列】高等数学笔记.pdf", "type": "primary" },
+                { "text": "下载", "url": "https://github.com/HenryTJS/sixiangzhengzhililun/raw/main/【笔记系列】高等数学笔记.pdf", "type": "download" }
+            ]
+        },
+        {
             "title": "MOOC作业利器",
             "description": "MOOC作业利器",
             "category": "links",
