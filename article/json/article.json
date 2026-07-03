@@ -53,7 +53,7 @@
       ]
     },
     {
-      "title": "英文写作",
+      "title": "创意写作",
       "articles": [
         {
           "title": "How to Improve your Leadership Skills",
@@ -66,6 +66,12 @@
           "date": "2024-04-06",
           "summary": "Dance, an art form that combines rhythm, movement, and expression, has long been admired for its elegance and athleticism.",
           "link": "20240406.html"
+        },
+        {
+          "title": "我与语文的故事",
+          "date": "2023-06-30",
+          "summary": "这大抵是我最后一年接受中小学语文学习的教育了。",
+          "link": "20230630.html"
         }
       ]
     },
