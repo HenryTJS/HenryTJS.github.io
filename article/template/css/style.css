@@ -21,6 +21,49 @@
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --max-width: 900px;
+
+    /* 分类颜色主题 - 默认紫色 */
+    --cat-color: #6c63ff;
+    --cat-color-light: rgba(108, 99, 255, 0.12);
+    --cat-gradient: linear-gradient(135deg, #6c63ff, #a78bfa);
+    --cat-header-from: #6c63ff;
+    --cat-header-to: #a78bfa;
+}
+
+/* 人文社科 - 暖琥珀色 */
+.theme-humanities {
+    --cat-color: #d97706;
+    --cat-color-light: rgba(217, 119, 6, 0.12);
+    --cat-gradient: linear-gradient(135deg, #d97706, #f59e0b);
+    --cat-header-from: #b45309;
+    --cat-header-to: #f59e0b;
+}
+
+/* 理工农医 - 冷青色 */
+.theme-science {
+    --cat-color: #0891b2;
+    --cat-color-light: rgba(8, 145, 178, 0.12);
+    --cat-gradient: linear-gradient(135deg, #0891b2, #22d3ee);
+    --cat-header-from: #065f7a;
+    --cat-header-to: #22d3ee;
+}
+
+/* 创意写作 - 玫瑰粉色 */
+.theme-creative {
+    --cat-color: #e11d48;
+    --cat-color-light: rgba(225, 29, 72, 0.12);
+    --cat-gradient: linear-gradient(135deg, #e11d48, #fb7185);
+    --cat-header-from: #be123c;
+    --cat-header-to: #fb7185;
+}
+
+/* 好书推荐 - 金色 */
+.theme-books {
+    --cat-color: #b45309;
+    --cat-color-light: rgba(180, 83, 9, 0.12);
+    --cat-gradient: linear-gradient(135deg, #b45309, #d97706);
+    --cat-header-from: #92400e;
+    --cat-header-to: #d97706;
 }
 
 * {
@@ -183,7 +226,7 @@ a:hover {
 
 /* ---------- Article Header ---------- */
 .article-header {
-    background: var(--color-accent-gradient);
+    background: linear-gradient(135deg, var(--cat-header-from), var(--cat-header-to));
     color: white;
     padding: 3rem 3rem 2.5rem;
     text-align: center;
@@ -256,6 +299,18 @@ a:hover {
     color: var(--color-text-primary);
 }
 
+/* 首字母下沉 - 文章第一段的第一个字 */
+.article-content > p:first-child::first-letter {
+    font-size: 3.2em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.9;
+    margin-right: 0.5rem;
+    margin-top: 0.15rem;
+    color: var(--cat-color);
+    font-family: 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+}
+
 .article-content h2 {
     font-size: 1.5rem;
     font-weight: 700;
@@ -263,7 +318,20 @@ a:hover {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-accent-light);
+    border-bottom: 2px solid var(--cat-color-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.article-content h2::before {
+    content: '';
+    width: 4px;
+    height: 22px;
+    border-radius: 2px;
+    background: var(--cat-gradient);
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 .article-content h3 {
@@ -297,24 +365,41 @@ a:hover {
 }
 
 .article-content a {
-    color: var(--color-accent);
+    color: var(--cat-color);
     text-decoration: underline;
     text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition: all var(--transition-fast);
 }
 
 .article-content a:hover {
-    color: #5a52e0;
+    color: var(--cat-color);
+    opacity: 0.75;
+    text-decoration-thickness: 2px;
 }
 
 /* ---------- Blockquote ---------- */
 .article-content blockquote {
-    background: var(--color-accent-light);
-    border-left: 4px solid var(--color-accent);
+    background: var(--cat-color-light);
+    border-left: 4px solid var(--cat-color);
     padding: 1.25rem 1.5rem;
     margin: 1.5rem 0;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-style: italic;
     color: var(--color-text-secondary);
+    position: relative;
+}
+
+.article-content blockquote::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.25rem;
+    left: 0.75rem;
+    font-size: 2.5rem;
+    color: var(--cat-color);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+    line-height: 1;
 }
 
 .article-content blockquote p {
@@ -346,17 +431,17 @@ a:hover {
 }
 
 .article-content li::marker {
-    color: var(--color-accent);
+    color: var(--cat-color);
 }
 
 /* ---------- Code ---------- */
 .article-content code {
     font-family: var(--font-mono);
-    background: var(--color-accent-light);
+    background: var(--cat-color-light);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9em;
-    color: var(--color-accent);
+    color: var(--cat-color);
 }
 
 .article-content pre {
@@ -368,6 +453,24 @@ a:hover {
     margin: 1.5rem 0;
     font-size: 0.9rem;
     line-height: 1.6;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.article-content pre::before {
+    content: 'code';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0 var(--radius-md) 0 var(--radius-sm);
+    font-family: var(--font-sans);
 }
 
 .article-content pre code {
@@ -387,11 +490,12 @@ a:hover {
     max-width: 100%;
     border-radius: var(--radius-md);
     box-shadow: 0 4px 12px var(--color-shadow);
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .article-content img:hover {
     transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .article-content figcaption {
@@ -407,6 +511,9 @@ a:hover {
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: 0 1px 3px var(--color-shadow);
 }
 
 .article-content th,
@@ -417,9 +524,17 @@ a:hover {
 }
 
 .article-content th {
-    background: var(--color-accent-light);
+    background: var(--cat-color-light);
     font-weight: 600;
     color: var(--color-text-primary);
+}
+
+.article-content tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.article-content tr:hover {
+    background: rgba(0, 0, 0, 0.03);
 }
 
 .article-content td {
@@ -443,10 +558,12 @@ a:hover {
     color: var(--color-text-muted);
     font-size: 0.9rem;
     transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
 }
 
 .back-link:hover {
-    color: var(--color-accent);
+    color: var(--cat-color);
+    background: var(--cat-color-light);
     text-decoration: none;
 }
 
@@ -511,6 +628,10 @@ footer {
     .article-content {
         padding: 1.5rem;
         font-size: 1rem;
+    }
+
+    .article-content > p:first-child::first-letter {
+        font-size: 2.4em;
     }
 
     .nav-container {

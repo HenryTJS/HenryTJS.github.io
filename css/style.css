@@ -295,10 +295,18 @@ a:hover {
     gap: 1.5rem;
 }
 
+.left-column > section:last-child {
+    flex-grow: 1;
+}
+
 .right-column {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+.right-column > section:last-child {
+    flex-grow: 1;
 }
 
 /* ---------- Section Cards ---------- */

@@ -25,15 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('visible');
         });
 
+    function getThemeClass(categoryTitle) {
+        const map = {
+            '人文社科': 'theme-humanities',
+            '理工农医': 'theme-science',
+            '创意写作': 'theme-creative',
+            '好书推荐': 'theme-books'
+        };
+        return map[categoryTitle] || '';
+    }
+
     function renderArticles(data) {
         const container = document.getElementById('articles-container');
         const fragment = document.createDocumentFragment();
 
         data.categories.forEach(category => {
+            const themeClass = getThemeClass(category.title);
+
             // 分类标题
             const categoryTitle = document.createElement('h2');
             categoryTitle.className = 'category-title';
-            categoryTitle.textContent = category.title;
+            categoryTitle.innerHTML = `${category.title} <span class="cat-tag">${category.articles.length}篇</span>`;
             fragment.appendChild(categoryTitle);
 
             // 卡片网格
@@ -42,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             category.articles.forEach(article => {
                 const card = document.createElement('div');
-                card.className = 'content-card';
+                card.className = `content-card ${themeClass}`;
                 card.innerHTML = `
                     <div class="card-top">
                         <h2 class="card-title">${article.title}</h2>

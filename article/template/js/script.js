@@ -22,6 +22,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // ---------- 分类主题映射 ----------
+    function getThemeClass(categoryTitle) {
+        const map = {
+            '人文社科': 'theme-humanities',
+            '理工农医': 'theme-science',
+            '创意写作': 'theme-creative',
+            '好书推荐': 'theme-books'
+        };
+        return map[categoryTitle] || '';
+    }
+
     // ---------- 加载文章数据 ----------
     fetch('../json/article.json')
         .then(response => response.json())
@@ -47,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('article-date').textContent = articleMeta.date;
                 document.getElementById('article-category').textContent = categoryName;
                 document.getElementById('article-category').href = '../';
+
+                // 设置分类颜色主题
+                const themeClass = getThemeClass(categoryName);
+                if (themeClass) {
+                    document.body.classList.add(themeClass);
+                }
 
                 // 加载 Markdown 内容
                 fetch(`md/${articleId}.md`)
