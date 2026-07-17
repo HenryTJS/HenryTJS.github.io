@@ -26,18 +26,18 @@
         }
     ],
     "skills": [
-        { "name": "Python", "level": 85, "color": "#3776AB" },
-        { "name": "C/C++", "level": 75, "color": "#00599C" },
-        { "name": "Java", "level": 70, "color": "#ED8B00" },
-        { "name": "JavaScript", "level": 70, "color": "#F7DF1E" },
+        { "name": "Python", "level": 90, "color": "#3776AB" },
+        { "name": "LaTeX", "level": 95, "color": "#00599C" },
+        { "name": "JavaScript", "level": 85, "color": "#F7DF1E" },
         { "name": "HTML/CSS", "level": 75, "color": "#E34F26" },
-        { "name": "PyTorch", "level": 65, "color": "#EE4C2C" },
-        { "name": "Linux", "level": 70, "color": "#FCC624" },
-        { "name": "Git", "level": 75, "color": "#F05032" }
+        { "name": "Spring Boot", "level": 65, "color": "#6DB33F" },
+        { "name": "SQL", "level": 70, "color": "#4479A1" },
+        { "name": "Vue.js", "level": 80, "color": "#00599C" }
     ],
     "interests": [
-        { "icon": "fas fa-music", "name": "双排键 / 萨克斯" },
-        { "icon": "fas fa-running", "name": "跳绳 / 骑行" },
+        { "icon": "fas fa-music", "name": "双排键" },
+        { "icon": "fas fa-music", "name": "萨克斯" },
+        { "icon": "fas fa-running", "name": "骑行" },
         { "icon": "fas fa-camera", "name": "摄影" },
         { "icon": "fas fa-plane", "name": "旅行" },
         { "icon": "fas fa-book-open", "name": "阅读" }
