@@ -46,7 +46,96 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // ---------- Hero 粒子背景 ----------
+    createHeroParticles();
+
+    // ---------- Hero 打字机效果 ----------
+    initTypewriter();
 });
+
+// ---------- Hero 粒子背景 ----------
+function createHeroParticles() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+
+    // 几何装饰圆
+    for (let i = 0; i < 3; i++) {
+        const geo = document.createElement('div');
+        geo.className = 'hero-geo';
+        container.appendChild(geo);
+    }
+
+    // 粒子
+    const particleCount = 30;
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'hero-particle';
+        const size = Math.random() * 4 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        particle.style.opacity = Math.random() * 0.3 + 0.1;
+        container.appendChild(particle);
+    }
+}
+
+// ---------- Hero 打字机效果 ----------
+function initTypewriter() {
+    const textElement = document.getElementById('typewriterText');
+    if (!textElement) return;
+
+    const phrases = [
+        '行远自迩，登高自卑',
+        'When there is a will, there is a way',
+        '路漫漫其修远兮，吾将上下而求索',
+        '知行合一，止于至善'
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isPaused) {
+            isPaused = false;
+            isDeleting = true;
+            setTimeout(type, 50);
+            return;
+        }
+
+        if (isDeleting) {
+            textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, 500);
+                return;
+            }
+            setTimeout(type, 30);
+        } else {
+            textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+
+            if (charIndex === currentPhrase.length) {
+                isPaused = true;
+                setTimeout(type, 2500);
+                return;
+            }
+            setTimeout(type, 80);
+        }
+    }
+
+    // 延迟启动打字机
+    setTimeout(type, 1500);
+}
 
 // ---------- Tab 切换 ----------
 function openTab(evt, tabName) {
@@ -68,9 +157,15 @@ fetch('json/data.json')
     .then(data => {
         renderProfile(data.profile);
         renderContact(data.contact);
+        renderInterests(data.interests);
+        renderHeroStats(data);
         renderAchievements(data.achievements);
         renderExperience(data.experience);
-        renderApps(data.apps);
+        renderSkills(data.skills);
+
+        // 加载外部数据
+        loadRecentArticles();
+        loadRecentTrips();
     })
     .catch(error => console.error('Error loading JSON:', error));
 
@@ -85,7 +180,12 @@ function renderProfile(profile) {
                 <p>${profile.major}</p>
                 <p>📍 ${profile.location}</p>
             </div>
-            <p class="profile-intro">${profile.intro}</p>
+            ${profile.motto ? `
+            <div class="profile-motto">
+                <span class="profile-motto-text">${profile.motto}</span>
+                ${profile.motto_author ? `<span class="profile-motto-author">—— ${profile.motto_author}</span>` : ''}
+            </div>
+            ` : ''}
         </div>
     `;
 }
@@ -100,6 +200,52 @@ function renderContact(contact) {
                 <a href="${item.link}" target="_blank" rel="noopener">${item.text}</a>
             </div>
         `).join('')}
+    `;
+}
+
+function renderInterests(interests) {
+    const interestsSection = document.getElementById('interests');
+    if (!interests || interests.length === 0) return;
+    interestsSection.innerHTML = `
+        <h2><i class="fas fa-heart" style="margin-right: 6px; color: var(--color-accent);"></i>兴趣爱好</h2>
+        <div class="interests-grid">
+            ${interests.map(item => `
+                <div class="interest-item">
+                    <i class="${item.icon}"></i>
+                    <span>${item.name}</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function renderHeroStats(data) {
+    const statsSection = document.getElementById('heroStats');
+    if (!statsSection) return;
+    const articleCount = countArticles();
+    const cityCount = 38;
+    const provinceCount = 14;
+    const achievementCount = data.achievements ? data.achievements.length : 0;
+
+    statsSection.innerHTML = `
+        <div class="hero-stats-grid">
+            <div class="hero-stat-item">
+                <span class="hero-stat-number" id="statArticles">${articleCount}</span>
+                <span class="hero-stat-label">阅读笔记</span>
+            </div>
+            <div class="hero-stat-item">
+                <span class="hero-stat-number">${cityCount}</span>
+                <span class="hero-stat-label">到访城市</span>
+            </div>
+            <div class="hero-stat-item">
+                <span class="hero-stat-number">${provinceCount}</span>
+                <span class="hero-stat-label">到访省份</span>
+            </div>
+            <div class="hero-stat-item">
+                <span class="hero-stat-number">${achievementCount}</span>
+                <span class="hero-stat-label">个人成就</span>
+            </div>
+        </div>
     `;
 }
 
@@ -132,17 +278,134 @@ function renderExperience(experience) {
     `).join('');
 }
 
-function renderApps(apps) {
-    const appsSection = document.getElementById('apps');
-    appsSection.innerHTML = `
-        <h2><i class="fas fa-th-large" style="margin-right: 6px; color: var(--color-accent);"></i>我的应用</h2>
-        <div class="app-grid">
-            ${apps.map(app => `
-                <a href="${app.link}" class="app-item">
-                    <div class="app-icon"><i class="${app.icon}"></i></div>
-                    <div class="app-name">${app.name}</div>
-                </a>
+function renderSkills(skills) {
+    const skillsSection = document.getElementById('skills');
+    if (!skills || skills.length === 0) return;
+    skillsSection.innerHTML = `
+        <h2><i class="fas fa-code" style="margin-right: 6px; color: var(--color-accent);"></i>技术栈</h2>
+        <div class="skills-grid">
+            ${skills.map(skill => `
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">${skill.name}</span>
+                        <span class="skill-percent">${skill.level}%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 0%; background: ${skill.color};" data-width="${skill.level}"></div>
+                    </div>
+                </div>
             `).join('')}
         </div>
     `;
+
+    // 技能条动画（延迟触发）
+    setTimeout(() => {
+        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width + '%';
+        });
+    }, 300);
+}
+
+// ---------- 加载最新文章 ----------
+function loadRecentArticles() {
+    fetch('article/json/article.json')
+        .then(response => response.json())
+        .then(data => {
+            // 收集所有文章并排序
+            const allArticles = [];
+            data.categories.forEach(category => {
+                category.articles.forEach(article => {
+                    allArticles.push({
+                        ...article,
+                        category: category.title
+                    });
+                });
+            });
+
+            // 按日期降序排列
+            allArticles.sort((a, b) => b.date.localeCompare(a.date));
+
+            // 取最新 3 篇
+            const recentArticles = allArticles.slice(0, 3);
+
+            const container = document.getElementById('recentArticles');
+            container.innerHTML = `
+                <h2><i class="fas fa-book-open" style="margin-right: 6px; color: var(--color-accent);"></i>最新文章</h2>
+                ${recentArticles.map(article => `
+                    <div class="recent-article-item">
+                        <div class="recent-article-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="recent-article-info">
+                            <div class="recent-article-title">${article.title}</div>
+                            <div class="recent-article-meta">
+                                <span>${article.date}</span>
+                                <span class="recent-article-category">${article.category}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+                <a href="/article" class="recent-articles-more">
+                    <i class="fas fa-arrow-right"></i> 查看全部文章
+                </a>
+            `;
+        })
+        .catch(error => {
+            console.error('Error loading articles:', error);
+            // 如果加载失败，隐藏该板块
+            const container = document.getElementById('recentArticles');
+            if (container) container.style.display = 'none';
+        });
+}
+
+// ---------- 加载最新足迹 ----------
+function loadRecentTrips() {
+    fetch('trip/json/data.json')
+        .then(response => response.json())
+        .then(data => {
+            // 按日期降序排列
+            const sortedTrips = [...data.footprints].sort((a, b) => b.visitDate.localeCompare(a.visitDate));
+
+            // 取最新 5 个
+            const recentTrips = sortedTrips.slice(0, 5);
+
+            const container = document.getElementById('recentTrips');
+            container.innerHTML = `
+                <h2><i class="fas fa-map-marker-alt" style="margin-right: 6px; color: var(--color-accent);"></i>最新足迹</h2>
+                ${recentTrips.map(trip => `
+                    <div class="recent-trip-item">
+                        <span class="recent-trip-dot" style="background: ${trip.color};"></span>
+                        <span class="recent-trip-city">${trip.city}</span>
+                        <span class="recent-trip-province">${trip.province}</span>
+                        <span class="recent-trip-type">${trip.type}</span>
+                        <span class="recent-trip-date">${trip.visitDate}</span>
+                    </div>
+                `).join('')}
+                <a href="/trip" class="recent-articles-more">
+                    <i class="fas fa-arrow-right"></i> 查看全部足迹
+                </a>
+            `;
+        })
+        .catch(error => {
+            console.error('Error loading trips:', error);
+            const container = document.getElementById('recentTrips');
+            if (container) container.style.display = 'none';
+        });
+}
+
+// ---------- 统计文章数量 ----------
+function countArticles() {
+    // 从 article JSON 中统计，这里先返回一个占位，实际会在 loadRecentArticles 中更新
+    let count = 0;
+    // 尝试同步获取（通过缓存或预加载）
+    fetch('article/json/article.json')
+        .then(response => response.json())
+        .then(data => {
+            data.categories.forEach(category => {
+                count += category.articles.length;
+            });
+            const statEl = document.getElementById('statArticles');
+            if (statEl) statEl.textContent = count;
+        })
+        .catch(() => {});
+    return '...';
 }

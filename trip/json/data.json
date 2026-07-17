@@ -106,7 +106,7 @@
             "longitude": 120.6522,
             "latitude": 27.9838,
             "visitDate": "2022-10",
-            "type": "路过",
+            "type": "经过",
             "note": "不如泉州",
             "color": "#9933ff"
         },
@@ -337,7 +337,7 @@
             "longitude": 121.5506,
             "latitude": 29.8683,
             "visitDate": "2025-08",
-            "type": "经过",
+            "type": "旅游",
             "note": "我一定要扫宁波大街",
             "color": "#33ff66"
         },
@@ -413,7 +413,7 @@
             "province": "四川省",
             "longitude": 105.8198,
             "latitude": 32.4410,
-            "visitDate": "2026-06",
+            "visitDate": "2026-05",
             "type": "旅游",
             "note": "你家这鸟道和猿蹂道都预约不上的",
             "color": "#cd5c5c"

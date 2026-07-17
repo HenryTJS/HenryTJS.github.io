@@ -26,6 +26,7 @@
 
     <!-- Hero 区域 -->
     <section class="hero-section" id="hero">
+        <div class="hero-particles" id="heroParticles"></div>
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-graduation-cap"></i>
@@ -33,7 +34,15 @@
             </div>
             <h1 class="hero-title">seal的个人主页</h1>
             <p class="hero-subtitle">西安交通大学少年班学生 | 智能制造工程（钱学森班-计算机）在读</p>
+            <div class="hero-typewriter">
+                <span class="typewriter-label">「 </span>
+                <span id="typewriterText" class="typewriter-text"></span>
+                <span class="typewriter-cursor">|</span>
+                <span class="typewriter-label"> 」</span>
+            </div>
         </div>
+        <!-- Hero 数据统计 -->
+        <div class="hero-stats" id="heroStats"></div>
         <div class="scroll-down" id="scrollDown">
             <i class="fas fa-angle-down"></i>
         </div>
@@ -44,8 +53,11 @@
         <div class="left-column">
             <section class="profile-section reveal" id="profile"></section>
             <section class="contact-section reveal" id="contact"></section>
+            <section class="interests-section reveal" id="interests"></section>
+            <section class="skills-section reveal" id="skills"></section>
         </div>
         <div class="right-column">
+            <!-- 个人成就 / 个人履历 -->
             <section class="achievements-section reveal">
                 <div class="tab-container">
                     <button class="tab active" onclick="openTab(event, 'achievements')">个人成就</button>
@@ -54,7 +66,12 @@
                 <div id="achievements" class="tab-content active"></div>
                 <div id="experience" class="tab-content"></div>
             </section>
-            <section class="apps-section reveal" id="apps"></section>
+
+            <!-- 最新文章 -->
+            <section class="recent-articles-section reveal" id="recentArticles"></section>
+
+            <!-- 最新足迹 -->
+            <section class="recent-trips-section reveal" id="recentTrips"></section>
         </div>
     </div>
 

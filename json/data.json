@@ -5,7 +5,8 @@
         "avatar": "/img/touxiang.jpg",
         "major": "智能制造工程 | ISFP | 18岁",
         "location": "中国·陕西·西安",
-        "intro": "你好！我是杨承轩，你也可以叫我seal。我是2022级西安交通大学少年班学生，现智能制造工程（钱学森班-计算机）大三在读。我喜欢音乐和体育，学习过双排键和萨克斯，在少年班成人礼、钱班音乐会、少年班40周年文艺汇演等均曾上台演出，同时是2025年西安交通大学男子30秒单摇个人第11名，也带领智造钱2401班获得2026年西安交通大学广播操比赛第5名。生活上我还喜欢旅游、摄影和骑行，有志同道合的小伙伴欢迎一起来玩！"
+        "motto": "Dobby is free!",
+        "motto_author": "Harry Potter"
     },
     "contact": [
         {
@@ -24,10 +25,27 @@
             "link": "https://wpa.qq.com/msgrd?v=3&uin=1743495223&site=qq&menu=yes"
         }
     ],
+    "skills": [
+        { "name": "Python", "level": 85, "color": "#3776AB" },
+        { "name": "C/C++", "level": 75, "color": "#00599C" },
+        { "name": "Java", "level": 70, "color": "#ED8B00" },
+        { "name": "JavaScript", "level": 70, "color": "#F7DF1E" },
+        { "name": "HTML/CSS", "level": 75, "color": "#E34F26" },
+        { "name": "PyTorch", "level": 65, "color": "#EE4C2C" },
+        { "name": "Linux", "level": 70, "color": "#FCC624" },
+        { "name": "Git", "level": 75, "color": "#F05032" }
+    ],
+    "interests": [
+        { "icon": "fas fa-music", "name": "双排键 / 萨克斯" },
+        { "icon": "fas fa-running", "name": "跳绳 / 骑行" },
+        { "icon": "fas fa-camera", "name": "摄影" },
+        { "icon": "fas fa-plane", "name": "旅行" },
+        { "icon": "fas fa-book-open", "name": "阅读" }
+    ],
     "achievements": [
         {
             "icon": "🌐",
-            "title": "2026陕西省“大学生创新项目训练”立项",
+            "title": "2026陕西省「大学生创新项目训练」立项",
             "details": ["项目名称：飞行器结构智能健康监测大模型系统"]
         },
         {
