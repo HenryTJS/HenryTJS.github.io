@@ -417,6 +417,39 @@
             "type": "旅游",
             "note": "你家这鸟道和猿蹂道都预约不上的",
             "color": "#cd5c5c"
+        },
+        {
+            "id": 39,
+            "city": "洛阳市",
+            "province": "河南省",
+            "longitude": 112.4345,
+            "latitude": 34.6638,
+            "visitDate": "2026-07",
+            "type": "旅游",
+            "note": "物价感人",
+            "color": "#5ccd5c"
+        },
+        {
+            "id": 40,
+            "city": "开封市",
+            "province": "河南省",
+            "longitude": 114.3076,
+            "latitude": 34.7970,
+            "visitDate": "2026-07",
+            "type": "旅游",
+            "note": "心脏病慎入",
+            "color": "#5c5ccd"
+        },
+        {
+            "id": 41,
+            "city": "许昌市",
+            "province": "河南省",
+            "longitude": 113.8266,
+            "latitude": 34.0220,
+            "visitDate": "2026-07",
+            "type": "旅游",
+            "note": "无",
+            "color": "#ffb6c1"
         }
     ]
 }
