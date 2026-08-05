@@ -222,23 +222,20 @@ function renderInterests(interests) {
 function renderHeroStats(data) {
     const statsSection = document.getElementById('heroStats');
     if (!statsSection) return;
-    const articleCount = countArticles();
-    const cityCount = 38;
-    const provinceCount = 14;
     const achievementCount = data.achievements ? data.achievements.length : 0;
 
     statsSection.innerHTML = `
         <div class="hero-stats-grid">
             <div class="hero-stat-item">
-                <span class="hero-stat-number" id="statArticles">${articleCount}</span>
+                <span class="hero-stat-number" id="statArticles">...</span>
                 <span class="hero-stat-label">阅读笔记</span>
             </div>
             <div class="hero-stat-item">
-                <span class="hero-stat-number">${cityCount}</span>
+                <span class="hero-stat-number" id="statCities">...</span>
                 <span class="hero-stat-label">到访城市</span>
             </div>
             <div class="hero-stat-item">
-                <span class="hero-stat-number">${provinceCount}</span>
+                <span class="hero-stat-number" id="statProvinces">...</span>
                 <span class="hero-stat-label">到访省份</span>
             </div>
             <div class="hero-stat-item">
@@ -247,6 +244,27 @@ function renderHeroStats(data) {
             </div>
         </div>
     `;
+
+    // 从足迹数据动态统计到访城市数与省份数
+    fetch('trip/json/data.json')
+        .then(response => response.json())
+        .then(tripData => {
+            const footprints = tripData.footprints || [];
+            const citySet = new Set();
+            const provinceSet = new Set();
+            footprints.forEach(fp => {
+                if (fp.city) citySet.add(fp.city);
+                if (fp.province) provinceSet.add(fp.province);
+            });
+            const cityEl = document.getElementById('statCities');
+            const provinceEl = document.getElementById('statProvinces');
+            if (cityEl) cityEl.textContent = citySet.size;
+            if (provinceEl) provinceEl.textContent = provinceSet.size;
+        })
+        .catch(() => {});
+
+    // 从文章数据动态统计文章数
+    countArticles();
 }
 
 function renderAchievements(achievements) {
@@ -394,18 +412,15 @@ function loadRecentTrips() {
 
 // ---------- 统计文章数量 ----------
 function countArticles() {
-    // 从 article JSON 中统计，这里先返回一个占位，实际会在 loadRecentArticles 中更新
-    let count = 0;
-    // 尝试同步获取（通过缓存或预加载）
     fetch('article/json/article.json')
         .then(response => response.json())
         .then(data => {
-            data.categories.forEach(category => {
-                count += category.articles.length;
+            let count = 0;
+            (data.categories || []).forEach(category => {
+                count += (category.articles || []).length;
             });
             const statEl = document.getElementById('statArticles');
             if (statEl) statEl.textContent = count;
         })
         .catch(() => {});
-    return '...';
 }
