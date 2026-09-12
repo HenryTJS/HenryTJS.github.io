@@ -79,17 +79,13 @@
     /* ================= 数据扁平化 ================= */
     function flatten(data) {
         const section = data.sections && data.sections[0];
-        const group = section && section.groups && section.groups[0];
-        const article = group && group.article;
-        if (!section || !group || !article) return [];
+        const article = section && section.article;
+        if (!section || !article) return [];
 
         return [Object.assign({}, article, {
-            title: group.title,
-            summary: group.desc || article.summary,
             sectionId: section.id,
             sectionTitle: section.title,
-            groupId: group.id,
-            groupTitle: group.title
+            groupTitle: section.title
         })];
     }
 
@@ -98,9 +94,9 @@
         const tree = $('sidebarTree');
         const fragment = document.createDocumentFragment();
         const section = data.sections && data.sections[0];
-        const group = section && section.groups && section.groups[0];
+        const article = section && section.article;
 
-        if (!section || !group) return;
+        if (!section || !article) return;
 
         const sectionEl = document.createElement('div');
         sectionEl.className = 'tree-section';
@@ -110,13 +106,11 @@
         head.innerHTML = `<i class="fas ${section.icon || 'fa-calculator'}"></i> ${section.title}`;
         sectionEl.appendChild(head);
 
-        const article = group.article;
-        if (!article) return;
         const item = document.createElement('a');
         item.className = 'tree-item active';
         item.href = 'index.html?id=' + encodeURIComponent(article.id);
-        item.dataset.keyword = (group.title + ' ' + (article.tags || []).join(' ')).toLowerCase();
-        item.innerHTML = `<span class="t-title">${group.title}</span>`;
+        item.dataset.keyword = (article.title + ' ' + (article.tags || []).join(' ')).toLowerCase();
+        item.innerHTML = `<span class="t-title">${article.title}</span>`;
         sectionEl.appendChild(item);
         fragment.appendChild(sectionEl);
 
