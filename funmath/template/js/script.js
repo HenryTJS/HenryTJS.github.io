@@ -83,8 +83,6 @@
         if (!section || !article) return [];
 
         return [Object.assign({}, article, {
-            sectionId: section.id,
-            sectionTitle: section.title,
             groupTitle: section.title
         })];
     }
@@ -109,7 +107,7 @@
         const item = document.createElement('a');
         item.className = 'tree-item active';
         item.href = 'index.html?id=' + encodeURIComponent(article.id);
-        item.dataset.keyword = (article.title + ' ' + (article.tags || []).join(' ')).toLowerCase();
+        item.dataset.keyword = article.title.toLowerCase();
         item.innerHTML = `<span class="t-title">${article.title}</span>`;
         sectionEl.appendChild(item);
         fragment.appendChild(sectionEl);
@@ -151,32 +149,10 @@
     function renderHeader(article) {
         document.title = article.title + ' - 趣味数学 - seal的个人主页';
         $('doc-h1').textContent = article.title;
-
-        const level = article.level || '入门';
-        const tags = (article.tags || [])
-            .map(t => `<span class="meta-tag">${t}</span>`).join('');
-
-        $('doc-meta').innerHTML = `
-            <span class="level-badge level-${level}">${level}</span>
-            ${article.date ? `<span class="meta-item"><i class="far fa-calendar-alt"></i>${article.date}</span>` : ''}
-            <span class="meta-item"><i class="fas fa-clock"></i>约 ${estimateMinutes(article)} 分钟</span>
-            ${tags}
-        `;
-
-    }
-
-    function estimateMinutes(article) {
-        const extra = article.summary ? article.summary.length / 120 : 0;
-        return Math.max(3, Math.round(4 + extra));
     }
 
     /* ================= 加载正文 ================= */
     function loadArticle(article) {
-        if (article.status !== 'ready') {
-            renderPlanned(article);
-            return;
-        }
-
         fetch(`md/${article.id}.md`)
             .then(res => {
                 if (!res.ok) throw new Error('Markdown 文件不存在');
@@ -224,7 +200,6 @@
 
     function showError(title, message) {
         $('doc-h1').textContent = title;
-        $('doc-meta').innerHTML = '';
         $('doc-content').innerHTML =
             `<div class="placeholder"><div class="ph-icon"><i class="fas fa-exclamation-circle"></i></div>
              <h2>${title}</h2><p>${message}</p></div>`;

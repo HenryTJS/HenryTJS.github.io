@@ -7,18 +7,16 @@
 
 ```
 funmath/
-├── index.html                 # 栏目入口：直接跳转到默认文档 prime
-├── css/style.css
-├── js/script.js               # 读取 json/data.json 渲染目录
+├── index.html                 # 栏目入口：直接跳转到默认文档 1-1
 ├── json/
 │   └── data.json              # ⭐ 唯一的「目录数据源」：分区 → 篇目
 └── template/
-    ├── index.html             # 文档页：?id=prime 这样的形式访问
+    ├── index.html             # 文档页：?id=1-1 这样的形式访问
     ├── css/style.css
     ├── js/script.js           # 目录树 / 大纲 / 滚动高亮 / 复制代码 / 提示块 / KaTeX
     └── md/                    # ⭐ 正文 Markdown 文件，文件名与 data.json 的 id 一致
         ├── _template.md       # 写作模板（不会出现在目录里）
-        ├── prime.md
+        ├── 1-1.md
         ├── perfect.md
         ├── amicable.md
         ├── magic-square.md
@@ -38,18 +36,9 @@ funmath/
    ```json
    {
      "id": "新篇目id",
-     "title": "显示用的标题（纯文本，不要写 LaTeX）",
-     "summary": "一到两句话的摘要，会显示在卡片上",
-     "level": "入门",
-     "tags": ["标签1", "标签2"],
-     "date": "2026-09-10",
-     "status": "ready"
+     "title": "显示用的标题"
    }
    ```
-
-   - `status` 为 `"ready"` 时目录树可点击、卡片显示「已更新」；
-   - 为 `"planned"` 时显示为虚线卡片与「待写」标记，点进去是一张写作计划占位页。
-   - 还没写但已规划好的篇目，建议先以 `planned` 登记，这样整个栏目是一张实时更新的路线图。
 
 3. **完成**。左侧目录树、上下篇导航、右侧大纲都会自动生成，不需要改代码。
 
