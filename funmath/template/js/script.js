@@ -79,12 +79,12 @@
     /* ================= 数据扁平化 ================= */
     function flatten(data) {
         const section = data.sections && data.sections[0];
-        const article = section && section.article;
-        if (!section || !article) return [];
+        const articles = section && section.articles;
+        if (!section || !Array.isArray(articles)) return [];
 
-        return [Object.assign({}, article, {
-            groupTitle: section.title
-        })];
+        return articles.map(article => Object.assign({}, article, {
+            sectionTitle: section.title
+        }));
     }
 
     /* ================= 左侧目录树 ================= */
@@ -92,9 +92,9 @@
         const tree = $('sidebarTree');
         const fragment = document.createDocumentFragment();
         const section = data.sections && data.sections[0];
-        const article = section && section.article;
+        const articles = section && section.articles;
 
-        if (!section || !article) return;
+        if (!section || !Array.isArray(articles)) return;
 
         const sectionEl = document.createElement('div');
         sectionEl.className = 'tree-section';
@@ -104,12 +104,14 @@
         head.innerHTML = `<i class="fas ${section.icon || 'fa-calculator'}"></i> ${section.title}`;
         sectionEl.appendChild(head);
 
-        const item = document.createElement('a');
-        item.className = 'tree-item active';
-        item.href = 'index.html?id=' + encodeURIComponent(article.id);
-        item.dataset.keyword = article.title.toLowerCase();
-        item.innerHTML = `<span class="t-title">${article.title}</span>`;
-        sectionEl.appendChild(item);
+        articles.forEach(article => {
+            const item = document.createElement('a');
+            item.className = 'tree-item' + (article.id === activeId ? ' active' : '');
+            item.href = 'index.html?id=' + encodeURIComponent(article.id);
+            item.dataset.keyword = article.title.toLowerCase();
+            item.innerHTML = `<span class="t-title">${article.title}</span>`;
+            sectionEl.appendChild(item);
+        });
         fragment.appendChild(sectionEl);
 
         tree.innerHTML = '';
@@ -127,12 +129,15 @@
         // 目录搜索
         $('sidebarSearch').addEventListener('input', e => {
             const kw = e.target.value.trim().toLowerCase();
-            const item = tree.querySelector('.tree-item');
-            const hit = !kw || item.dataset.keyword.includes(kw);
-            item.style.display = hit ? '' : 'none';
-            tree.querySelector('.tree-section').style.display = hit ? '' : 'none';
+            const items = Array.from(tree.querySelectorAll('.tree-item'));
+            const visibleCount = items.filter(item => {
+                const hit = !kw || item.dataset.keyword.includes(kw);
+                item.style.display = hit ? '' : 'none';
+                return hit;
+            }).length;
+            tree.querySelector('.tree-section').style.display = visibleCount ? '' : 'none';
             let empty = tree.querySelector('.tree-empty');
-            if (!hit) {
+            if (!visibleCount) {
                 if (!empty) {
                     empty = document.createElement('div');
                     empty.className = 'tree-empty';
@@ -373,11 +378,11 @@
 
         pager.innerHTML = `
             ${prev ? `<a class="pager-card prev" href="index.html?id=${encodeURIComponent(prev.id)}">
-                <span class="pager-label"><i class="fas fa-arrow-left"></i> 上一篇 · ${prev.groupTitle}</span>
+                <span class="pager-label"><i class="fas fa-arrow-left"></i> 上一篇 · ${prev.sectionTitle}</span>
                 <span class="pager-title">${prev.title}</span>
             </a>` : '<span class="pager-card empty"></span>'}
             ${next ? `<a class="pager-card next" href="index.html?id=${encodeURIComponent(next.id)}">
-                <span class="pager-label">下一篇 · ${next.groupTitle} <i class="fas fa-arrow-right"></i></span>
+                <span class="pager-label">下一篇 · ${next.sectionTitle} <i class="fas fa-arrow-right"></i></span>
                 <span class="pager-title">${next.title}</span>
             </a>` : '<span class="pager-card empty"></span>'}
         `;
