@@ -16,17 +16,24 @@ const numberTypes = [
     },
     {
         id: 'prime',
-        name: '质数',
+        name: '素数',
         category: '基础性质',
-        description: '大于 1 且只有 1 和自身两个正因数的整数。',
+        description: '大于 1 且只有 1 和自身两个正约数的整数。',
         test: isPrime
     },
     {
         id: 'composite',
         name: '合数',
         category: '基础性质',
-        description: '大于 1 且除了 1 和自身以外还有其他因数的整数。',
+        description: '大于 1 且除了 1 和自身以外还有其他约数的整数。',
         test: number => number > 1n && !isPrime(number)
+    },
+    {
+        id: 'semiprime',
+        name: '半素数',
+        category: '基础性质',
+        description: '可以表示为两个素数的乘积的整数。',
+        test: isSemiprime
     },
     {
         id: 'palindrome',
@@ -62,9 +69,30 @@ const numberTypes = [
     {
         id: 'perfect',
         name: '完全数',
-        category: '因数结构',
-        description: '真因数之和等于自身的数，例如 6 和 28。',
+        category: '约数结构',
+        description: '真约数之和等于自身的数。',
         test: number => isPerfectNumber(number)
+    },
+    {
+        id: 'abundant',
+        name: '盈数',
+        category: '约数结构',
+        description: '真约数之和大于自身的数。',
+        test: number => isAbundantNumber(number)
+    },
+    {
+        id: 'deficient',
+        name: '亏数',
+        category: '约数结构',
+        description: '真约数之和小于自身的数。',
+        test: number => isDeficientNumber(number)
+    },
+    {
+        id: 'semiperfect',
+        name: '半完全数',
+        category: '约数结构',
+        description: '真约数的子集之和等于自身的数。',
+        test: number => isSemiperfect(number)
     },
     {
         id: 'armstrong',
@@ -97,6 +125,20 @@ function isPrime(number) {
     return true;
 }
 
+function isSemiprime(number) {
+    if (number < 4n) return false;
+    if (number % 2n === 0n) {
+        return isPrime(number / 2n);
+    }
+
+    for (let divisor = 3n; divisor * divisor <= number; divisor += 2n) {
+        if (number % divisor === 0n) {
+            return isPrime(number / divisor);
+        }
+    }
+    return false;
+}
+
 function integerRoot(number, degree) {
     let low = 0n;
     let high = number + 1n;
@@ -122,18 +164,82 @@ function isTriangular(number) {
     return isPerfectPower(8n * number + 1n, 2);
 }
 
-function isPerfectNumber(number) {
-    if (number < 2n) return false;
+function aliquotSum(number) {
+    if (number < 1n) return 0n;
+    if (number === 1n) return 0n;
+
     let sum = 1n;
 
     for (let divisor = 2n; divisor * divisor <= number; divisor++) {
         if (number % divisor === 0n) {
             sum += divisor;
+
             const pair = number / divisor;
-            if (pair !== divisor) sum += pair;
+            if (pair !== divisor) {
+                sum += pair;
+            }
         }
     }
-    return sum === number;
+    return sum;
+}
+
+function isPerfectNumber(number) {
+    if (number < 2n) return false;
+    return aliquotSum(number) === number;
+}
+
+function isAbundantNumber(number) {
+    if (number < 2n) return false;
+    return aliquotSum(number) > number;
+}
+
+function isDeficientNumber(number) {
+    if (number < 1n) return false;
+    return aliquotSum(number) < number;
+}
+
+function properDivisors(n) {
+    const res = [];
+    for (let d = 1n; d * d <= n; d++) {
+        if (n % d === 0n) {
+            if (d < n) res.push(d);
+            const q = n / d;
+            if (q !== d && q < n) res.push(q);
+        }
+    }
+    return res;
+}
+
+function isSemiperfect(n) {
+  if (n < 2n) return false;
+
+  const divisors = properDivisors(n);
+  let total = 0n;
+  for (const d of divisors) total += d;
+
+  if (total < n) return false;
+  if (total === n) return true;
+
+  const target = n <= total - n ? n : total - n;
+
+  divisors.sort((a, b) => (a > b ? -1 : a < b ? 1 : 0));
+
+  const suffixSum = new Array(divisors.length + 1).fill(0n);
+  for (let i = divisors.length - 1; i >= 0; i--) {
+    suffixSum[i] = suffixSum[i + 1] + divisors[i];
+  }
+
+  function canSum(index, current) {
+    if (current === target) return true;
+    if (current > target) return false;
+    if (index >= divisors.length) return false;
+    if (current + suffixSum[index] < target) return false;
+
+    if (canSum(index + 1, current + divisors[index])) return true;
+    return canSum(index + 1, current);
+  }
+
+  return canSum(0, 0n);
 }
 
 function isFibonacci(number) {
