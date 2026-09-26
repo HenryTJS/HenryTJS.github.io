@@ -12,6 +12,7 @@ const elements = {
     minInput: document.querySelector('#minInput'),
     maxInput: document.querySelector('#maxInput'),
     typeSelect: document.querySelector('#typeSelect'),
+    typeParams: document.querySelector('#typeParams'),
     propertyError: document.querySelector('#propertyError'),
     rangeError: document.querySelector('#rangeError'),
     propertyResult: document.querySelector('#propertyResult'),
@@ -22,8 +23,10 @@ initialize();
 
 function initialize() {
     renderTypeOptions();
+    renderTypeParams();
     elements.propertyTab.addEventListener('click', () => switchMode('property'));
     elements.rangeTab.addEventListener('click', () => switchMode('range'));
+    elements.typeSelect.addEventListener('change', renderTypeParams);
     elements.propertyForm.addEventListener('submit', handlePropertyQuery);
     elements.rangeForm.addEventListener('submit', handleRangeQuery);
 }
@@ -57,6 +60,36 @@ function groupTypesByCategory() {
     }, new Map());
 }
 
+/* 只有带 params 的类型（如 n 次方数）才会多出一个参数输入框。 */
+function renderTypeParams() {
+    const type = numberTypeMap.get(elements.typeSelect.value);
+    const params = type?.params ?? [];
+
+    elements.typeParams.innerHTML = params.map(param => `
+        <label class="field">
+            <span>${param.label}</span>
+            <input type="number" data-param="${param.id}" min="${param.min}"
+                value="${param.default ?? param.min}" inputmode="numeric">
+        </label>
+    `).join('');
+    elements.typeParams.hidden = params.length === 0;
+}
+
+function collectTypeParams(type) {
+    const values = {};
+
+    for (const param of type?.params ?? []) {
+        const input = elements.typeParams.querySelector(`[data-param="${param.id}"]`);
+        const value = Number(input?.value);
+
+        if (!Number.isSafeInteger(value) || value < param.min) {
+            return { values, error: `${param.label} 需要是不小于 ${param.min} 的整数。` };
+        }
+        values[param.id] = value;
+    }
+    return { values };
+}
+
 function handlePropertyQuery(event) {
     event.preventDefault();
     clearMessage(elements.propertyError);
@@ -68,24 +101,29 @@ function handlePropertyQuery(event) {
     }
 
     const number = BigInt(rawValue);
-    const matches = numberTypes.filter(type => type.test(number));
+    const results = numberTypes.map(type => ({ type, matched: type.test(number) }));
+    const hitCount = results.filter(result => result.matched).length;
     const digits = rawValue.length;
 
     elements.propertyResult.innerHTML = `
         <div class="result-summary">
             <div><span class="summary-label">分析对象</span><strong class="large-number">${rawValue}</strong></div>
             <div class="summary-stat"><span class="summary-label">数字位数</span><strong>${digits}</strong></div>
-            <div class="summary-stat"><span class="summary-label">命中类型</span><strong>${matches.length}</strong></div>
+            <div class="summary-stat"><span class="summary-label">命中类型</span><strong>${hitCount}</strong></div>
         </div>
         <div class="match-list">
-            ${numberTypes.map(type => `
-                <div class="match-row ${type.test(number) ? 'is-match' : ''}">
-                    <span class="match-mark">${type.test(number) ? '✓' : '—'}</span>
-                    <span class="match-name">${type.name}</span>
-                    <span class="match-description">${type.description}</span>
-                    <span class="match-status">${type.test(number) ? '是' : '否'}</span>
-                </div>
-            `).join('')}
+            ${results.map(({ type, matched }) => {
+                const note = matched && type.detail ? type.detail(number) : '';
+                return `
+                    <div class="match-row ${matched ? 'is-match' : ''}">
+                        <span class="match-mark">${matched ? '✓' : '—'}</span>
+                        <span class="match-name">${type.name}</span>
+                        <span class="match-description">${type.description}</span>
+                        <span class="match-status">${matched ? '是' : '否'}</span>
+                        ${note ? `<span class="match-note">${note}</span>` : ''}
+                    </div>
+                `;
+            }).join('')}
         </div>
     `;
     elements.propertyResult.classList.remove('hidden');
@@ -108,14 +146,21 @@ function handleRangeQuery(event) {
         return;
     }
 
-    const matches = [];
-    for (let value = minimum; value <= maximum; value++) {
-        if (type.test(BigInt(value))) matches.push(value);
+    const params = collectTypeParams(type);
+    if (params.error) {
+        showMessage(elements.rangeError, params.error);
+        return;
     }
+
+    const matches = type.generateInRange
+        ? type.generateInRange(BigInt(minimum), BigInt(maximum), params.values)
+        : testEachNumber(type, params.values, minimum, maximum);
+
+    const typeLabel = type.label ? type.label(params.values) : type.name;
 
     elements.rangeResult.innerHTML = `
         <div class="result-summary">
-            <div><span class="summary-label">查询类型</span><strong class="large-number">${type.name}</strong></div>
+            <div><span class="summary-label">查询类型</span><strong class="large-number">${typeLabel}</strong></div>
             <div class="summary-stat"><span class="summary-label">查询范围</span><strong>${minimum} - ${maximum}</strong></div>
             <div class="summary-stat"><span class="summary-label">找到</span><strong>${matches.length}</strong></div>
         </div>
@@ -129,6 +174,18 @@ function handleRangeQuery(event) {
     `;
     elements.rangeResult.classList.remove('hidden');
     elements.rangeResult.querySelector('.copy-button')?.addEventListener('click', copyRangeResult);
+}
+
+/* 没有快速生成路径的类型就逐个判断，单次最多 100 万个数。 */
+function testEachNumber(type, params, minimum, maximum) {
+    const matches = [];
+
+    for (let value = minimum; value <= maximum; value++) {
+        const number = BigInt(value);
+        const matched = type.testWithParams ? type.testWithParams(number, params) : type.test(number);
+        if (matched) matches.push(number);
+    }
+    return matches;
 }
 
 async function copyRangeResult(event) {
