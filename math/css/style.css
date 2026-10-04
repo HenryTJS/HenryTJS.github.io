@@ -92,9 +92,9 @@ button { cursor: pointer; }
 .field input:focus, .field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(8, 127, 115, .1); }
 .wide-field { flex: 1; }
 .type-field { flex: 2; }
-.type-params { display: flex; flex: 0 0 130px; gap: 14px; }
+.type-params { display: flex; flex: 0 0 auto; gap: 14px; }
 .type-params[hidden] { display: none; }
-.type-params .field { flex: 1; }
+.type-params .field { flex: 0 0 120px; }
 .primary-button { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 20px; height: 49px; padding: 0 20px; color: white; background: var(--teal); border: 0; border-radius: 2px; font-weight: 700; }
 .primary-button:hover { background: var(--teal-dark); }
 .primary-button span { font-size: 20px; font-weight: 400; }

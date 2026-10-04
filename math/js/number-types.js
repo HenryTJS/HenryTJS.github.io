@@ -116,11 +116,30 @@ const numberTypes = [
         }
     },
     {
-        id: 'perfect',
-        name: '完全数',
+        id: 'multiperfect',
+        name: '(m,k)-完全数',
         category: '约数结构',
-        description: '真约数之和等于自身的数。',
-        test: number => isPerfectNumber(number)
+        description: '约数和与自身的比值为 m/k 的数，即 σ(n)/n = m/k（m > k ≥ 1）。',
+        params: [
+            { id: 'm', label: '分子 m', min: 2, default: 2 },
+            { id: 'k', label: '分母 k', min: 1, default: 1 }
+        ],
+        label: params => `(${params.m},${params.k})-完全数`,
+        validateParams: params => params.m > params.k ? undefined : '分子 m 需要大于分母 k。',
+        // n ≥ 2 时 σ(n) > n，约分后总能得到 m > k 的一对参数
+        test: number => number > 1n,
+        testWithParams: (number, params) =>
+            divisorSum(number) * BigInt(params.k) === BigInt(params.m) * number,
+        generateInRange: (minimum, maximum, params) =>
+            sigmaMatches(minimum, maximum, params.m, params.k),
+        detail: number => {
+            const sigma = divisorSum(number);
+            const [m, k] = reducedRatio(sigma, number);
+            const ratio = `σ(${number}) = ${sigma}，σ(${number})/${number} = ${m}/${k}`;
+
+            if (k !== 1n) return `${ratio}（(${m},${k})-完全数）`;
+            return `${ratio}（(${m},1)-完全数${m === 2n ? '，即完全数' : ''}）`;
+        }
     },
     {
         id: 'abundant',
@@ -325,9 +344,63 @@ function aliquotSum(number) {
     return sum;
 }
 
-function isPerfectNumber(number) {
-    if (number < 2n) return false;
-    return aliquotSum(number) === number;
+/* σ(n)：n 的所有正约数之和。 */
+function divisorSum(number) {
+    return aliquotSum(number) + number;
+}
+
+function greatestCommonDivisor(left, right) {
+    while (right !== 0n) {
+        const remainder = left % right;
+        left = right;
+        right = remainder;
+    }
+    return left;
+}
+
+/* 把 σ(n)/n 约成最简分数，返回 [m, k]。 */
+function reducedRatio(numerator, denominator) {
+    const divisor = greatestCommonDivisor(numerator, denominator);
+    return [numerator / divisor, denominator / divisor];
+}
+
+const SIGMA_SIEVE_LIMIT = 2000000;
+
+/* 一次筛出 [1, limit] 内每个数的约数和 σ，避免逐个分解。 */
+function sigmaTableUpTo(limit) {
+    const sigma = new Float64Array(limit + 1);
+
+    for (let divisor = 1; divisor <= limit; divisor++) {
+        for (let multiple = divisor; multiple <= limit; multiple += divisor) {
+            sigma[multiple] += divisor;
+        }
+    }
+    return sigma;
+}
+
+/* 找出 [minimum, maximum] 内满足 k·σ(n) = m·n 的数。 */
+function sigmaMatches(minimum, maximum, m, k) {
+    const results = [];
+    const limit = Number(maximum);
+
+    if (limit <= SIGMA_SIEVE_LIMIT) {
+        const sigma = sigmaTableUpTo(limit);
+        const numerator = BigInt(m);
+        const denominator = BigInt(k);
+
+        for (let value = Number(minimum); value <= limit; value++) {
+            if (BigInt(sigma[value]) * denominator === numerator * BigInt(value)) {
+                results.push(BigInt(value));
+            }
+        }
+        return results;
+    }
+
+    // 数值超出筛表范围时只能逐个计算约数和
+    for (let value = minimum; value <= maximum; value++) {
+        if (divisorSum(value) * BigInt(k) === BigInt(m) * value) results.push(value);
+    }
+    return results;
 }
 
 function isAbundantNumber(number) {

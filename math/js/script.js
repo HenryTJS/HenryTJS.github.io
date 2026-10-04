@@ -87,7 +87,9 @@ function collectTypeParams(type) {
         }
         values[param.id] = value;
     }
-    return { values };
+
+    const error = type?.validateParams?.(values);
+    return error ? { values, error } : { values };
 }
 
 function handlePropertyQuery(event) {
